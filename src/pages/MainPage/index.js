@@ -1,20 +1,6 @@
 import React from 'react';
-import HomePage from '../HomePage';
-import {Switch, Route} from 'react-router-dom';
-import {withRouter} from 'react-router-dom';
-import './mainPage.css';
-
 
 class MainPage extends React.Component {
-
-	//Currently does not work-routing to a different page
-	routeToHomePage() {
-		return (
-            <Switch>
-                <Route exact path="/" component={MainPage}/>
-            </Switch>
-		)
-	}
 
     render() {
         return (

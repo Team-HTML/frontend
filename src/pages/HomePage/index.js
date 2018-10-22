@@ -27,7 +27,7 @@ class HomePage extends React.Component {
             <div className="row">
                 {data.map(d => {
                     return (
-                        <div className="col-3">
+                        <div className="col-md-3">
                             <Folder {...d} />
                         </div>
                     );
@@ -40,7 +40,7 @@ class HomePage extends React.Component {
         return (
             <div className="home mt-5">
                 <div className="container">
-                    <div className="row">
+                    <div className="row mx-0">
                         <h1>Library</h1>
                         <div className="ml-auto home__sort mt-1">
                             Sort 
