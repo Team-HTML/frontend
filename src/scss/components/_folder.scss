@@ -1,0 +1,9 @@
+.folder {
+    background: grey;
+    color: white;
+
+    &__name {
+        font-size: 2rem;
+        padding: 2rem;
+    }
+}
