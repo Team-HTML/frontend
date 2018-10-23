@@ -29,7 +29,7 @@ class Routes extends React.Component {
                 <Route exact path="/" component={MainPage}/>
                 <Route exact path="/home" component={this.withLayout(HomePage)}/>
                 <Route exact path="/folder/:folderId" component={this.withLayout(FolderPage)}/>
-                <Route exact path="/template/:templateId" component={this.withLayout(TemplatePage)} />
+                <Route exact path="/template/:templateId" component={TemplatePage} />
             </Switch>
         )
     }
