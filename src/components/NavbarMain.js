@@ -2,11 +2,14 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 //import GoogleLoginButton from 'react-google-login-button'
+import {login} from '../data/Api';
 
 //send to backend
 const successResponseGoogle = (response) => {
-  console.log('{ "email": "' + response.getBasicProfile().getEmail() +'"}');
-  
+  login({email: response.getBasicProfile().getEmail()})
+    .then(r => {
+      console.log(r);
+    })
 }
 
 //possibly send an error message and redirect back to main page
