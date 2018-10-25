@@ -5,7 +5,7 @@ class MainPage extends React.Component {
     render() {
         return (
             <div>
-				<div className="container">
+				<div className="container pt-4">
 					<div className="row">
 						<div className="main__description">
 							<h1 className="justify-content-center d-flex p-3"> Something Interesting </h1>
