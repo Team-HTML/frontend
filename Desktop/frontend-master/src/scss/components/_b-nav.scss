@@ -1,0 +1,17 @@
+.b-nav {
+    background: $blueprint-blue;
+    padding: 0.5rem 3rem;
+
+    &__logo {
+        max-width: 8rem;
+    }
+
+    &__link {
+        color: white;
+        font-size: 1.2rem;
+
+        &:hover {
+            color: grey;
+        }
+    }
+}
