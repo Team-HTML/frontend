@@ -21,7 +21,7 @@ class HomePage extends React.Component {
 
         data.unshift({name: 'Default'})
 
-        data.push({name: '+'})
+        //data.push({name: '+'})
 
         return (
             <div className="row">
