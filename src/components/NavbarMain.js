@@ -1,6 +1,5 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
 //import GoogleLoginButton from 'react-google-login-button'
 import {login} from '../data/Api';
 
@@ -17,11 +16,6 @@ const failResponseGoogle = (response) => {
   console.log(response);
 }
 
-//send to backend
-const responseFacebook = (response) => {
-  console.log("FACEBOOK: " + response);
-}
-
 class NavbarMain extends React.Component {
 
     render() {
@@ -36,20 +30,12 @@ class NavbarMain extends React.Component {
                 <ul className="navbar-nav ml-5">
                   <li className="nav-item b-nav__item p-3">
                     <GoogleLogin
-                      clientId="1022533524729-76c3ttk1phql7eplo5mf78uc0nd7tsvb.apps.googleusercontent.com"
+                      clientId="514487700487-gasef328acuesh2okt5i9hnr4a4lt1pc.apps.googleusercontent.com"
                       buttonText="Login"
                       onSuccess={successResponseGoogle}
                       onFailure={failResponseGoogle}
                     >
                     </GoogleLogin>
-                  </li>
-                  <li>
-                    <FacebookLogin
-                      appId="766618927015521"
-                      autoLoad={true}
-                      fields="email"
-                      callback={this.responseFacebook}
-                    > </FacebookLogin>
                   </li>
                 </ul>
               </div>

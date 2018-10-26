@@ -13,10 +13,7 @@ class Navbar extends React.Component {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-5">
                   <li className="nav-item b-nav__item">
-                    <a className="nav-link b-nav__link" href="#">Profile</a>
-                  </li>
-                  <li className="nav-item b-nav__item">
-                    <a className="nav-link b-nav__link" href="#">Newsfeed</a>
+                    <a className="nav-link b-nav__link" href="/template/1">Newsfeed</a>
                   </li>
                 </ul>
               </div>
