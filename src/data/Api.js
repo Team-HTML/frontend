@@ -10,6 +10,6 @@ const apiPrefix = pref(API_URL_PREFIX);
 //this does not work!!!!!!
 export const login = (data) =>
   promisify(request
-    .post('/login')
+    .post(API_URL_PREFIX + 'login')
     .send(data)
     .use(apiPrefix));

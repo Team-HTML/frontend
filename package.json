@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "node-sass": "^4.9.4",
+    "q": "^1.5.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-facebook-login": "^4.1.1",
