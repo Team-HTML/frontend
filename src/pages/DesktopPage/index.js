@@ -1,7 +1,7 @@
 import React from 'react';
 import Folder from '../../components/Folder';
 
-class HomePage extends React.Component {
+class DesktopPage extends React.Component {
 
     renderFolders() {
         const data = [
@@ -55,4 +55,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default DesktopPage;

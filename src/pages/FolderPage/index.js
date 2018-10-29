@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from '../HomePage';
+import DesktopPage from '../DesktopPage';
 import {Switch, Route} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import {getFolderById} from '../../data/Api';

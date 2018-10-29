@@ -1,8 +1,8 @@
 import {Switch, Route} from 'react-router-dom';
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import MainPage from './pages/MainPage';
+import DesktopPage from './pages/DesktopPage';
+import LandingPage from './pages/LandingPage';
 import FolderPage from './pages/FolderPage';
 import TemplatePage from './pages/TemplatePage';
 import NewsFeedPage from './pages/NewsFeedPage';
@@ -36,8 +36,8 @@ class Routes extends React.Component {
     render() {
         return  (
             <Switch>
-                <Route exact path="/" component={this.withLayoutMain(MainPage)}/>
-                <Route exact path="/home" component={this.withLayout(HomePage)}/>
+                <Route exact path="/" component={this.withLayoutMain(LandingPage)}/>
+                <Route exact path="/home" component={this.withLayout(DesktopPage)}/>
                 <Route exact path="/newsfeed" component={this.withLayout(NewsFeedPage)}/>
                 <Route exact path="/folder/:folderId" component={this.withLayout(FolderPage)}/>
                 <Route exact path="/template/:templateId" component={TemplatePage} />
