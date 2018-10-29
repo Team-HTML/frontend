@@ -43,7 +43,7 @@ class MainPage extends React.Component {
 				</div>
 				<div className="justify-content-center d-flex p-3">
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-				</iframe>
+					</iframe>
 				</div>
 
             </div>

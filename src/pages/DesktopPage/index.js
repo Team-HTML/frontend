@@ -6,22 +6,24 @@ class HomePage extends React.Component {
     renderFolders() {
         const data = [
             {
-                name: 'Folder 1'
+                name: 'Folder 1',
+                folderId: 1
             },
             {
-                name: 'Folder 2'
+                name: 'Folder 2',
+                folderId: 2
             },
             {
-                name: 'Folder 3'
+                name: 'Folder 3', 
+                folderId: 3
             },
             {
-                name: 'Folder 4'
+                name: 'Folder 4',
+                folderId: 4
             }
         ]
 
-        data.unshift({name: 'Default'})
-
-        //data.push({name: '+'})
+        data.unshift({name: 'Default', folderId: 0})
 
         return (
             <div className="row">

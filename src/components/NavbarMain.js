@@ -5,16 +5,17 @@ import {login} from '../data/Api';
 
 //send to backend
 const successResponseGoogle = (response) => {
-  /*login({email: response.getBasicProfile().getEmail()})
+  login({email: response.getBasicProfile().getEmail()})
     .then(r => {
       console.log(r);
-    })/*
-    console.log({email: response.getBasicProfile().getEmail()});
+    })
+  //console.log({email: response.getBasicProfile().getEmail()});
 }
 
 //possibly send an error message and redirect back to main page
 const failResponseGoogle = (response) => {
   console.log(response);
+
 }
 
 class NavbarMain extends React.Component {
@@ -36,6 +37,7 @@ class NavbarMain extends React.Component {
                       onSuccess={successResponseGoogle}
                       onFailure={failResponseGoogle}
                     >
+                    Log in with Google
                     </GoogleLogin>
                   </li>
                 </ul>

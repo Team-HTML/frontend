@@ -1,18 +1,22 @@
 import React from 'react';
 import './newsfeed.component.css';
-import Folder from '../../components/Folder';
+import Template from '../../components/Template';
+import RenderedTemplate from '../TemplatePage/components/RenderedTemplate';
 
 class NewsFeedPage extends React.Component {
   renderTemplates() {
       const data = [
           {
-              name: 'Template 1'
+              name: 'Template 4',
+              templateId: 4
           },
           {
-              name: 'Template 2'
+              name: 'Template 5',
+              templateId: 5
           },
           {
-              name: 'Template 3'
+              name: 'Template 6',
+              templateId: 6
           }
       ]
 
@@ -21,7 +25,7 @@ class NewsFeedPage extends React.Component {
               {data.map(d => {
                   return (
                       <div className="col-md-3 templateRow">
-                          <Folder {...d} />
+                          <Template {...d} />
                           <p>name: public </p>
                       </div>
                   );

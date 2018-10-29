@@ -1,15 +1,12 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 
-class Folder extends React.Component {
 
-    componentDidMount() {
-        console.log(this.props);
-    }
+class Template extends React.Component {
 
     render() {
         return (
-            <Link to={`/folder/${this.props.folderId}`}>
+            <Link to={`/template/${this.props.templateId}`}>
                 <div className="folder my-3 text-center vertical-center">
                     <div className="folder__name">
                         {this.props.name}
@@ -20,4 +17,4 @@ class Folder extends React.Component {
     }
 }
 
-export default withRouter(Folder);
+export default withRouter(Template);

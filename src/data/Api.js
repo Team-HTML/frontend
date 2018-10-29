@@ -11,5 +11,13 @@ const apiPrefix = pref(API_URL_PREFIX);
 export const login = (data) =>
   promisify(request
     .post(API_URL_PREFIX + 'login')
+    //.set('Access-Control-Allow-Origin', "*")
+    //.set('Access-Control-Allow-Credentials', true)
     .send(data)
     .use(apiPrefix));
+
+export const getFolderById = (folderId) => 
+    promisify(request
+      .get('/folder/' + folderId)
+      .use(apiPrefix)
+    )
