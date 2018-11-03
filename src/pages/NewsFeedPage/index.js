@@ -1,7 +1,6 @@
 import React from 'react';
 import './newsfeed.component.css';
 import Template from '../../components/Template';
-import RenderedTemplate from '../TemplatePage/components/RenderedTemplate';
 
 class NewsFeedPage extends React.Component {
   renderTemplates() {
@@ -17,25 +16,35 @@ class NewsFeedPage extends React.Component {
           {
               name: 'Template 6',
               templateId: 6
+          },
+          {
+            name: 'Template 686',
+            templateId: 6
+          },
+          {
+            name: 'GURGHERIGHEI',
+            templateId: 676
           }
       ]
 
       return (
+        <div className="container">
           <div className="row">
               {data.map(d => {
                   return (
-                      <div className="col-md-3 templateRow">
+                      <div className="col-md-3">
                           <Template {...d} />
-                          <p>name: public </p>
+                          <p>{d.name} </p>
                       </div>
                   );
               })}
+          </div>
           </div>
       );
   }
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="title">
           <h1>NewsFeed</h1>
         </div>
