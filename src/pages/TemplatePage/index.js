@@ -1,57 +1,44 @@
 import React from 'react';
-import DesktopPage from '../DesktopPage';
-import {Switch, Route} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
-import MonacoEditor from 'react-monaco-editor';
 import RenderedTemplate from './components/RenderedTemplate';
+import Editor from './components/Editor';
 
 class TemplatePage extends React.Component {
 
+
     constructor(props) {
         super(props);
+
         this.state = {
-          code: `<html>
+            htmlCode: `<html>
     <div>
         <marquee> Look it works!!!! </marquee>
     </div>
 </html>`,
+            cssCode: `.blue {
+    color: blue;
+}`
         }
-        this.onChange = this.onChange.bind(this);
+        
+        this.setCode = this.setCode.bind(this);
     }
 
-    editorDidMount(editor, monaco) {
-        console.log('editorDidMount', editor);
-        editor.focus();  
-    }
-
-    onChange(newValue, e) {
-        this.setState({code: newValue});
+    setCode(prop, newValue) {
+        this.setState({[prop]: newValue});
     }
 
     render() {
-        const code = this.state.code;
-
-        const options = {
-          selectOnLineNumbers: true
-        };
-
         return (
-            <div className="template container-fluid px-0">
-                <div className="row h-100">
+            <div className="template px-0 container-fluid w-100 mx-0">
+                <div className="h-100 w-100 row mx-0">
                     <div className="col-md-6 px-0">
-                        <MonacoEditor
-                            className="w-100 h-100"
-                            language="html"
-                            theme="vs-dark"
-                            value={code}
-                            options={options}
-                            onChange={this.onChange}
-                            editorDidMount={this.editorDidMount}
-                        />
-                    </div>
-                        <div className="col-md-6 px-0">
-                            <RenderedTemplate html={code} />
+                        <div className="container w-100 h-100 px-0">
+                            <Editor setCode={this.setCode} {...this.state} />
                         </div>
+                    </div>
+                    <div className="col-md-6 px-0">
+                        <RenderedTemplate html={this.state.htmlCode} />
+                    </div>
                 </div>
             </div>
         )
