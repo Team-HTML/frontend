@@ -25,7 +25,8 @@ class CodeEditor extends React.Component {
 
 
     componentDidUpdate() {
-        this.editor.setModel(this.monaco.editor.getModels()[this.props.currTab]);     
+        this.editor.setModel(this.monaco.editor.getModels()[this.props.currTab]);
+        this.editor.focus();  
     }
 
     componentDidMount() {
