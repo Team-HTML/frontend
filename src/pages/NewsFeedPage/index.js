@@ -1,7 +1,6 @@
 import React from 'react';
 import './newsfeed.component.css';
 import Template from '../../components/Template';
-import RenderedTemplate from '../TemplatePage/components/RenderedTemplate';
 
 class NewsFeedPage extends React.Component {
   renderTemplates() {

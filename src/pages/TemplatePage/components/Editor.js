@@ -1,6 +1,4 @@
 import React from 'react';
-import HTMLEditor from './HTMLEditor';
-import CSSEditor from './CSSEditor';
 import CodeEditor from './CodeEditor';
 import EditorTab from './EditorTab';
 
@@ -55,16 +53,13 @@ class Editor extends React.Component {
 
     render() {
         const {tabs, currTab} = this.state;
-        const CurrentEditor = tabs[currTab].component;
-        const {htmlCode, cssCode, setCode} = this.props;
+        const {setCode} = this.props;
 
         return (
             <>
                 {this.renderTabs(tabs, currTab)}
                 <CodeEditor
                     tabs={tabs}                         
-                    htmlCode={htmlCode} 
-                    cssCode={cssCode} 
                     setCode={setCode}
                     currTab={currTab}
                 />

@@ -41,8 +41,6 @@ class CodeEditor extends React.Component {
     }
 
     render() {
-        const code = this.props.htmlCode;
-
         const options = {
             selectOnLineNumbers: true
         };

@@ -1,7 +1,4 @@
 import React from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import HTMLEditor from './HTMLEditor';
-import CSSEditor from './CSSEditor';
 
 class EditorTab extends React.Component {
 
