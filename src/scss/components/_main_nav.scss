@@ -1,3 +1,8 @@
-.googleLogin{
-	background: $blueprint-blue;
+.main_nav {
+    background: $blueprint-blue;
+    padding: 0.5rem 3rem;
+
+    &__logo {
+        max-width: 8rem;
+    }
 }

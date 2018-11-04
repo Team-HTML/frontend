@@ -4,6 +4,9 @@ import {Switch, Route} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import {getFolderById} from '../../data/Api';
 import Template from '../../components/Template';
+import Popup from "reactjs-popup";
+import ReactDropzone from "react-dropzone";
+import request from "superagent";
 
 
 class FolderPage extends React.Component {
@@ -16,6 +19,17 @@ class FolderPage extends React.Component {
             })
 
     }*/
+
+    onDrop = (files) => {
+        // POST to a test endpoint for demo purposes
+        const req = request.post('');
+    
+        files.forEach(file => {
+          req.attach(file.name, file);
+        });
+    
+        req.end();
+      }
 
     renderTemplates() {
         const data = [
@@ -49,9 +63,28 @@ class FolderPage extends React.Component {
     render() {
       return (
         <div>
-          <div className="title">
-            <h1>Folder</h1>
-          </div>
+            <div>
+                <div className="title">
+                    <h1>Folder</h1>
+                </div>
+                <div>
+                    <Popup
+                        trigger={<button className="button"> Upload </button>}
+                        modal
+                        closeOnDocumentClick
+                        >
+                        <p> Choose a file to upload: </p>
+                        <ReactDropzone
+                            className="d-flex justify-content-center"
+                            onDrop={this.onDrop}
+                            >
+                            <div className="border">
+                                 Pick a file here 
+                            </div>
+                        </ReactDropzone>
+                    </Popup>
+                </div>
+            </div>
             {this.renderTemplates()}
         </div>
       )

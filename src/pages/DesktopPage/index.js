@@ -1,5 +1,6 @@
 import React from 'react';
 import Folder from '../../components/Folder';
+import Popup from "reactjs-popup";
 
 class DesktopPage extends React.Component {
 
@@ -20,6 +21,10 @@ class DesktopPage extends React.Component {
             {
                 name: 'Folder 4',
                 folderId: 4
+            },
+            {
+                name: '+',
+                folderId: -1
             }
         ]
 
@@ -44,6 +49,15 @@ class DesktopPage extends React.Component {
                 <div className="container">
                     <div className="row mx-0">
                         <h1>Library</h1>
+                        <div className="float-right">
+                        <Popup
+                            trigger={<button className="button"> Upload </button>}
+                            modal
+                            closeOnDocumentClick
+                        >
+                            <p> Choose a file to upload: </p>
+                        </Popup>
+                        </div>
                         <div className="ml-auto home__sort mt-1">
                             Sort 
                         </div>
