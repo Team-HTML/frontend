@@ -38,10 +38,13 @@ class DesktopPage extends React.Component {
 
             ],
             uploadedFile: null,
+            addFolder: '',
             open: false
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
+        this.updateAddFolder = this.updateAddFolder.bind(this);
+        this.createFolder = this.createFolder.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.openModal = this.openModal.bind(this)
         this.closeModal = this.closeModal.bind(this)
@@ -120,8 +123,26 @@ class DesktopPage extends React.Component {
         this.setState({defaultFolder: [...defaultFolder, {name: uploadedFile.name}]})
     }
 
-    createFolder() {
+    updateAddFolder(evt) {
+      this.setState({
+        addFolder: evt.target.value
+      });
+    }
 
+    createFolder() {
+        const {addFolder, folders} = this.state;
+        console.log(addFolder);
+
+        this.setState({
+          addFolder: '',
+          folders: [...folders, {name: addFolder, folderId: 5}]
+        }
+      )
+
+        this.closeModal();
+        return(
+          <p> {this.renderFolders()} </p>
+        );
     }
 
     render() {
@@ -157,7 +178,8 @@ class DesktopPage extends React.Component {
                               <h3> Please enter name of folder below </h3>
                             </div>
                             <div className="d-flex container justify-content-center">
-                              <input />
+                              <input type="text" value={this.state.addFolder}
+                              onChange={(evt) => this.updateAddFolder(evt)} />
                             </div>
                             <div className="d-flex container justify-content-center">
                               <button onClick={this.createFolder}> Create </button>
