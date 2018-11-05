@@ -15,4 +15,16 @@
     width: 5rem;
     height: 5rem;
   }
+
+  .box {
+    background: grey;
+    color: white;
+
+    &__add {
+      font-size: 2rem;
+      padding: 2rem;
+    }
+  }
+
+
 }
