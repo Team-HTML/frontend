@@ -19,7 +19,7 @@ class TemplatePage extends React.Component {
     color: blue;
 }`
         }
-        
+
         this.setCode = this.setCode.bind(this);
     }
 
