@@ -28,12 +28,6 @@ class DesktopPage extends React.Component {
                     folderId: 4
                 }
             ],
-            newFolder: [
-              {
-                  name: '+',
-                  folderId: -1
-              }
-            ],
             defaultFolder: [
 
             ],
@@ -80,16 +74,12 @@ class DesktopPage extends React.Component {
 
       return (
         <div className="row">
-          {newFolder.map(d => {
-            return(
-                <div className="col-md-3">
-                    <div className="box box__add my-3 text-center vertical-center"
-                    onClick={this.openModal}>
-                      +
-                    </div>
-                </div>
-            )
-          })}
+              <div className="col-md-3">
+                  <div className="box box__add my-3 text-center vertical-center"
+                  onClick={this.openModal}>
+                    +
+                  </div>
+              </div>
         </div>
       );
     }
