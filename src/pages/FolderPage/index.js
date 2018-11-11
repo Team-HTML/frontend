@@ -25,7 +25,50 @@ class FolderPage extends React.Component {
 
     }*/
 
-    onDrop = (files) => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            templates: [
+                {
+                    name: 'Template 1',
+                    templateId: 1
+                },
+                {
+                    name: 'Template 2',
+                    templateId: 2
+                },
+                {
+                    name: 'Template 3',
+                    templateId: 3
+                },
+                {
+                    name: 'Template 4',
+                    templateId: 4
+                }
+            ],
+            uploadedFile: null,
+            open: false
+        }
+
+        this.uploadTemplate = this.uploadTemplate.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+    }
+
+    openModal (){
+        this.setState({ open: true })
+    }
+    closeModal () {
+        this.setState({ open: false })
+    }
+
+    onDrop(a) {
+        console.log(a);
+        this.setState({uploadedFile: a[0]});
+    }
+
+    /*onDrop = (files) => {
         // POST to a test endpoint for demo purposes
         const req = request.post('');
     
@@ -34,27 +77,14 @@ class FolderPage extends React.Component {
         });
     
         req.end();
-      }
+    }*/
 
     renderTemplates() {
-        const data = [
-            {
-                name: 'Template 1',
-                templateId: 1
-            },
-            {
-                name: 'Template 2',
-                templateId: 2
-            },
-            {
-                name: 'Template 3',
-                templateId: 3
-            }
-        ]
-  
+        const {templates} = this.state;
+
         return (
             <div className="row">
-                {data.map(d => {
+                {templates.map(d => {
                     return (
                         <div className="col-md-3 templateRow">
                             <Template {...d} />
@@ -65,6 +95,13 @@ class FolderPage extends React.Component {
             </div>
         );
     }
+
+    uploadTemplate() {
+        const {uploadedFile, templates} = this.state;
+
+        this.setState({templates: [...templates, {name: uploadedFile.name, templateId: 5}]})
+    }
+
     render() {
       return (
         <div className = "home mt-5">
@@ -82,7 +119,7 @@ class FolderPage extends React.Component {
                             onDrop={this.onDrop}
                             >
                             <div className="border">
-                                Pick a file here 
+                                Pick a file here
                             </div>
                         </ReactDropzone>
                         <div className="ml-5">
