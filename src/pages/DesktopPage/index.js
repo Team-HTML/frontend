@@ -3,6 +3,12 @@ import Folder from '../../components/Folder';
 import Popup from "reactjs-popup";
 import ReactDropzone from "react-dropzone";
 import Template from '../../components/Template';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
+const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
+
+const defaultOption = options[0];
 
 class DesktopPage extends React.Component {
 
@@ -112,7 +118,9 @@ class DesktopPage extends React.Component {
                             </div>
                         </Popup>
                         <div className="ml-auto home__sort mt-1">
-                            Sort 
+                            <span> Sort By:
+                                <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
+                            </span>
                         </div>
                     </div>
                     {this.renderFolders()}

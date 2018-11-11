@@ -7,7 +7,12 @@ import Template from '../../components/Template';
 import Popup from "reactjs-popup";
 import ReactDropzone from "react-dropzone";
 import request from "superagent";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
+const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
+
+const defaultOption = options[0];
 
 class FolderPage extends React.Component {
 
@@ -53,7 +58,7 @@ class FolderPage extends React.Component {
                     return (
                         <div className="col-md-3 templateRow">
                             <Template {...d} />
-                            <p>name: public</p>
+                            <p>name: {d.name}</p>
                         </div>
                     );
                 })}
@@ -62,33 +67,36 @@ class FolderPage extends React.Component {
     }
     render() {
       return (
-        <div>
-            <div>
-                <div className="title">
-                    <h1>Folder</h1>
-                </div>
-                <div>
+        <div className = "home mt-5">
+            <div className="container">
+                <div className="row mx-0">
+                    <h1>Folder Name </h1>
                     <Popup
-                        className = "h-25 w-25"
-                        trigger={<button className="button"> Upload </button>}
+                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
                         modal
                         closeOnDocumentClick
                         >
                         <p> Choose a template to upload: </p>
-                        <div className="border d-flex justify-content-center w-75 h-75">
                         <ReactDropzone
-                            className="border"
+                            className="d-flex container justify-content-center"
                             onDrop={this.onDrop}
                             >
-                            <div className="p-3 ">
-                                 Pick a file here
+                            <div className="border">
+                                Pick a file here 
                             </div>
                         </ReactDropzone>
+                        <div className="ml-5">
+                            <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
                         </div>
                     </Popup>
+                    <div className="ml-auto home__sort mt-1">
+                        <span> Sort By:
+                            <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
+                        </span>
+                    </div>
                 </div>
+                {this.renderTemplates()}
             </div>
-            {this.renderTemplates()}
         </div>
       )
     }

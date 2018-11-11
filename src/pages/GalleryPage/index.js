@@ -2,7 +2,7 @@ import React from 'react';
 import './newsfeed.component.css';
 import Template from '../../components/Template';
 
-class NewsFeedPage extends React.Component {
+class GalleryPage extends React.Component {
   renderTemplates() {
       const data = [
           {
@@ -46,7 +46,7 @@ class NewsFeedPage extends React.Component {
     return (
       <div className="container">
         <div className="title">
-          <h1>NewsFeed</h1>
+          <h1>Gallery</h1>
         </div>
         <div className="templateContainer">
           <h3>Public Templates </h3>
@@ -61,4 +61,4 @@ class NewsFeedPage extends React.Component {
   }
 }
 
-export default NewsFeedPage;
+export default GalleryPage;
