@@ -5,7 +5,6 @@ import Editor from './components/Editor';
 
 class TemplatePage extends React.Component {
 
-
     constructor(props) {
         super(props);
 
@@ -21,6 +20,10 @@ class TemplatePage extends React.Component {
         }
         
         this.setCode = this.setCode.bind(this);
+    }
+
+    componentDidMount(){
+        console.log(this.props.match.params.templateId)
     }
 
     setCode(prop, newValue) {
