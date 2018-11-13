@@ -5,11 +5,8 @@ import DesktopPage from './pages/DesktopPage';
 import LandingPage from './pages/LandingPage';
 import FolderPage from './pages/FolderPage';
 import TemplatePage from './pages/TemplatePage';
-<<<<<<< HEAD
 import GalleryPage from './pages/GalleryPage';
-=======
 import NotFoundPage from './pages/NotFoundPage';
->>>>>>> 404Branch
 
 import Layout from './layouts/Layout';
 import LayoutMain from './layouts/LayoutMain';
