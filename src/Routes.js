@@ -5,7 +5,11 @@ import DesktopPage from './pages/DesktopPage';
 import LandingPage from './pages/LandingPage';
 import FolderPage from './pages/FolderPage';
 import TemplatePage from './pages/TemplatePage';
+<<<<<<< HEAD
 import GalleryPage from './pages/GalleryPage';
+=======
+import NotFoundPage from './pages/NotFoundPage';
+>>>>>>> 404Branch
 
 import Layout from './layouts/Layout';
 import LayoutMain from './layouts/LayoutMain';
@@ -41,6 +45,7 @@ class Routes extends React.Component {
                 <Route exact path="/newsfeed" component={this.withLayout(GalleryPage)}/>
                 <Route exact path="/folder/:folderId" component={this.withLayout(FolderPage)}/>
                 <Route exact path="/template/:templateId" component={TemplatePage} />
+                <Route path="/" component={this.withLayout(NotFoundPage)}></Route>
             </Switch>
         )
     }
