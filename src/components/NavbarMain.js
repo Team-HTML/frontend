@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 class NavbarMain extends React.Component {
 
   successResponseGoogle = (response) => {
-    login({email: response.getBasicProfile().getEmail()})
+    login({"user_id" : 333, "user_first_name" : "bob", "user_last_name" : "lll", "user_email": response.getBasicProfile().getEmail()})
       .then(r => {
         console.log(r);
       })

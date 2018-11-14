@@ -7,13 +7,17 @@
   }
 
   &__upload {
-    $offset: 3rem;
+    $offset: 6rem;
     position: absolute;
     right: $offset;
     bottom: $offset;
-    font-size: 4rem;
+    font-size: 5rem;
     width: 5rem;
     height: 5rem;
+  }
+
+  &__upload__font {
+    font-size: 1.5rem;
   }
 
   .box {

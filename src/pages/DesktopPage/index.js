@@ -4,6 +4,7 @@ import Popup from "reactjs-popup";
 import ReactDropzone from "react-dropzone";
 import Template from '../../components/Template';
 import Dropdown from 'react-dropdown';
+import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import 'react-dropdown/style.css';
 
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
@@ -39,7 +40,8 @@ class DesktopPage extends React.Component {
             ],
             uploadedFile: null,
             addFolder: '',
-            open: false
+            open: false,
+            dropdownOpen: false,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
@@ -48,6 +50,7 @@ class DesktopPage extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.openModal = this.openModal.bind(this)
         this.closeModal = this.closeModal.bind(this)
+        this.toggle = this.toggle.bind(this);
     }
 
 
@@ -108,6 +111,75 @@ class DesktopPage extends React.Component {
         );
     }
 
+    renderUploadTemplate() {
+        return (
+            <Popup
+                trigger={<button className="btn btn-primary">Upload Template</button>}
+                modal
+                closeOnDocumentClick
+                >
+                <p> Choose a template to upload: </p>
+                <ReactDropzone
+                    className="d-flex container justify-content-center"
+                    onDrop={this.onDrop}
+                    >
+                    <div className="border">
+                        Pick a file here
+                    </div>
+                </ReactDropzone>
+                <div className="ml-5">
+                    <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
+                </div>
+            </Popup>
+        )
+    }
+
+    renderCreateFolder() {
+        return(
+            <Popup
+                trigger={<button className="btn btn-primary">Create Folder</button>}
+                open={this.state.open}
+                closeOnDocumentClick
+                onClose={this.closeModal}
+                >
+                <div className="d-flex container justify-content-center">
+                    <h3> Please enter name of folder below </h3>
+                </div>
+                <div className="d-flex container justify-content-center">
+                    <input type="text" value={this.state.addFolder}
+                    onChange={(evt) => this.updateAddFolder(evt)} />
+                </div>
+                <div className="d-flex container justify-content-center">
+                    <button onClick={this.createFolder}> Create </button>
+                </div>
+            </Popup>
+        )
+    }
+
+    renderAddButton() {
+        return (
+            <ButtonDropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <div className = "btn rounded-circle">
+            <DropdownToggle>
+                <div className = "home__upload__font"> 
+                    + 
+                </div>
+            </DropdownToggle>
+            </div>
+            <DropdownMenu>
+                <div>{this.renderCreateFolder()}</div>
+                <div>{this.renderUploadTemplate()}</div>
+            </DropdownMenu>
+            </ButtonDropdown>
+        )
+    }
+
+    toggle() {
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+      }
+
     onDrop(a) {
         console.log(a)
         this.setState({uploadedFile: a[0]});
@@ -147,6 +219,7 @@ class DesktopPage extends React.Component {
                 <div className="container">
                     <div className="row mx-0">
                         <h1>Library</h1>
+                        {/*
                         <Popup
                             trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
                             modal
@@ -181,6 +254,7 @@ class DesktopPage extends React.Component {
                               <button onClick={this.createFolder}> Create </button>
                             </div>
                         </Popup>
+                        */}
                         <div className="ml-auto home__sort mt-1">
                             <span> Sort By:
                                 <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
@@ -188,8 +262,11 @@ class DesktopPage extends React.Component {
                         </div>
                     </div>
                     {this.renderFolders()}
+                    {/*
                     {this.renderAddFolder()}
+                    */}
                     {this.renderDefaultFolder()}
+                    <div className="btn home__upload">{this.renderAddButton()}</div>
                 </div>
             </div>
         )

@@ -10,7 +10,7 @@ const apiPrefix = pref(API_URL_PREFIX);
 //this does not work!!!!!!
 export const login = (data) =>
   promisify(request
-    .post(API_URL_PREFIX + 'login')
+    .post(API_URL_PREFIX + '/users')
     //.set('Access-Control-Allow-Origin', "*")
     //.set('Access-Control-Allow-Credentials', true)
     .send(data)
