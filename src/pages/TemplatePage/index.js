@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import RenderedTemplate from './components/RenderedTemplate';
 import Editor from './components/Editor';
+import { Link } from 'react-router-dom';
 
 class TemplatePage extends React.Component {
 
@@ -22,6 +23,13 @@ class TemplatePage extends React.Component {
 
         this.setCode = this.setCode.bind(this);
     }
+    saveEditor() {
+      console.log("I'm here");
+    }
+
+    downloadCode() {
+      console.log("I'm downloaded");
+    }
 
     setCode(prop, newValue) {
         this.setState({[prop]: newValue});
@@ -30,6 +38,24 @@ class TemplatePage extends React.Component {
     render() {
         return (
             <div className="template px-0 container-fluid w-100 mx-0">
+            <div className="template__footer">
+              <button className="button">
+                <Link to={`/folder/${this.props.templateId}`}>
+                Back
+                </Link>
+              </button>
+              <div className="title"> 
+                <p>
+                  MyTemplate
+                </p>
+              </div>
+              <button className="button" onClick={this.saveEditor}>
+                Save
+              </button>
+              <button className="button" onClick={this.downloadCode}>
+                Download
+              </button>
+            </div>
                 <div className="h-100 w-100 row mx-0">
                     <div className="col-md-6 px-0">
                         <div className="container w-100 h-100 px-0">
