@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 class TemplatePage extends React.Component {
 
-
     constructor(props) {
         super(props);
 
@@ -29,6 +28,10 @@ class TemplatePage extends React.Component {
 
     downloadCode() {
       console.log("I'm downloaded");
+    }
+
+    componentDidMount(){
+        console.log(this.props.match.params.templateId)
     }
 
     setCode(prop, newValue) {

@@ -1,38 +1,64 @@
 import React from 'react';
-import DesktopPage from '../DesktopPage';
-import {Switch, Route} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import {getFolderById} from '../../data/Api';
 import Template from '../../components/Template';
 import Popup from "reactjs-popup";
 import ReactDropzone from "react-dropzone";
-import request from "superagent";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import Loading from 'react-loading';
 
+const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
+
+const defaultOption = options[0];
 
 class FolderPage extends React.Component {
 
-    /*componentDidMount() {
-        //get folder data from server from this.props.match.params.folderId
-        getFolderById()
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            folder: null,
+            error: null,
+            uploadedFile: null,
+            open: false
+        }
+
+        this.uploadTemplate = this.uploadTemplate.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+    }
+
+    componentDidMount() {
+        //get folder data from server from the route param 
+        //this.props.match.params.folderId
+
+        getFolderById(this.props.match.params.folderId)
             .then((res) => {
-                this.setState({data: res})
+                this.setState({folder: res})
+            })
+            .catch((e) => {
+                this.setState({error: e.message})
             })
 
-    }*/
+    }
 
-    onDrop = (files) => {
-        // POST to a test endpoint for demo purposes
-        const req = request.post('');
-    
-        files.forEach(file => {
-          req.attach(file.name, file);
-        });
-    
-        req.end();
-      }
+    openModal (){
+        this.setState({ open: true })
+    }
+
+    closeModal () {
+        this.setState({ open: false })
+    }
+
+    onDrop(a) {
+        console.log(a);
+        this.setState({uploadedFile: a[0]});
+    }
 
     renderTemplates() {
-        const data = [
+        const templates = [
             {
                 name: 'Template 1',
                 templateId: 1
@@ -44,53 +70,86 @@ class FolderPage extends React.Component {
             {
                 name: 'Template 3',
                 templateId: 3
+            },
+            {
+                name: 'Template 4',
+                templateId: 4
             }
-        ]
-  
+        ];
+
         return (
-            <div className="row">
-                {data.map(d => {
+            <div className="row mt-5">
+                {templates.map(d => {
                     return (
-                        <div className="col-md-3 templateRow">
+                        <div className="col-md-3">
                             <Template {...d} />
-                            <p>name: public</p>
+                            <p>name: {d.name}</p>
                         </div>
                     );
                 })}
             </div>
         );
     }
+
+    uploadTemplate() {
+        const {uploadedFile, templates} = this.state;
+
+        this.setState({templates: [...templates, {name: uploadedFile.name, templateId: 5}]})
+    }
+
     render() {
-      return (
-        <div>
-            <div>
-                <div className="title">
-                    <h1>Folder</h1>
+
+        const {folder, error} = this.state;
+
+        if (error) {
+            return (
+                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                    <h1> Something Went Wrong 😞 : {error}  </h1>
                 </div>
-                <div>
-                    <Popup
-                        className = "h-25 w-25"
-                        trigger={<button className="button"> Upload </button>}
-                        modal
-                        closeOnDocumentClick
-                        >
-                        <p> Choose a template to upload: </p>
-                        <div className="border d-flex justify-content-center w-75 h-75">
-                        <ReactDropzone
-                            className="border"
-                            onDrop={this.onDrop}
-                            >
-                            <div className="p-3 ">
-                                 Pick a file here
-                            </div>
-                        </ReactDropzone>
+            )        
+        }
+
+        if (!folder) {
+            return (
+                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                    <Loading type="spin" color='black' width="4rem"/>
+                </div>
+            )
+        }
+
+        return (
+            <div className = "container px-0 mt-5">
+                <div className="row mt-0">
+                    <div className="col-md-6">
+                        <h1> {folder.folder_name} </h1>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="w-25 ml-auto"> Sort By:
+                            <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                         </div>
-                    </Popup>
+                    </div>
                 </div>
+                <Popup
+                    trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
+                    modal
+                    closeOnDocumentClick
+                    >
+                    <p> Choose a template to upload: </p>
+                    <ReactDropzone
+                        className="d-flex container justify-content-center"
+                        onDrop={this.onDrop}
+                        >
+                        <div className="border">
+                            Pick a file here
+                        </div>
+                    </ReactDropzone>
+                    <div className="ml-5">
+                        <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
+                    </div>
+                </Popup>
+                {this.renderTemplates()}
             </div>
-            {this.renderTemplates()}
-        </div>
-      )
+        )
     }
 }
 

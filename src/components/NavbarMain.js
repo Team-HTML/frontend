@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 class NavbarMain extends React.Component {
 
   successResponseGoogle = (response) => {
-    login({email: response.getBasicProfile().getEmail()})
+    login({"user_id" : 333, "user_first_name" : "bob", "user_last_name" : "lll", "user_email": response.getBasicProfile().getEmail()})
       .then(r => {
         console.log(r);
       })
@@ -31,15 +31,17 @@ class NavbarMain extends React.Component {
               <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-5">
                   <li className="nav-item main_nav__item p-3">
-                    <GoogleLogin
-                      className="text-white"
-                      clientId="514487700487-gasef328acuesh2okt5i9hnr4a4lt1pc.apps.googleusercontent.com"
-                      buttonText="Login"
-                      onSuccess={this.successResponseGoogle}
-                      onFailure={this.failResponseGoogle}
-                    >
-                    Log in with Google
-                    </GoogleLogin>
+                    <div className="btn btn-primary">
+                      <GoogleLogin
+                        className="text-white"
+                        clientId="514487700487-gasef328acuesh2okt5i9hnr4a4lt1pc.apps.googleusercontent.com"
+                        buttonText="Login"
+                        onSuccess={this.successResponseGoogle}
+                        onFailure={this.failResponseGoogle}
+                      >
+                      Log in with Google
+                      </GoogleLogin>
+                    </div>
                   </li>
                 </ul>
               </div>
