@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import OptionMenu from './OptionMenu';
+import FolderOptions from './FolderOptions';
 
 const options = ['Rename','Delete'];
 
@@ -24,8 +25,9 @@ class Folder extends React.Component {
                 </Link>
                 {/*<div>
                     <Dropdown options={options} onChange={this._onSelect} placeholder="Select an option" />
-                </div>  */}
-                <OptionMenu />
+                </div> 
+                <OptionMenu />  */}
+                <FolderOptions />
             </div>
         );
     }
