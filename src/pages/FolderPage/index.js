@@ -83,7 +83,6 @@ class FolderPage extends React.Component {
                     return (
                         <div className="col-md-3">
                             <Template {...d} />
-                            <p>name: {d.name}</p>
                         </div>
                     );
                 })}

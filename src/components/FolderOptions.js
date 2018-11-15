@@ -22,7 +22,7 @@ class FolderOptions extends React.Component {
         return (
             <Dropdown direction="up" isOpen={this.state.showOptions} size="sm" toggle={this.toggle}>
                 <DropdownToggle color="white">
-                    <img src="./ellipse icon.jpg" width={20}/>
+                    <img src="/ellipse icon.jpg" width={20}/>
                 </DropdownToggle>
                 <DropdownMenu right>
                     <DropdownItem>Rename</DropdownItem>

@@ -32,7 +32,7 @@ class TemplatePage extends React.Component {
 
     render() {
         return (
-            <div className="template px-0 container-fluid w-100 mx-0">
+            <div className="w-100 h-100 px-0 container-fluid w-100 mx-0">
                 <div className="h-100 w-100 row mx-0">
                     <div className="col-md-6 px-0">
                         <div className="container w-100 h-100 px-0">
