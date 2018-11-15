@@ -15,20 +15,28 @@ class Folder extends React.Component {
 
     render() {
         return (
-            <div>
+            <div  className = "folder">
                 <Link to={`/folder/${this.props.folderId}`}>
-                    <div className="folder my-3 text-center vertical-center">
-                        <div className="folder__name">
-                            {this.props.name}
-                        </div>
+                    <div className="folderImage my-3 text-center vertical-center">
+                        <img src = "/folder.png"/>
                     </div>
                 </Link>
+
+                <div className = "folder1">
+                    <Link to={`/folder/${this.props.folderId}`}>
+                        <div className="my-3 text-center vertical-center">
+                            <div className="folder__name">
+                                {this.props.name}
+                            </div>
+                        </div>
+                    </Link>
+                </div>
                 {/*<div>
                     <Dropdown options={options} onChange={this._onSelect} placeholder="Select an option" />
                 </div> 
                 <OptionMenu />  */}
                 <div className="folderMenu text-md-right"><FolderOptions /></div>
-                
+
             </div>
         );
     }

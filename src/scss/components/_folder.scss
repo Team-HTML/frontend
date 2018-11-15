@@ -1,9 +1,64 @@
 .folder {
-    background: grey;
-    color: white;
+    background-color: #003366;
+    height: 12rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 
+    // will be 1 on hover
+    opacity: 0.8;
+
+    // folder name
     &__name {
+        // hide the part of content that exceeds the size
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        max-height: 100%;
+        color: white;
         font-size: 2rem;
-        padding: 2rem;
     }
+
+    // do we want to show the name on hover in case the name is too long to
+    // fit in the div? we are using white color for text so if the background
+    // is white then the user can't see the name of the folder
+
+    // display the hidden name on hover
+    &__name:hover {
+        overflow: visible;
+        color: green;
+    }
+
+    &__options {
+        margin-top: auto;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }
+}
+
+// change opacity on hover
+.folder:hover {
+    opacity: 1;
+}
+
+.folderImage {
+    position: relative;
+    top: 15px;
+}
+
+// the div that has the folder name and the link
+.folder1 {
+    max-height: 50%;
+    max-width: 70%;
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+}
+
+//the div that has the menu button
+.folderMenu {
+    position: absolute;
+    bottom: 9px;
+    right: 16px;
 }
