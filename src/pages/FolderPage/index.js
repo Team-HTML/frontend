@@ -131,7 +131,7 @@ class FolderPage extends React.Component {
                 {this.renderTemplates()}
                 <div className="row mt-5">
                     <Popup
-                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
+                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span>+</span></button>}
                         modal
                         closeOnDocumentClick
                         >

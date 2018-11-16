@@ -6,9 +6,6 @@
     border-radius: 1rem;
     border: 2px solid #eee; 
 
-    // will be 1 on hover
-    opacity: 0.8;
-
     // folder name
     &__name {
         // hide the part of content that exceeds the size
@@ -37,11 +34,6 @@
         bottom: 0px;
         width: 100%;
     }
-}
-
-// change opacity on hover
-.folder:hover {
-    opacity: 1;
 }
 
 .folderImage {
