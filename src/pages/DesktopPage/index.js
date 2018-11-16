@@ -176,8 +176,8 @@ class DesktopPage extends React.Component {
                 on="click"
                 position="left center">
                 <div>
-                    <div>{this.renderCreateFolder()}</div>
-                    <div>{this.renderUploadTemplate()}</div>
+                    <div className="d-flex justify-content-center p-1">{this.renderCreateFolder()}</div>
+                    <div className="d-flex justify-content-center p-1">{this.renderUploadTemplate()}</div>
                 </div>
             </Popup>
             </div>
@@ -266,10 +266,8 @@ class DesktopPage extends React.Component {
                             </div>
                         </Popup>
                         */}
-                        <div className="ml-auto home__sort mt-1">
-                            <span> Sort By:
-                                <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
-                            </span>
+                        <div className="w-20 ml-auto">Sort By:
+                            <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                         </div>
                     </div>
                     {this.renderFolders()}

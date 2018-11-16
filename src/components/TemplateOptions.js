@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Popup from "reactjs-popup";
 
 class TemplateOptions extends React.Component {
     constructor(props) {
@@ -16,6 +17,27 @@ class TemplateOptions extends React.Component {
         this.setState(prevState => ({
             showOptions: !prevState.showOptions
         }));
+    }
+
+    renderRenameButton() {
+        return (
+            <Popup
+                trigger={<button className="btn btn-link">Rename</button>}
+                modal={true}
+                closeOnDocumentClick
+                >
+                <div className="d-flex container justify-content-center">
+                    <h3> Please enter new name of folder below: </h3>
+                </div>
+                <div className="d-flex container justify-content-center">
+                    <input type="text" /*value={this.state.addFolder}
+                    onChange={(evt) => this.updateAddFolder(evt)}*/ />
+                </div>
+                <div className="d-flex container justify-content-center">
+                    <button /*onClick={this.createFolder}*/> Submit </button>
+                </div>
+            </Popup>
+        )
     }
 
     render() {
