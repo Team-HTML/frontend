@@ -128,25 +128,27 @@ class FolderPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Popup
-                    trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
-                    modal
-                    closeOnDocumentClick
-                    >
-                    <p> Choose a template to upload: </p>
-                    <ReactDropzone
-                        className="d-flex container justify-content-center"
-                        onDrop={this.onDrop}
-                        >
-                        <div className="border">
-                            Pick a file here
-                        </div>
-                    </ReactDropzone>
-                    <div className="ml-5">
-                        <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
-                    </div>
-                </Popup>
                 {this.renderTemplates()}
+                <div className="row mt-5">
+                    <Popup
+                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
+                        modal
+                        closeOnDocumentClick
+                        >
+                        <p> Choose a template to upload: </p>
+                        <ReactDropzone
+                            className="d-flex container justify-content-center"
+                            onDrop={this.onDrop}
+                            >
+                            <div className="border">
+                                Pick a file here
+                            </div>
+                        </ReactDropzone>
+                        <div className="ml-5">
+                            <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
+                        </div>
+                    </Popup>
+                </div>
             </div>
         )
     }

@@ -8,12 +8,10 @@
 
   &__upload {
     $offset: 6rem;
-    position: absolute;
-    right: $offset;
-    bottom: $offset;
-    font-size: 5rem;
+    font-size: 2rem;
     width: 5rem;
     height: 5rem;
+    margin-left: auto;
   }
 
   &__upload__font {

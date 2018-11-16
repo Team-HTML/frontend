@@ -1,7 +1,6 @@
 import React from 'react';
 
 class RenderedTemplate extends React.Component {
-
     render() {
 
         return (

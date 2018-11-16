@@ -11,14 +11,14 @@ class Editor extends React.Component {
             currTab: 0,
             tabs: [
                 {
-                    file: 'index.html', 
+                    file: 'index.html',
                     default: `<html>
     <div>
         <marquee> Look it works!!!! </marquee>
     </div>
 </html>`,
                     lang: 'html'
-                    
+
                 },
                 {
                     file: 'style.css',
@@ -40,9 +40,9 @@ class Editor extends React.Component {
     renderTabs(tabs, currTab) {
         return (
             <div className="row no-gutters tabs">
-                {tabs.map((tab, i) => <EditorTab 
-                    {...tab} 
-                    isActive={i === currTab} 
+                {tabs.map((tab, i) => <EditorTab
+                    {...tab}
+                    isActive={i === currTab}
                     key={i}
                     idx={i}
                     changeTab={this.changeTab}
@@ -59,7 +59,7 @@ class Editor extends React.Component {
             <>
                 {this.renderTabs(tabs, currTab)}
                 <CodeEditor
-                    tabs={tabs}                         
+                    tabs={tabs}
                     setCode={setCode}
                     currTab={currTab}
                 />

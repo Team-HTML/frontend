@@ -1,8 +1,10 @@
 .folder {
-    background-color: #003366;
-    height: 12rem;
+    background-color: white;
+    height: 14rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    border-radius: 1rem;
+    border: 2px solid #eee; 
 
     // will be 1 on hover
     opacity: 0.8;
@@ -16,7 +18,7 @@
         max-width: 100%;
         max-height: 100%;
         color: white;
-        font-size: 2rem;
+        font-size: 1.2rem;
     }
 
     // do we want to show the name on hover in case the name is too long to
@@ -24,9 +26,9 @@
     // is white then the user can't see the name of the folder
 
     // display the hidden name on hover
-    &__name:hover {
+    &__name {
         overflow: visible;
-        color: green;
+        color: $blueprint-blue;
     }
 
     &__options {
@@ -45,6 +47,8 @@
 .folderImage {
     position: relative;
     top: 15px;
+    padding-bottom: 1rem;
+    border-bottom: solid 2px black;
 }
 
 // the div that has the folder name and the link
@@ -52,13 +56,13 @@
     max-height: 50%;
     max-width: 70%;
     position: absolute;
-    bottom: -10px;
-    left: 20px;
+    bottom: 0px;
+    left: 30px;
 }
 
 //the div that has the menu button
 .folderMenu {
     position: absolute;
-    bottom: 9px;
-    right: 16px;
+    bottom: 15px;
+    right: 20px;
 }

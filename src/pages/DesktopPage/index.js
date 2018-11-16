@@ -115,7 +115,7 @@ class DesktopPage extends React.Component {
         return (
             <Popup
                 trigger={<button className="btn btn-primary">Upload Template</button>}
-                modal
+                modal={true}
                 closeOnDocumentClick
                 >
                 <p> Choose a template to upload: </p>
@@ -138,9 +138,8 @@ class DesktopPage extends React.Component {
         return(
             <Popup
                 trigger={<button className="btn btn-primary">Create Folder</button>}
-                open={this.state.open}
+                modal={true}
                 closeOnDocumentClick
-                onClose={this.closeModal}
                 >
                 <div className="d-flex container justify-content-center">
                     <h3> Please enter name of folder below </h3>
@@ -158,7 +157,7 @@ class DesktopPage extends React.Component {
 
     renderAddButton() {
         return (
-            <ButtonDropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            /*<ButtonDropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
             <div className = "btn rounded-circle">
             <DropdownToggle>
                 <div className = "home__upload__font"> 
@@ -170,7 +169,19 @@ class DesktopPage extends React.Component {
                 <div>{this.renderCreateFolder()}</div>
                 <div>{this.renderUploadTemplate()}</div>
             </DropdownMenu>
-            </ButtonDropdown>
+        </ButtonDropdown>*/
+            <div className="row mt-5">
+            <Popup 
+                trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
+                on="click"
+                position="left center">
+                <div>
+                    <div>{this.renderCreateFolder()}</div>
+                    <div>{this.renderUploadTemplate()}</div>
+                </div>
+            </Popup>
+            </div>
+
         )
     }
 
@@ -266,7 +277,7 @@ class DesktopPage extends React.Component {
                     {this.renderAddFolder()}
                     */}
                     {this.renderDefaultFolder()}
-                    <div className="btn home__upload">{this.renderAddButton()}</div>
+                    {this.renderAddButton()}
                 </div>
             </div>
         )

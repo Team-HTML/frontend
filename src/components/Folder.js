@@ -15,12 +15,10 @@ class Folder extends React.Component {
 
     render() {
         return (
-            <div  className = "folder">
-                <Link to={`/folder/${this.props.folderId}`}>
-                    <div className="folderImage my-3 text-center vertical-center">
-                        <img src = "/folder.png"/>
-                    </div>
-                </Link>
+            <div className = "shadow folder">
+                <div className="folderImage my-3 text-center vertical-center">
+                    <img src = "/folder.png"/>
+                </div>
 
                 <div className = "folder1">
                     <Link to={`/folder/${this.props.folderId}`}>

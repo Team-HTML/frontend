@@ -10,7 +10,7 @@
         border: solid 1px white;
         border-top-right-radius: 6px;
         border-top-left-radius: 6px;
-        border-bottom-width: 0; 
+        border-bottom-width: 0;
         box-shadow: 1px 1px 1px white;
 
         &-active {
@@ -19,4 +19,8 @@
             box-shadow: 1px 5px 5px $active-focus;
         }
     }
+}
+
+.transparent {
+  background-color: inherit;
 }

@@ -1,0 +1,31 @@
+.template-page {
+    &__footer {
+        position: relative;
+        right: 0;
+        top: 0;
+        left: 0;
+        padding: 1rem;
+        background-color: #efefef;
+     }
+
+     .button {
+        color: #444444;
+        background: #F3F3F3;
+        border: 1px #DADADA solid;
+        padding: 5px 10px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: 2px;
+        font-weight: bold;
+        font-size: 9pt;
+        outline: none;
+      }
+      
+    .title {
+        font-weight: bold;
+        border-radius: 2px;
+        margin-right:0px;
+        width: 25%;
+        outline: none;
+    }
+}
