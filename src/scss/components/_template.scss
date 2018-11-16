@@ -18,6 +18,7 @@
     }
 
     &__frame {
-        pointer-events: none
+        pointer-events: none;
+        border: none;
     }
 }

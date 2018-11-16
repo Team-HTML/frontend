@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import TemplateOptions from './TemplateOptions';
-
+import TemplatePreview from './TemplatePreview';
 
 class Template extends React.Component {
     constructor(props) {
@@ -11,10 +11,7 @@ class Template extends React.Component {
     render() {
         return (
             <div className="template shadow">
-                <iframe className="template__frame w-100 m-0 text-center vertical-center"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
-                >
-                </iframe>
+                <TemplatePreview html={'<h1>xd</h1>'} />
                 <div className="text-md-right"><TemplateOptions {...this.props} /></div>
             </div>
         );
