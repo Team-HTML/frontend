@@ -33,8 +33,8 @@ class FolderOptions extends React.Component {
                     <input type="text" /*value={this.state.addFolder}
                     onChange={(evt) => this.updateAddFolder(evt)}*/ />
                 </div>
-                <div className="d-flex container justify-content-center">
-                    <button /*onClick={this.createFolder}*/> Submit </button>
+                <div className="d-flex container justify-content-center mt-3">
+                    <button /*onClick={this.createFolder}*/ className="btn btn-primary"> Submit </button>
                 </div>
             </Popup>
         )
@@ -79,7 +79,8 @@ class FolderOptions extends React.Component {
             <Popup 
                 trigger={<button class="btn-outline-light"> <img src="/ellipse icon.jpg" width={20}/></button>} 
                 on="click"
-                position="left center">
+                position="top left"
+                className="option-popup">
                 <div>
                     <div className="d-flex justify-content-center">{this.renderRenameFolder()}</div>
                     <div className="d-flex justify-content-center">{this.renderDeleteFolder()}</div>

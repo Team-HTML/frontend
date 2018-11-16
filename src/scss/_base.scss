@@ -12,3 +12,8 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+.option-popup {
+    z-index: 1000 !important;
+    width: 100px !important;
+}

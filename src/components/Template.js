@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import TemplateOptions from './TemplateOptions';
 import TemplatePreview from './TemplatePreview';
-
+import html from '../data/placeholder';
 class Template extends React.Component {
     constructor(props) {
       super(props)
@@ -11,7 +11,7 @@ class Template extends React.Component {
     render() {
         return (
             <div className="template shadow">
-                <TemplatePreview html={'<h1>xd</h1>'} />
+                <TemplatePreview html={html} />
                 <div className="text-md-right"><TemplateOptions {...this.props} /></div>
             </div>
         );

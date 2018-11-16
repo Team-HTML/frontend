@@ -20,5 +20,7 @@
     &__frame {
         pointer-events: none;
         border: none;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
     }
 }
