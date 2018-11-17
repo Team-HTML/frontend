@@ -2,7 +2,6 @@ import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import OptionMenu from './OptionMenu';
 import FolderOptions from './FolderOptions';
 
 const options = ['Rename','Delete'];
