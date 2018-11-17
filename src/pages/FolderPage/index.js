@@ -127,18 +127,20 @@ class FolderPage extends React.Component {
                         modal
                         closeOnDocumentClick
                         >
-                        <p> Choose a template to upload: </p>
-                        <ReactDropzone
-                            className="d-flex container justify-content-center"
-                            onDrop={this.onDrop}
-                            >
-                            <div className="border">
-                                Pick a file here
+                            <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                            <div className="d-flex justify-content-center">
+                                <ReactDropzone
+                                    className="d-flex container justify-content-center"
+                                    onDrop={this.onDrop}
+                                    >
+                                    <div className="border rounded p-4">
+                                        Pick a file here
+                                    </div>
+                                </ReactDropzone>
                             </div>
-                        </ReactDropzone>
-                        <div className="ml-5">
-                            <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
-                        </div>
+                            <div className="d-flex justify-content-center">
+                                <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                            </div>
                     </Popup>
                 </div>
             </div>

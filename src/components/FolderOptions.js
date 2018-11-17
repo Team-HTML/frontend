@@ -27,14 +27,14 @@ class FolderOptions extends React.Component {
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h3> Please enter new name of folder below: </h3>
+                    <h4> Please enter new name of folder below: </h4>
                 </div>
                 <div className="d-flex container justify-content-center">
                     <input type="text" /*value={this.state.addFolder}
                     onChange={(evt) => this.updateAddFolder(evt)}*/ />
                 </div>
                 <div className="d-flex container justify-content-center mt-3">
-                    <button /*onClick={this.createFolder}*/ className="btn btn-primary"> Submit </button>
+                    <button /*onClick={this.createFolder}*/ className="btn btn-outline-dark"> Submit </button>
                 </div>
             </Popup>
         )
@@ -48,7 +48,7 @@ class FolderOptions extends React.Component {
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h3> Are you sure you want to delete this folder? </h3>
+                    <h4> Are you sure you want to delete this folder? </h4>
                 </div>
                 {/*<div className="d-flex container justify-content-center">
                     <input type="text" value={this.state.addFolder}
