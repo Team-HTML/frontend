@@ -3,45 +3,72 @@ import './newsfeed.component.css';
 import Template from '../../components/Template';
 
 class GalleryPage extends React.Component {
-  renderTemplates() {
-      const data = [
+  renderPublicTemplates() {
+      const publicTemplates = [
           {
-              name: 'Template 4',
-              templateId: 4
+              name: 'Public 1',
+              templateId: 1
           },
           {
-              name: 'Template 5',
-              templateId: 5
+              name: 'Public 2',
+              templateId: 2
           },
           {
-              name: 'Template 6',
-              templateId: 6
+              name: 'Public 3',
+              templateId: 3
           },
           {
-            name: 'Template 686',
-            templateId: 6
-          },
-          {
-            name: 'GURGHERIGHEI',
-            templateId: 676
-          }
-      ]
-
+              name: 'Public 4',
+              templateId: 3
+        },
+      ];
+            
       return (
-        <div className="container">
-          <div className="row">
-              {data.map(d => {
-                  return (
-                      <div className="col-md-3">
-                          <Template {...d} />
-                          <p>{d.name} </p>
-                      </div>
-                  );
-              })}
-          </div>
-          </div>
+        <div className="row mt-5">
+          {publicTemplates.map(d => {
+            return (
+              <div className="col-md-3">
+                <Template {...d} />
+              </div>
+            );
+          })}
+        </div>
       );
   }
+
+  renderDefaultTemplates() {
+    const defaultTemplates = [
+        {
+            name: 'Default 1',
+            templateId: 1
+        },
+        {
+            name: 'Default 2',
+            templateId: 2
+        },
+        {
+            name: 'Default 3',
+            templateId: 3
+        },
+        {
+            name: 'Default 4',
+            templateId: 3
+      },
+    ];
+          
+    return (
+      <div className="row mt-5">
+        {defaultTemplates.map(d => {
+          return (
+            <div className="col-md-3">
+              <Template {...d} />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="container">
@@ -50,11 +77,11 @@ class GalleryPage extends React.Component {
         </div>
         <div className="templateContainer">
           <h3>Public Templates </h3>
-          {this.renderTemplates()}
+          {this.renderPublicTemplates()}
         </div>
         <div className="templateContainer">
-          <h3>Pre-designed Templates </h3>
-          {this.renderTemplates()}
+          <h3>Default Designs</h3>
+          {this.renderDefaultTemplates()}
         </div>
       </div>
     )
