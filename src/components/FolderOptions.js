@@ -34,7 +34,7 @@ class FolderOptions extends React.Component {
                     onChange={(evt) => this.updateAddFolder(evt)}*/ />
                 </div>
                 <div className="d-flex container justify-content-center">
-                    <button /*onClick={this.createFolder}*/> Submit </button>
+                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Submit </button>
                 </div>
             </Popup>
         )

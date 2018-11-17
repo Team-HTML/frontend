@@ -9,12 +9,15 @@
     &__options {
         margin-top: auto;
         position: absolute;
-        bottom: 0;
+        bottom: 1.25rem;
+        right: 0.75rem;
         width: 100%;
     }
 
     &__name {
         font-size: 1.2rem;
+        bottom: -1.75rem;
+        left: 1rem;
     }
 
     &__frame {
