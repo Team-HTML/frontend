@@ -14,9 +14,13 @@ class CodeEditor extends React.Component {
     editorDidMount(editor, monaco) {
         this.editor = editor;
         this.monaco = monaco;
-
         this.props.tabs.forEach((t) => {
-            monaco.editor.createModel(t.default, t.lang, new monaco.Uri().with({path: t.file}));
+            if (!monaco.editor.getModel(t.file)) {
+                monaco.editor.createModel(t.default, t.lang, new monaco.Uri().with({path: t.file}));
+            }
+            else {
+                console.log(monaco.editor.getModel(t.file))
+            }
         })
         
         this.editor.setModel(monaco.editor.getModels()[this.props.currTab + 1]);
@@ -31,6 +35,10 @@ class CodeEditor extends React.Component {
 
     componentDidMount() {
 		window.addEventListener('resize', this.handleResize);      
+    }
+
+    componentWillUnmount() {
+        this.editor && this.editor.dispose();
     }
 
     handleResize = () => this.editor.layout();
@@ -48,7 +56,6 @@ class CodeEditor extends React.Component {
 
         return (
                 <MonacoEditor
-                    language="html"
                     theme="vs-dark"
                     options={options}
                     onChange={this.onChange}

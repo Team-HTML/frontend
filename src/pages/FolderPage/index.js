@@ -39,7 +39,7 @@ class FolderPage extends React.Component {
                 this.setState({folder: res})
             })
             .catch((e) => {
-                this.setState({error: e.message})
+                this.props.history.push('/404');
             })
 
     }
@@ -98,15 +98,7 @@ class FolderPage extends React.Component {
 
     render() {
 
-        const {folder, error} = this.state;
-
-        if (error) {
-            return (
-                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                    <h1> Something Went Wrong 😞 : {error}  </h1>
-                </div>
-            )        
-        }
+        const {folder} = this.state;
 
         if (!folder) {
             return (

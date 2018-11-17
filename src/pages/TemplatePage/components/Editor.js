@@ -6,25 +6,18 @@ class Editor extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             currTab: 0,
             tabs: [
                 {
                     file: 'index.html',
-                    default: `<html>
-    <div>
-        <marquee> Look it works!!!! </marquee>
-    </div>
-</html>`,
+                    default: props.htmlCode,
                     lang: 'html'
 
                 },
                 {
                     file: 'style.css',
-                    default: `.blue {
-    color: bluefiowjioefoi;
-}`,
+                    default: props.cssCode,
                     lang: 'css'
                 }
             ]

@@ -21,3 +21,9 @@ export const getFolderById = (folderId) =>
       .get('/folders/' + folderId)
       .use(apiPrefix)
     )
+
+export const getTemplateById = (id) => 
+  promisify(request
+    .get('/templates/' + id)
+    .use(apiPrefix)
+  )

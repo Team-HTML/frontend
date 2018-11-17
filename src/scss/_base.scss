@@ -17,3 +17,13 @@ html, body {
     z-index: 1000 !important;
     width: 100px !important;
 }
+
+.monaco-editor .margin {
+    background: #212529 !important;
+    color: white;
+}
+
+.monaco-editor .view-lines {
+    background: #212529 !important;
+    color: white;
+}
