@@ -59,12 +59,12 @@ class TemplatePage extends React.Component {
 
         return (
             <div className="w-100 h-100 px-0 container-fluid w-100 mx-0">
-                <div className="row">
+                <div className="row template-page__nav">
                     <span className="col-md-2">
-                        <span className="text-primary" onClick={this.goBack}>
-                            Back
+                        <span className="text-primary ml-4" onClick={this.goBack}>
+                          <a>  Back </a>
                         </span>
-                        <span className="ml-4">
+                        <span className="ml-4 text-white">
                             {this.state.name}
                         </span>
                     </span>
