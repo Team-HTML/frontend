@@ -19,7 +19,11 @@
       right: $offset;
       bottom: $offset;
       font-size: 4rem;
-      width: 5rem;
-      height: 5rem;
+      width: $offset;
+      height: $offset;
+
+      span {
+        transform: translateY(-1.5rem);
+      }
     }
   }

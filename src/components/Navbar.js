@@ -31,6 +31,7 @@ class Navbar extends React.Component {
                 <GoogleLogout
                   buttonText="Logout"
                   onLogoutSuccess={logout}
+                  className="btn btn-danger"
                 >
                 </GoogleLogout>
               </div>

@@ -50,7 +50,7 @@ class TemplateOptions extends React.Component {
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h3> Which folder would you like to move it to? </h3>
+                    <h4> Which folder would you like to move it to? </h4>
                 </div>
                 {/*<div className="d-flex container justify-content-center">
                     <input type="text" value={this.state.addFolder}
@@ -73,7 +73,7 @@ class TemplateOptions extends React.Component {
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h3> Please enter new name of folder below: </h3>
+                    <h4> Please enter new name of folder below: </h4>
                 </div>
                 <div className="d-flex container justify-content-center">
                     <input type="text" /*value={this.state.addFolder}
@@ -94,7 +94,7 @@ class TemplateOptions extends React.Component {
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h3> Are you sure you want to delete this folder? </h3>
+                    <h4> Are you sure you want to delete this folder? </h4>
                 </div>
                 {/*<div className="d-flex container justify-content-center">
                     <input type="text" value={this.state.addFolder}
@@ -136,8 +136,7 @@ class TemplateOptions extends React.Component {
             <Popup 
                 trigger={<button class="btn-outline-light"> <img src="/ellipse icon.jpg" width={20}/></button>} 
                 on="click"
-                position="top left"
-                className="option-popup">
+                position="top left">
                 <div>
                     <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
                     <div className="d-flex justify-content-center btn-link m-2">Download</div>

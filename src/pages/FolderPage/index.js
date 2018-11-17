@@ -131,11 +131,11 @@ class FolderPage extends React.Component {
                 {this.renderTemplates()}
                 <div className="row mt-5">
                     <Popup
-                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
+                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span>+</span></button>}
                         modal
                         closeOnDocumentClick
                         >
-                            <div className="d-flex justify-content-center m-2"> Choose a template to upload: </div>
+                            <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
                             <div className="d-flex justify-content-center">
                                 <ReactDropzone
                                     className="d-flex container justify-content-center"

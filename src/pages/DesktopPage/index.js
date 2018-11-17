@@ -114,21 +114,23 @@ class DesktopPage extends React.Component {
     renderUploadTemplate() {
         return (
             <Popup
-                trigger={<button className="btn btn-primary">Upload Template</button>}
+                trigger={<button className="btn btn-link">Upload Template</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
-                <p> Choose a template to upload: </p>
-                <ReactDropzone
-                    className="d-flex container justify-content-center"
-                    onDrop={this.onDrop}
-                    >
-                    <div className="border">
-                        Pick a file here
-                    </div>
-                </ReactDropzone>
-                <div className="ml-5">
-                    <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
+                <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                <div className="d-flex justify-content-center">
+                    <ReactDropzone
+                        className="d-flex container justify-content-center"
+                        onDrop={this.onDrop}
+                        >
+                        <div className="border rounded p-4">
+                            Pick a file here
+                        </div>
+                    </ReactDropzone>
+                </div>
+                <div className="d-flex justify-content-center">
+                    <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
                 </div>
             </Popup>
         )
@@ -137,19 +139,19 @@ class DesktopPage extends React.Component {
     renderCreateFolder() {
         return(
             <Popup
-                trigger={<button className="btn btn-primary">Create Folder</button>}
+                trigger={<button className="btn btn-link">Create Folder</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h3> Please enter name of folder below </h3>
+                    <h4> Please enter name of folder below: </h4>
                 </div>
                 <div className="d-flex container justify-content-center">
                     <input type="text" value={this.state.addFolder}
                     onChange={(evt) => this.updateAddFolder(evt)} />
                 </div>
-                <div className="d-flex container justify-content-center">
-                    <button onClick={this.createFolder}> Create </button>
+                <div className="d-flex container justify-content-center m-2">
+                    <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
                 </div>
             </Popup>
         )
