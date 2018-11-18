@@ -22,7 +22,7 @@ class Navbar extends React.Component {
                   <li className="nav-item b-nav__item px-3">
                     <Link className="nav-link b-nav__link" to="/home">Home</Link>
                   </li>
-                  <li className="nav-item b-nav__item px-3">
+                  <li className="nav-item b-nav__item px-3 mr-4">
                     <Link className="nav-link b-nav__link" to="/newsfeed">Gallery</Link>
                   </li>
                 </ul>
