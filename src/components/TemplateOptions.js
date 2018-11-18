@@ -109,42 +109,24 @@ class TemplateOptions extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="template__options">
-            {/*<Dropdown direction="up" isOpen={this.state.showOptions} size="sm" toggle={this.toggle} className="row mx-0">
-                <div className="col-md-6 text-md-left template__name">
-                    <Link to={'/template/' + this.props.templateId}>{this.props.name}</Link>
+                <div className="col-md-8 text-md-left template__name">
+                    <Link to={'/template/' + this.props.template_id}>{this.props.template_name}</Link>
                 </div>
-                <div className="col-md-6">
-                    <DropdownToggle color="white">
-                        <img src="/ellipse icon.jpg" width={20}/>
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                        <DropdownItem>Download</DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>Privacy</DropdownItem>
-                        <DropdownItem>Move</DropdownItem>
-                        <DropdownItem>Rename</DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>Delete</DropdownItem>
-                    </DropdownMenu>
-                </div>
-        </Dropdown> */}
-            <div className="col-md-6 text-md-left template__name">
-                <Link to={'/template/' + this.props.templateId}>{this.props.name}</Link>
-            </div>
-            <Popup 
-                trigger={<button class="btn-outline-light"> <img src="/ellipse icon.jpg" width={20}/></button>} 
-                on="click"
-                position="top left">
-                <div>
-                    <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
-                    <div className="d-flex justify-content-center btn-link m-2">Download</div>
-                    <div className="d-flex justify-content-center">{this.renderMoveTemplate()}</div>
-                    <div className="d-flex justify-content-center">{this.renderRenameTemplate()}</div>
-                    <div className="d-flex justify-content-center">{this.renderDeleteTemplate()}</div>
-                </div>
-            </Popup>
+                <Popup 
+                    trigger={<button class="btn-outline-light"> <img src="/ellipse icon.jpg" width={20}/></button>} 
+                    on="click"
+                    position="top left">
+                    <div>
+                        <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
+                        <div className="d-flex justify-content-center btn-link m-2">Download</div>
+                        <div className="d-flex justify-content-center">{this.renderMoveTemplate()}</div>
+                        <div className="d-flex justify-content-center">{this.renderRenameTemplate()}</div>
+                        <div className="d-flex justify-content-center">{this.renderDeleteTemplate()}</div>
+                    </div>
+                </Popup>
             </div>
         );
     }

@@ -58,24 +58,7 @@ class FolderPage extends React.Component {
     }
 
     renderTemplates() {
-        const templates = [
-            {
-                name: 'Template 1',
-                templateId: 1
-            },
-            {
-                name: 'Template 2',
-                templateId: 2
-            },
-            {
-                name: 'Template 3',
-                templateId: 3
-            },
-            {
-                name: 'Template 4',
-                templateId: 4
-            }
-        ];
+        const {templates} = this.state.folder
 
         return (
             <div className="row mt-5">

@@ -12,7 +12,9 @@ class Template extends React.Component {
         return (
             <div className="template shadow">
                 <TemplatePreview html={html} />
-                <div className="text-md-right"><TemplateOptions {...this.props} /></div>
+                <div className="text-md-right">
+                    <TemplateOptions {...this.props} />
+                </div>
             </div>
         );
     }
