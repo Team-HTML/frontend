@@ -6,20 +6,20 @@ class GalleryPage extends React.Component {
   renderPublicTemplates() {
       const publicTemplates = [
           {
-              name: 'Public 1',
-              templateId: 1
+              template_name: 'Public 1',
+              template_id: 1
           },
           {
-              name: 'Public 2',
-              templateId: 2
+              template_name: 'Public 2',
+              template_id: 2
           },
           {
               name: 'Public 3',
-              templateId: 3
+              template_id: 3
           },
           {
               name: 'Public 4',
-              templateId: 3
+              template_id: 3
         },
       ];
             
