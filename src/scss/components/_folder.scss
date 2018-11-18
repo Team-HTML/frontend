@@ -14,18 +14,8 @@
         overflow: hidden;
         max-width: 100%;
         max-height: 100%;
-        color: white;
-        font-size: 1.2rem;
-    }
-
-    // do we want to show the name on hover in case the name is too long to
-    // fit in the div? we are using white color for text so if the background
-    // is white then the user can't see the name of the folder
-
-    // display the hidden name on hover
-    &__name {
-        overflow: visible;
         color: $blueprint-blue;
+        font-size: 1.2rem;
     }
 
     &__options {
@@ -45,8 +35,7 @@
 
 // the div that has the folder name and the link
 .folder1 {
-    max-height: 50%;
-    max-width: 70%;
+    max-width: 55%;
     position: absolute;
     bottom: 0px;
     left: 30px;
