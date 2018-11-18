@@ -14,11 +14,11 @@ class GalleryPage extends React.Component {
               template_id: 2
           },
           {
-              name: 'Public 3',
+              template_name: 'Public 3',
               template_id: 3
           },
           {
-              name: 'Public 4',
+              template_name: 'Public 4',
               template_id: 3
         },
       ];
