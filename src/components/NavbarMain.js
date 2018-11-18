@@ -24,7 +24,6 @@ class NavbarMain extends React.Component {
         return (
           <nav className="navbar navbar-expand-lg b-nav">
             <div className="container px-0">
-              <Link className="navbar-brand" to="/"><img src="/white.png" className="main_nav__logo"/></Link>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
               </button>
