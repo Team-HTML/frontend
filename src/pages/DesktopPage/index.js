@@ -231,7 +231,7 @@ class DesktopPage extends React.Component {
             <div className="home mt-5">
                 <div className="container">
                     <div className="row mx-0">
-                        <h1>Library</h1>
+                        <h1>Home</h1>
                         {/*
                         <Popup
                             trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}

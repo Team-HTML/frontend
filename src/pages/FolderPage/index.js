@@ -21,19 +21,19 @@ class FolderPage extends React.Component {
             folder: {
              templates: [
                 {
-                    template_name: 'Public 1',
+                    template_name: 'Template 1',
                     template_id: 1
                 },
                 {
-                    template_name: 'Public 2',
+                    template_name: 'Template 2',
                     template_id: 2
                 },
                 {
-                    template_name: 'Public 3',
+                    template_name: 'Template 3',
                     template_id: 3
                 },
                 {
-                    template_name: 'Public 4',
+                    template_name: 'Template 4',
                     template_id: 3
               }],
               folder_name: 'Test Folder'

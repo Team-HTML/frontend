@@ -62,7 +62,7 @@ class TemplatePage extends React.Component {
                 <div className="row template-page__nav">
                     <span className="col-md-2">
                         <span className="text-primary ml-4" onClick={this.goBack}>
-                          <a>  Back </a>
+                          <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
                         </span>
                         <span className="ml-4 text-white">
                             {this.state.name}
@@ -72,10 +72,10 @@ class TemplatePage extends React.Component {
                     <div className="col-md-8">
                     </div>
                     <div className="col-md-2">
-                        <button className="btn btn-primary" onClick={this.saveEditor}>
+                        <button className="btn btn-outline-light m-2" onClick={this.saveEditor}>
                             Save
                         </button>
-                        <button className="btn btn-primary ml-4" onClick={this.downloadCode}>
+                        <button className="btn btn-primary btn-outline-light ml-4 m-2" onClick={this.downloadCode}>
                             Download
                         </button>
                     </div>

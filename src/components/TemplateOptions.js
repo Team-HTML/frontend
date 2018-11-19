@@ -73,7 +73,7 @@ class TemplateOptions extends React.Component {
                 closeOnDocumentClick
                 >
                 <div className="d-flex container justify-content-center">
-                    <h4> Please enter new name of folder below: </h4>
+                    <h4> Please enter new name of template below: </h4>
                 </div>
                 <div className="d-flex container justify-content-center">
                     <input type="text" /*value={this.state.addFolder}
