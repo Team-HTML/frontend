@@ -77,7 +77,7 @@ class FolderOptions extends React.Component {
             */
 
             <Popup 
-                trigger={<button class="btn-outline-light"> <img src="/ellipse icon.jpg" width={20}/></button>} 
+                trigger={<button class="bg-white border-0"> <img src="/ellipse icon.jpg" width={20}/></button>} 
                 on="click"
                 position="top left"
                 className="option-popup">

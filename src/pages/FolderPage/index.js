@@ -18,27 +18,7 @@ class FolderPage extends React.Component {
         super(props);
         
         this.state = {
-            folder: {
-             templates: [
-                {
-                    template_name: 'Template 1',
-                    template_id: 1
-                },
-                {
-                    template_name: 'Template 2',
-                    template_id: 2
-                },
-                {
-                    template_name: 'Template 3',
-                    template_id: 3
-                },
-                {
-                    template_name: 'Template 4',
-                    template_id: 3
-              }],
-              folder_name: 'Test Folder'
-
-            },
+            folder: null,
             error: null,
             uploadedFile: null,
             open: false
@@ -54,13 +34,13 @@ class FolderPage extends React.Component {
         //get folder data from server from the route param 
         //this.props.match.params.folderId
 
-        /*getFolderById(this.props.match.params.folderId)
+        getFolderById(this.props.match.params.folderId)
             .then((res) => {
                 this.setState({folder: res})
             })
             .catch((e) => {
                 this.props.history.push('/404');
-            })*/
+            })
 
     }
 
@@ -79,7 +59,6 @@ class FolderPage extends React.Component {
 
     renderTemplates() {
         const {templates} = this.state.folder
-
         return (
             <div className="row mt-5">
                 {templates.map(d => {
@@ -102,7 +81,6 @@ class FolderPage extends React.Component {
     render() {
 
         const {folder} = this.state;
-
         if (!folder) {
             return (
                 <div className="w-100 h-100 d-flex justify-content-center align-items-center">

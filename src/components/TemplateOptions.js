@@ -116,7 +116,7 @@ class TemplateOptions extends React.Component {
                     <Link to={'/template/' + this.props.template_id}>{this.props.template_name}</Link>
                 </div>
                 <Popup 
-                    trigger={<button class="btn-outline-light"> <img src="/ellipse icon.jpg" width={20}/></button>} 
+                    trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>} 
                     on="click"
                     position="top left">
                     <div>
