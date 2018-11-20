@@ -6,6 +6,7 @@
 html, body {
     height: 100%;
     width: 100%;
+    background: #e9ebee;
 }
 
 #root {
@@ -26,4 +27,8 @@ html, body {
 .monaco-editor .view-lines {
     background: #212529 !important;
     color: white;
+}
+
+.red-bg {
+    background: $blueprint-red;
 }

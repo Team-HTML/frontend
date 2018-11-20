@@ -14,7 +14,7 @@ class Folder extends React.Component {
 
     render() {
         return (
-            <div className = "shadow folder">
+            <div className = "shadow folder border-0">
                 <div className="folderImage my-3 text-center vertical-center">
                     <img src = "/folder.png"/>
                 </div>
