@@ -1,16 +1,11 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import FolderOptions from './FolderOptions';
-
+import ReactS3Uploader from 'react-s3-uploader';
 const options = ['Rename','Delete'];
 
 class Folder extends React.Component {
-
-    componentDidMount() {
-        console.log(this.props);
-    }
 
     render() {
         return (

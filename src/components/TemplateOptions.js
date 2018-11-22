@@ -109,7 +109,6 @@ class TemplateOptions extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="template__options">
                 <div className="col-md-8 text-md-left template__name">

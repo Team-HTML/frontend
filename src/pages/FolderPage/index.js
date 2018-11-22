@@ -7,7 +7,7 @@ import ReactDropzone from "react-dropzone";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Loading from 'react-loading';
-
+import {uploadImgToS3, getJSONFromImg, generateHTML, createTemplate} from '../../data/Api';
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
 const defaultOption = options[0];
@@ -26,8 +26,6 @@ class FolderPage extends React.Component {
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
         this.onDrop = this.onDrop.bind(this);
-        this.openModal = this.openModal.bind(this)
-        this.closeModal = this.closeModal.bind(this)
     }
 
     componentDidMount() {
@@ -44,16 +42,7 @@ class FolderPage extends React.Component {
 
     }
 
-    openModal (){
-        this.setState({ open: true })
-    }
-
-    closeModal () {
-        this.setState({ open: false })
-    }
-
     onDrop(a) {
-        console.log(a);
         this.setState({uploadedFile: a[0]});
     }
 
@@ -73,9 +62,47 @@ class FolderPage extends React.Component {
     }
 
     uploadTemplate() {
-        const {uploadedFile, templates} = this.state;
+        const {uploadedFile} = this.state;
+        const {templates} = this.state.folder;
+        const epoch = Math.round((new Date()).getTime() / 1000);
+        uploadImgToS3(uploadedFile, epoch)
+            .then((res) => {
+                const {url} = res.req;
+                return {url, e: epoch + "." + uploadedFile.type.split('/')[1]};
+            })
+            .then(({url, e}) => {
+                return getJSONFromImg(e)
+                    .then(generateHTML)
+                    .then(html => {
+                        return {
+                            "created_by": 1213123,
+                            "is_public": false,
+                            "template_name": "HOLY SHIT",
+                            "template_photo_url": url,
+                            "template_css": ".fuck {}",
+                            "template_html": html.replace(/"/g, '\\"')
+                        }
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        return createTemplate(data)
+                            .then(() => {
+                                console.log(
+                                    "here"
+                                );
+                                console.log([...templates, data]);  
+                                this.setState({
+                                    folder: {...this.state.folder, 
+                                        templates: [...templates, data]
+                                    }
+                                });
+                            })
+                            .catch(console.error)
+                    })
+                    .catch(console.error)
+                
+            })
 
-        this.setState({templates: [...templates, {name: uploadedFile.name, templateId: 5}]})
     }
 
     render() {

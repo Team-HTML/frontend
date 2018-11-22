@@ -100,7 +100,6 @@ class DesktopPage extends React.Component {
         return (
             <div className="row">
                 {defaultFolder.map(d => {
-                    console.log(d);
                     return (
                         <div className="col-md-3">
                             <Template {...d} />
@@ -224,6 +223,12 @@ class DesktopPage extends React.Component {
         return(
           <p> {this.renderFolders()} </p>
         );
+    }
+
+    uploadTemplate() {
+        const {uploadedFile, templates} = this.state;
+        console.log("hAHAAAAA", uploadedFile);
+        this.setState({templates: [...templates, {name: uploadedFile.name, templateId: 5}]})
     }
 
     render() {
