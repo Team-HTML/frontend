@@ -21,11 +21,13 @@ class FolderPage extends React.Component {
             folder: null,
             error: null,
             uploadedFile: null,
+            uploadedFileName: null,
             open: false
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.onChangeName = this.onChangeName.bind(this)
     }
 
     componentDidMount() {
@@ -61,8 +63,12 @@ class FolderPage extends React.Component {
         );
     }
 
+    onChangeName(e) {
+        this.setState({uploadedFileName: e.target.value})
+    }
+
     uploadTemplate() {
-        const {uploadedFile} = this.state;
+        const {uploadedFile, uploadedFileName} = this.state;
         const {templates} = this.state.folder;
         const epoch = Math.round((new Date()).getTime() / 1000);
         uploadImgToS3(uploadedFile, epoch)
@@ -71,29 +77,40 @@ class FolderPage extends React.Component {
                 return {url, e: epoch + "." + uploadedFile.type.split('/')[1]};
             })
             .then(({url, e}) => {
+                const tempData = {
+                    "created_by": 1213123,
+                    "is_public": false,
+                    "template_name": uploadedFileName,
+                    "template_photo_url": url,
+                    "template_css": ".fuck {}",
+                }
+                this.setState({
+                    folder: {...this.state.folder, 
+                        templates: [...templates, tempData]
+                    }
+                });
+
                 return getJSONFromImg(e)
                     .then(generateHTML)
                     .then(html => {
                         return {
                             "created_by": 1213123,
                             "is_public": false,
-                            "template_name": "HOLY SHIT",
+                            "template_name": uploadedFileName,
                             "template_photo_url": url,
                             "template_css": ".fuck {}",
                             "template_html": html.replace(/"/g, '\\"')
                         }
                     })
                     .then((data) => {
-                        console.log(data);
                         return createTemplate(data)
-                            .then(() => {
-                                console.log(
-                                    "here"
-                                );
-                                console.log([...templates, data]);  
+                            .then((res) => {
+                                let temps = this.state.folder.templates;
+                                const targetIdx = temps.findIndex(e => e.template_name === uploadedFileName);
+                                temps[targetIdx] = data
                                 this.setState({
                                     folder: {...this.state.folder, 
-                                        templates: [...templates, data]
+                                        templates: temps
                                     }
                                 });
                             })
@@ -145,6 +162,10 @@ class FolderPage extends React.Component {
                                         Pick a file here
                                     </div>
                                 </ReactDropzone>
+                            </div>
+                            <div className="d-flex justify-content-center my-2 w-50 mx-auto">
+                                <label>Template Name: </label>
+                                <input className="form-control" onChange={this.onChangeName} />
                             </div>
                             <div className="d-flex justify-content-center">
                                 <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>

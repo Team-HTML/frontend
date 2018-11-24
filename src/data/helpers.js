@@ -14,7 +14,6 @@ export const promisify = (request) => {
       }
       return deferred.reject(err);
     }
-    console.log(res.body);
     deferred.resolve(res.body);
   });
   return deferred.promise;

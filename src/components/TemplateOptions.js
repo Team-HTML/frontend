@@ -110,7 +110,7 @@ class TemplateOptions extends React.Component {
 
     render() {
         return (
-            <div className="template__options">
+            <div className={"template__options"}>
                 <div className="col-md-8 text-md-left template__name">
                     <Link to={'/template/' + this.props.template_id}>{this.props.template_name}</Link>
                 </div>

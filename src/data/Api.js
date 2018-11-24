@@ -54,7 +54,7 @@ export const generateHTML = (json) =>
   )
 
 export const createTemplate = (data) => {
-  promisify(request
+  return promisify(request
     .post('/templates')
     .send(data)
     .use(apiPrefix)

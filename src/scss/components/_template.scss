@@ -21,9 +21,13 @@
     }
 
     &__frame {
-        //pointer-events: none;
         border: none;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
+    }
+
+    &__blur {
+        pointer-events: none;
+        filter: blur(0.1rem);
     }
 }
