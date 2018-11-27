@@ -3,6 +3,36 @@
     padding: 0.5rem 3rem;
 
     &__logo {
-        max-width: 8rem;
+        height: 60px;
+        width: 200px;
     }
+}
+
+.login_img {
+    height: 100%;
+    width: 105%;
+    margin: -5px; // to remove space between the image and the actual button
+
+    // for highlighting on hover (from 1 to 0.8)
+    opacity: 1;
+}
+
+// login btn will change opacity on hover
+.login_btn:hover {
+    opacity: 0.8;
+}
+
+// to remove unnecessary space of the button
+.login_btn {
+    padding: 0;
+}
+
+// login button is moved down slightly on hover
+.login_btn:hover {
+    margin-top: 2px;
+}
+
+.gg_login {
+    height: 40px;
+    width: 180px;
 }
