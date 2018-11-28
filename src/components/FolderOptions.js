@@ -22,7 +22,7 @@ class FolderOptions extends React.Component {
     renderRenameFolder() {
         return(
             <Popup
-                trigger={<button className="btn btn-link">Rename</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Rename</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -43,7 +43,7 @@ class FolderOptions extends React.Component {
     renderDeleteFolder() {
         return(
             <Popup
-                trigger={<button className="btn btn-link">Delete</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Delete</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -77,8 +77,9 @@ class FolderOptions extends React.Component {
             */
 
             <Popup 
-                trigger={<button class="bg-white border-0"> <img src="/ellipse icon.jpg" width={20}/></button>} 
-                on="click"
+                /*trigger={<button class="bg-white border-0 "> <img src="/ellipse icon.jpg" width={20}/></button>}*/
+                trigger={<img src="/ellipse icon.jpg" width={20}/>}
+                on="hover"
                 position="top left"
                 className="option-popup">
                 <div>

@@ -45,7 +45,7 @@ class TemplateOptions extends React.Component {
     renderMoveTemplate() {
         return(
             <Popup
-                trigger={<button className="btn btn-link">Move</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Move</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -68,7 +68,7 @@ class TemplateOptions extends React.Component {
     renderRenameTemplate() {
         return(
             <Popup
-                trigger={<button className="btn btn-link">Rename</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Rename</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -89,7 +89,7 @@ class TemplateOptions extends React.Component {
     renderDeleteTemplate() {
         return(
             <Popup
-                trigger={<button className="btn btn-link">Delete</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Delete</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -115,8 +115,9 @@ class TemplateOptions extends React.Component {
                     <Link to={'/template/' + this.props.template_id}>{this.props.template_name}</Link>
                 </div>
                 <Popup 
-                    trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>} 
-                    on="click"
+                    /*trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}*/
+                    trigger={<img src="/ellipse icon.jpg" width={20}/>}
+                    on="hover"
                     position="top left">
                     <div>
                         <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
