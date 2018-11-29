@@ -20,8 +20,8 @@ class DesktopPage extends React.Component {
         this.state = {
             defaultFolder: [
                 {
-                    name: 'Default folder',
-                    folderId: 0
+                    template_name: 'Some random stuff',
+                    template_id: 69
                 }
             ],
             folders: [
