@@ -15,7 +15,12 @@
     }
 
     &__name {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
         font-size: 1.1rem;
+        max-width: 100%;
+        max-height: 100%;
         bottom: -1.75rem;
         left: 1rem;
     }

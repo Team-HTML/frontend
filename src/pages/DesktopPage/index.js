@@ -6,6 +6,7 @@ import Template from '../../components/Template';
 import Dropdown from 'react-dropdown';
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import 'react-dropdown/style.css';
+import {getFolderById} from "../../data/Api";
 
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
@@ -17,6 +18,12 @@ class DesktopPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            defaultFolder: [
+                {
+                    template_name: 'Some random stuff',
+                    template_id: 69
+                }
+            ],
             folders: [
                 {
                     name: 'Folder 1',
@@ -35,9 +42,7 @@ class DesktopPage extends React.Component {
                     folderId: 4
                 }
             ],
-            defaultFolder: [
 
-            ],
             uploadedFile: null,
             addFolder: '',
             open: false,
@@ -52,7 +57,6 @@ class DesktopPage extends React.Component {
         this.closeModal = this.closeModal.bind(this)
         this.toggle = this.toggle.bind(this);
     }
-
 
     openModal (){
         this.setState({ open: true })
@@ -98,7 +102,7 @@ class DesktopPage extends React.Component {
         const {defaultFolder} = this.state;
 
         return (
-            <div className="row">
+            <div className="defaultFolderRow row">
                 {defaultFolder.map(d => {
                     return (
                         <div className="col-md-3">
