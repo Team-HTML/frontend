@@ -113,7 +113,7 @@ class DesktopPage extends React.Component {
     renderUploadTemplate() {
         return (
             <Popup
-                trigger={<button className="btn btn-link">Upload Template</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Upload Template</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -138,7 +138,7 @@ class DesktopPage extends React.Component {
     renderCreateFolder() {
         return(
             <Popup
-                trigger={<button className="btn btn-link">Create Folder</button>}
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Create Folder</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -146,7 +146,7 @@ class DesktopPage extends React.Component {
                     <h4> Please enter name of folder below: </h4>
                 </div>
                 <div className="d-flex container justify-content-center">
-                    <input type="text" value={this.state.addFolder}
+                    <input type="text" value={this.state.addFolder} className="form-control"
                     onChange={(evt) => this.updateAddFolder(evt)} />
                 </div>
                 <div className="d-flex container justify-content-center m-2">
