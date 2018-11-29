@@ -114,23 +114,6 @@ class DesktopPage extends React.Component {
         );
     }
 
-    /*
-    renderTemplates() {
-        const {defaultFolder} = this.state;
-        return (
-            <div className="row mt-5">
-                {defaultFolder.map(d => {
-                    return (
-                        <div className="col-md-3">
-                            <Template {...d} />
-                        </div>
-                    );
-                })}
-            </div>
-        );
-    }
-    */
-
     renderUploadTemplate() {
         return (
             <Popup
@@ -299,7 +282,6 @@ class DesktopPage extends React.Component {
                         </div>
                     </div>
                     {this.renderFolders()}
-
                     {/*
                     {this.renderAddFolder()}
                     */}
