@@ -49,7 +49,7 @@ class FolderPage extends React.Component {
     }
 
     renderTemplates() {
-        const {templates} = this.state.folder
+        const {templates} = this.state.folder;
         return (
             <div className="row mt-5">
                 {templates.map(d => {
