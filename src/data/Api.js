@@ -14,6 +14,7 @@ export const login = (data) =>
   promisify(request
     .post(API_URL_PREFIX + '/users')
     //.set('Access-Control-Allow-Origin', "*")
+    
     //.set('Access-Control-Allow-Credentials', true)
     .send(data)
     .use(apiPrefix));

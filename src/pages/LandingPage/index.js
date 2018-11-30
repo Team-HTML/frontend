@@ -9,8 +9,12 @@ class LandingPage extends React.Component {
 					<div className="container h-100 px-0">
 						<div className="main__description row px-0 align-items-center">
 							<div className="col-md-6 h-100">
-								<p className="text-md-left main__description-text mb-5"> 
-									In publishing and graphic design, lorem ipsum is a placeholder text used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced. 	
+								<p className="text-md-center main__description-text mb-5"> 
+								<div className="main__header">
+									<b>Innovation at Ease</b>
+								</div>
+								Blueprint is a rapid-prototyping web application that generates functioning HTML files from paper prototypes. 
+								<p>More time designing, less time coding.</p>
 								</p>
 								<div className="border"></div>
 								<div className="justify-content-center d-flex p-3">

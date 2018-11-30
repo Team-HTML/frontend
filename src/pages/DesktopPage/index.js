@@ -288,6 +288,7 @@ class DesktopPage extends React.Component {
                     {/*
                     {this.renderAddFolder()}
                     */}
+                    <div className="home__divider"></div>
                     {this.renderDefaultFolder()}
                     {this.renderAddButton()}
                 </div>
