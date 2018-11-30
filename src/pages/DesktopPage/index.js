@@ -6,14 +6,13 @@ import Template from '../../components/Template';
 import Dropdown from 'react-dropdown';
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import 'react-dropdown/style.css';
-import {getFolderById} from "../../data/Api";
+import {getFolderById, getUser} from "../../data/Api";
 
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
 const defaultOption = options[0];
 
 class DesktopPage extends React.Component {
-
 
     constructor(props) {
         super(props);
@@ -63,6 +62,10 @@ class DesktopPage extends React.Component {
     }
     closeModal () {
         this.setState({ open: false })
+    }
+
+    componentDidMount() {
+        console.log(this.props)
     }
 
 

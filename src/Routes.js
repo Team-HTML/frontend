@@ -10,39 +10,92 @@ import NotFoundPage from './pages/NotFoundPage';
 
 import Layout from './layouts/Layout';
 import LayoutMain from './layouts/LayoutMain';
+import Loading from 'react-loading';
 
+import PrivateRoute from './PrivateRoute';
+
+import {verifyToken} from './data/Api';
 
 class Routes extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            user: null,
+            authenticated: null
+        }
+
+        this.setUser = this.setUser.bind(this);
+    }
+
+    componentWillMount() {
+
+        const {userId, token} = localStorage
+
+        if(!userId || !token) {
+            this.setState({authenticated: false})
+            return;
+        }
+
+        verifyToken(userId, token)
+            .then(user => {
+                this.setState({
+                    user,
+                    authenticated: true
+                })
+            })
+            .catch(e => {
+                localStorage.setItem('token', null)
+                localStorage.setItem('userId', null)
+                this.setState({authenticated: false})
+            })
     }
 
     withLayout(Child) {
         return (props) => (
             <Layout>
-                <Child />
+                <Child {...props}/>
             </Layout>
         )
     }
 
+    setUser(u) {
+        this.setState({
+            user: u,
+            authenticated: true
+        })
+        localStorage.setItem('token', u['token'])
+        localStorage.setItem('userId', u['user_id'])
+        this.props.history.push('/home')
+    }
+
     withLayoutMain(Child) {
         return (props) => (
-            <LayoutMain>
+            <LayoutMain setUser={this.setUser}>
                 <Child />
             </LayoutMain>
         )
     }
 
     render() {
+        
+        if (this.state.authenticated === null) {
+            return (
+                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                    <Loading type="spin" color='black' width="4rem"/>
+                </div>
+            )
+        }
+
         return  (
             <Switch>
                 <Route exact path="/" component={this.withLayoutMain(LandingPage)}/>
-                <Route exact path="/home" component={this.withLayout(DesktopPage)}/>
+                <PrivateRoute exact path="/home" {...this.state} component={this.withLayout(DesktopPage)}/>
                 <Route exact path="/newsfeed" component={this.withLayout(GalleryPage)}/>
-                <Route exact path="/folder/:folderId" component={this.withLayout(FolderPage)}/>
-                <Route exact path="/template/:templateId" component={TemplatePage} />
-                <Route path="/" component={this.withLayout(NotFoundPage)}></Route>
+                <PrivateRoute exact path="/folder/:folderId" {...this.state} component={this.withLayout(FolderPage)}/>
+                <PrivateRoute exact path="/template/:templateId" {...this.state} component={TemplatePage} />
+                <Route path="/" component={this.withLayout(NotFoundPage)}/>
             </Switch>
         )
     }

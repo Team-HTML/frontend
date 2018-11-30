@@ -18,7 +18,13 @@ class TemplatePage extends React.Component {
     }
 
     componentWillMount() {
-        getTemplateById(this.props.match.params.templateId)
+
+        /*this.setState({
+            name: 'Home Page',
+            htmlCode: 'FUCK',
+            cssCode: 'I SUCK' 
+        })*/
+        getTemplateById(this.props.match.params.templateId, 123456789)
             .then((res) => {
                 this.setState({
                     htmlCode: res.template_html, 
@@ -26,7 +32,8 @@ class TemplatePage extends React.Component {
                     name: res.template_name
                 });
             })
-            .catch(() => {
+            .catch((e) => {
+                console.log(e);
                 this.props.history.push('/404')
             })
     }

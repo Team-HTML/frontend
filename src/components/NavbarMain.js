@@ -7,11 +7,10 @@ import {withRouter, Link} from 'react-router-dom';
 class NavbarMain extends React.Component {
 
   successResponseGoogle = (response) => {
-    login({"user_id" : 333, "user_first_name" : "bob", "user_last_name" : "lll", "user_email": response.getBasicProfile().getEmail()})
+    login({"user_first_name" : "bob", "user_last_name" : "lll", "user_email": response.getBasicProfile().getEmail()})
       .then(r => {
-        console.log(r);
+        this.props.setUser(r);
       })
-    this.props.history.push('/home')
     //console.log({email: response.getBasicProfile().getEmail()});
   }
 
