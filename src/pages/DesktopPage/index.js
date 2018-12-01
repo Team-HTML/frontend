@@ -7,6 +7,9 @@ import Dropdown from 'react-dropdown';
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import 'react-dropdown/style.css';
 import {getFolderById, getUser} from "../../data/Api";
+import Rodal from "rodal";
+
+import 'rodal/lib/rodal.css';
 
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
@@ -22,6 +25,7 @@ class DesktopPage extends React.Component {
             addFolder: '',
             open: false,
             dropdownOpen: false,
+            visible: false,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
@@ -38,6 +42,14 @@ class DesktopPage extends React.Component {
     }
     closeModal () {
         this.setState({ open: false })
+    }
+
+    show() {
+        this.setState({ visible: true });
+    }
+ 
+    hide() {
+        this.setState({ visible: false });
     }
 
     componentDidMount() {
@@ -92,7 +104,7 @@ class DesktopPage extends React.Component {
 
     renderUploadTemplate() {
         return (
-            <Popup
+            /*<Popup
                 trigger={<button className="btn btn-outline-primary border-0 btn-block">Upload Template</button>}
                 modal={true}
                 closeOnDocumentClick
@@ -111,7 +123,29 @@ class DesktopPage extends React.Component {
                 <div className="d-flex justify-content-center">
                     <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
                 </div>
-            </Popup>
+            </Popup>*/
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.show.bind(this)}>
+                    Upload Template
+                </button>
+ 
+                <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+                    <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                    <div className="d-flex justify-content-center">
+                        <ReactDropzone
+                            className="d-flex container justify-content-center"
+                            onDrop={this.onDrop}
+                            >
+                            <div className="border rounded p-4">
+                                Pick a file here
+                            </div>
+                        </ReactDropzone>
+                    </div>
+                        <div className="d-flex justify-content-center">
+                        <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
