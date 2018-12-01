@@ -6,8 +6,11 @@ import Template from '../../components/Template';
 import Dropdown from 'react-dropdown';
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import 'react-dropdown/style.css';
+
+import Rodal from "rodal";
+
+import 'rodal/lib/rodal.css';
 import {getFolderById, appendFolder, createFolder} from "../../data/Api";
-import { create } from 'domain';
 
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
@@ -23,6 +26,8 @@ class DesktopPage extends React.Component {
             addFolder: '',
             open: false,
             dropdownOpen: false,
+            createVisible: false,
+            uploadVisible: false,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
@@ -39,6 +44,22 @@ class DesktopPage extends React.Component {
     }
     closeModal () {
         this.setState({ open: false })
+    }
+
+    showCreate() {
+        this.setState({ createVisible: true });
+    }
+ 
+    hideCreate() {
+        this.setState({ createVisible: false });
+    }
+
+    showUpload() {
+        this.setState({ uploadVisible: true });
+    }
+ 
+    hideUpload() {
+        this.setState({ uploadVisible: false });
     }
 
     componentDidMount() {
@@ -96,8 +117,8 @@ class DesktopPage extends React.Component {
 
     renderUploadTemplate() {
         return (
-            <Popup
-                trigger={<button className="btn btn-link">Upload Template</button>}
+            /*<Popup
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Upload Template</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -115,14 +136,36 @@ class DesktopPage extends React.Component {
                 <div className="d-flex justify-content-center">
                     <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
                 </div>
-            </Popup>
+            </Popup>*/
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showUpload.bind(this)}>
+                    Upload Template
+                </button>
+ 
+                <Rodal visible={this.state.uploadVisible} onClose={this.hideUpload.bind(this)} animation="door">
+                    <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                    <div className="d-flex justify-content-center">
+                        <ReactDropzone
+                            className="d-flex container justify-content-center"
+                            onDrop={this.onDrop}
+                            >
+                            <div className="border rounded p-4">
+                                Pick a file here
+                            </div>
+                        </ReactDropzone>
+                    </div>
+                        <div className="d-flex justify-content-center">
+                        <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
     renderCreateFolder() {
         return(
-            <Popup
-                trigger={<button className="btn btn-link">Create Folder</button>}
+            /*<Popup
+                trigger={<button className="btn btn-outline-primary border-0 btn-block">Create Folder</button>}
                 modal={true}
                 closeOnDocumentClick
                 >
@@ -130,13 +173,31 @@ class DesktopPage extends React.Component {
                     <h4> Please enter name of folder below: </h4>
                 </div>
                 <div className="d-flex container justify-content-center">
-                    <input type="text" value={this.state.addFolder}
+                    <input type="text" value={this.state.addFolder} className="form-control"
                     onChange={(evt) => this.updateAddFolder(evt)} />
                 </div>
                 <div className="d-flex container justify-content-center m-2">
                     <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
                 </div>
-            </Popup>
+            </Popup>*/
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showCreate.bind(this)}>
+                    Create Folder
+                </button>
+
+                <Rodal visible={this.state.createVisible} onClose={this.hideCreate.bind(this)} animation="door">
+                    <div className="d-flex container justify-content-center">
+                        <h4> Please enter name of folder below: </h4>
+                    </div>
+                    <div className="d-flex container justify-content-center">
+                        <input type="text" value={this.state.addFolder} className="form-control"
+                        onChange={(evt) => this.updateAddFolder(evt)} />
+                    </div>
+                    <div className="d-flex container justify-content-center m-2">
+                        <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
