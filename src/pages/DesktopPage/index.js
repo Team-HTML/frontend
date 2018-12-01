@@ -17,31 +17,7 @@ class DesktopPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            defaultFolder: [
-                {
-                    template_name: 'Some random stuff',
-                    template_id: 69
-                }
-            ],
-            folders: [
-                {
-                    name: 'Folder 1',
-                    folderId: 1
-                },
-                {
-                    name: 'Folder 2',
-                    folderId: 2
-                },
-                {
-                    name: 'Folder 3',
-                    folderId: 3
-                },
-                {
-                    name: 'Folder 4',
-                    folderId: 4
-                }
-            ],
-
+            folders: [],
             uploadedFile: null,
             addFolder: '',
             open: false,
@@ -65,7 +41,8 @@ class DesktopPage extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
+        console.log(this.props.user);
+        this.setState(this.props.user)
     }
 
 
@@ -102,17 +79,13 @@ class DesktopPage extends React.Component {
 
     renderDefaultFolder() {
 
-        const {defaultFolder} = this.state;
+        const {default_folder} = this.state;
 
         return (
             <div className="defaultFolderRow row">
-                {defaultFolder.map(d => {
-                    return (
-                        <div className="col-md-3">
-                            <Template {...d} />
-                        </div>
-                    );
-                })}
+                <div className="col-md-3">
+                    <Template {...default_folder} />
+                </div>
             </div>
         );
     }
@@ -205,9 +178,9 @@ class DesktopPage extends React.Component {
     }
 
     uploadTemplate() {
-        const {uploadedFile, defaultFolder} = this.state;
+        const {uploadedFile, default_folder} = this.state;
 
-        this.setState({defaultFolder: [...defaultFolder, {name: uploadedFile.name}]})
+        this.setState({defaultFolder: [...default_folder, {name: uploadedFile.name}]})
     }
 
     updateAddFolder(evt) {

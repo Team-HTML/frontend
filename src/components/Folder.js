@@ -15,10 +15,10 @@ class Folder extends React.Component {
                 </div>
 
                 <div className = "folder1">
-                    <Link to={`/folder/${this.props.folderId}`}>
+                    <Link to={`/folder/${this.props.folder_id}`}>
                         <div className="my-3 text-center vertical-center">
                             <div className="folder__name">
-                                {this.props.name}
+                                {this.props.folder_name}
                             </div>
                         </div>
                     </Link>
