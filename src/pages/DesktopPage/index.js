@@ -26,7 +26,8 @@ class DesktopPage extends React.Component {
             addFolder: '',
             open: false,
             dropdownOpen: false,
-            visible: false,
+            createVisible: false,
+            uploadVisible: false,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
@@ -45,12 +46,20 @@ class DesktopPage extends React.Component {
         this.setState({ open: false })
     }
 
-    show() {
-        this.setState({ visible: true });
+    showCreate() {
+        this.setState({ createVisible: true });
     }
  
-    hide() {
-        this.setState({ visible: false });
+    hideCreate() {
+        this.setState({ createVisible: false });
+    }
+
+    showUpload() {
+        this.setState({ uploadVisible: true });
+    }
+ 
+    hideUpload() {
+        this.setState({ uploadVisible: false });
     }
 
     componentDidMount() {
@@ -129,11 +138,11 @@ class DesktopPage extends React.Component {
                 </div>
             </Popup>*/
             <div>
-                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.show.bind(this)}>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showUpload.bind(this)}>
                     Upload Template
                 </button>
  
-                <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+                <Rodal visible={this.state.uploadVisible} onClose={this.hideUpload.bind(this)} animation="door">
                     <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
                     <div className="d-flex justify-content-center">
                         <ReactDropzone
@@ -155,7 +164,7 @@ class DesktopPage extends React.Component {
 
     renderCreateFolder() {
         return(
-            <Popup
+            /*<Popup
                 trigger={<button className="btn btn-outline-primary border-0 btn-block">Create Folder</button>}
                 modal={true}
                 closeOnDocumentClick
@@ -170,7 +179,25 @@ class DesktopPage extends React.Component {
                 <div className="d-flex container justify-content-center m-2">
                     <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
                 </div>
-            </Popup>
+            </Popup>*/
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showCreate.bind(this)}>
+                    Create Folder
+                </button>
+
+                <Rodal visible={this.state.createVisible} onClose={this.hideCreate.bind(this)} animation="door">
+                    <div className="d-flex container justify-content-center">
+                        <h4> Please enter name of folder below: </h4>
+                    </div>
+                    <div className="d-flex container justify-content-center">
+                        <input type="text" value={this.state.addFolder} className="form-control"
+                        onChange={(evt) => this.updateAddFolder(evt)} />
+                    </div>
+                    <div className="d-flex container justify-content-center m-2">
+                        <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
