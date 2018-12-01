@@ -16,7 +16,18 @@ class FolderPage extends React.Component {
 
     constructor(props) {
         super(props);
-        
+        /*
+{
+                folder_name: 'CSE 110 App',
+                templates: [
+                    {
+                        template_name: 'Home Page',
+                        template_id: '123',
+                        template_html: '<div> i hate myself! </div>',
+                    }
+                ]
+            }
+        */
         this.state = {
             folder: null,
             error: null,
@@ -34,12 +45,10 @@ class FolderPage extends React.Component {
         //get folder data from server from the route param 
         //this.props.match.params.folderId
 
-        getFolderById(this.props.match.params.folderId)
+        getFolderById(this.props.match.params.folderId, 123456789)
             .then((res) => {
+                console.log(res);
                 this.setState({folder: res})
-            })
-            .catch((e) => {
-                this.props.history.push('/404');
             })
 
     }

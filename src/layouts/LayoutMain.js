@@ -6,7 +6,7 @@ class LayoutMain extends React.Component {
     render() {
         return(
             <>
-                <NavbarMain />
+                <NavbarMain setUser={this.props.setUser}/>
                 {this.props.children}
             </>
         )

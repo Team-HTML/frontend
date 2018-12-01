@@ -14,19 +14,22 @@ export const login = (data) =>
   promisify(request
     .post(API_URL_PREFIX + '/users')
     //.set('Access-Control-Allow-Origin', "*")
+    
     //.set('Access-Control-Allow-Credentials', true)
     .send(data)
     .use(apiPrefix));
 
-export const getFolderById = (folderId) => 
+export const getFolderById = (folderId, userId) => 
     promisify(request
       .get('/folders/' + folderId)
+      .set('html-user', userId)
       .use(apiPrefix)
     )
 
-export const getTemplateById = (id) => 
+export const getTemplateById = (id, userId) => 
   promisify(request
     .get('/templates/' + id)
+    .set('Html-User', userId)
     .use(apiPrefix)
   )
 
@@ -60,3 +63,15 @@ export const createTemplate = (data) => {
     .use(apiPrefix)
   )
 }
+
+export const getUser = (userId) => 
+  promisify(request
+    .get('/users/' + userId)
+    .use(apiPrefix)
+  )
+
+export const verifyToken = (userId, token) =>
+  promisify(request
+    .get(`/users/${userId}/${token}`)
+    .use(apiPrefix)  
+  )
