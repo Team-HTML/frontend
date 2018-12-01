@@ -96,3 +96,10 @@ export const appendFolder = (userId, data) =>
     .send(data)
     .use(apiPrefix)
   )
+
+export const deleteFolder = (userId, folderId) =>
+  promisify(request
+    .delete('/folders/' + folderId)
+    .set('html-user', userId)
+    .use(apiPrefix)
+  )

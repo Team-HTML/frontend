@@ -142,19 +142,6 @@ class DesktopPage extends React.Component {
 
     renderAddButton() {
         return (
-            /*<ButtonDropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <div className = "btn rounded-circle">
-            <DropdownToggle>
-                <div className = "home__upload__font"> 
-                    + 
-                </div>
-            </DropdownToggle>
-            </div>
-            <DropdownMenu>
-                <div>{this.renderCreateFolder()}</div>
-                <div>{this.renderUploadTemplate()}</div>
-            </DropdownMenu>
-        </ButtonDropdown>*/
             <div className="row mt-5">
             <Popup 
                 trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
