@@ -75,3 +75,24 @@ export const verifyToken = (userId, token) =>
     .get(`/users/${userId}/${token}`)
     .use(apiPrefix)  
   )
+
+export const createFolder = (folderName, userId) => 
+  promisify(request
+    .post('/folders')
+    .send({created_by: userId, folder_name: folderName})
+    .set('html-user', userId)
+    .use(apiPrefix)
+  )
+
+export const getGallery = () =>
+  promisify(request
+    .get('/templates/')
+    .use(apiPrefix)
+  )
+
+export const appendFolder = (userId, data) =>
+  promisify(request
+    .patch('/users/' + userId)
+    .send(data)
+    .use(apiPrefix)
+  )
