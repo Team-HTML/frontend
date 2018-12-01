@@ -45,7 +45,7 @@ class FolderPage extends React.Component {
         //get folder data from server from the route param 
         //this.props.match.params.folderId
 
-        getFolderById(this.props.match.params.folderId, 123456789)
+        getFolderById(this.props.match.params.folderId, this.props.user.user_id)
             .then((res) => {
                 console.log(res);
                 this.setState({folder: res})

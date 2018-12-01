@@ -18,13 +18,7 @@ class TemplatePage extends React.Component {
     }
 
     componentWillMount() {
-
-        /*this.setState({
-            name: 'Home Page',
-            htmlCode: 'FUCK',
-            cssCode: 'I SUCK' 
-        })*/
-        getTemplateById(this.props.match.params.templateId, 123456789)
+        getTemplateById(this.props.match.params.templateId, this.props.user.user_id)
             .then((res) => {
                 this.setState({
                     htmlCode: res.template_html, 
