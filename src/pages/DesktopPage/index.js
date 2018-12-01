@@ -6,10 +6,11 @@ import Template from '../../components/Template';
 import Dropdown from 'react-dropdown';
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import 'react-dropdown/style.css';
-import {getFolderById, getUser} from "../../data/Api";
+
 import Rodal from "rodal";
 
 import 'rodal/lib/rodal.css';
+import {getFolderById, appendFolder, createFolder} from "../../data/Api";
 
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
@@ -53,7 +54,6 @@ class DesktopPage extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.user);
         this.setState(this.props.user)
     }
 
@@ -93,13 +93,17 @@ class DesktopPage extends React.Component {
 
         const {default_folder} = this.state;
 
-        return (
-            <div className="defaultFolderRow row">
-                <div className="col-md-3">
-                    <Template {...default_folder} />
-                </div>
-            </div>
-        );
+        if (default_folder && default_folder.templates) {
+            default_folder.templates.map(t => {
+                return (
+                    <div className="defaultFolderRow row">
+                        <div className="col-md-3">
+                            <Template {...t} />
+                        </div>
+                    </div>
+                );
+            })
+        }
     }
 
     renderUploadTemplate() {
@@ -225,13 +229,18 @@ class DesktopPage extends React.Component {
 
     createFolder() {
         const {addFolder, folders} = this.state;
-        console.log(addFolder);
 
-        this.setState({
-          addFolder: '',
-          folders: [...folders, {name: addFolder, folderId: 5}]
-        }
-      )
+        createFolder(addFolder, this.props.user.user_id)
+            .then((res) => {
+                appendFolder(this.props.user.user_id, {newfolder: res.folder_id})
+                    .then((res2) => {
+                        console.log(res2);
+                        this.setState({
+                            addFolder: '',
+                            folders: [...folders, {folder_name: addFolder, folder_id: res.folder_id}]
+                        })      
+                    })
+            })
 
         this.closeModal();
         return(
@@ -251,42 +260,6 @@ class DesktopPage extends React.Component {
                 <div className="container">
                     <div className="row mx-0">
                         <h1>Home</h1>
-                        {/*
-                        <Popup
-                            trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
-                            modal
-                            closeOnDocumentClick
-                            >
-                            <p> Choose a template to upload: </p>
-                            <ReactDropzone
-                                className="d-flex container justify-content-center"
-                                onDrop={this.onDrop}
-                                >
-                                <div className="border">
-                                    Pick a file here
-                                </div>
-                            </ReactDropzone>
-                            <div className="ml-5">
-                                <div className="btn btn-primary" onClick={this.uploadTemplate}>Submit</div>
-                            </div>
-                        </Popup>
-                        <Popup
-                          open={this.state.open}
-                          closeOnDocumentClick
-                          onClose={this.closeModal}
-                          >
-                            <div className="d-flex container justify-content-center">
-                              <h3> Please enter name of folder below </h3>
-                            </div>
-                            <div className="d-flex container justify-content-center">
-                              <input type="text" value={this.state.addFolder}
-                              onChange={(evt) => this.updateAddFolder(evt)} />
-                            </div>
-                            <div className="d-flex container justify-content-center">
-                              <button onClick={this.createFolder}> Create </button>
-                            </div>
-                        </Popup>
-                        */}
                         <div className="w-20 ml-auto">Sort By:
                             <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                         </div>

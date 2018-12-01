@@ -1,31 +1,32 @@
 import React from 'react';
 import './newsfeed.component.css';
 import Template from '../../components/Template';
+import {getGallery} from '../../data/Api';
 
 class GalleryPage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    getGallery()
+      .then(res => {
+        this.setState(res);
+      })
+      .catch(console.error)
+  }
+
+
   renderPublicTemplates() {
-      const publicTemplates = [
-          {
-              template_name: 'Public 1',
-              template_id: 1
-          },
-          {
-              template_name: 'Public 2',
-              template_id: 2
-          },
-          {
-              template_name: 'Public 3',
-              template_id: 3
-          },
-          {
-              template_name: 'Public 4',
-              template_id: 3
-        },
-      ];
+      const {public_templates} = this.state
             
+      if (!public_templates) return;
+
       return (
         <div className="row mt-5">
-          {publicTemplates.map(d => {
+          {public_templates.map(d => {
             return (
               <div className="col-md-3">
                 <Template {...d} />
@@ -37,24 +38,7 @@ class GalleryPage extends React.Component {
   }
 
   renderDefaultTemplates() {
-    const defaultTemplates = [
-        {
-            name: 'Default 1',
-            templateId: 1
-        },
-        {
-            name: 'Default 2',
-            templateId: 2
-        },
-        {
-            name: 'Default 3',
-            templateId: 3
-        },
-        {
-            name: 'Default 4',
-            templateId: 3
-      },
-    ];
+    const defaultTemplates = [];
           
     return (
       <div className="row mt-5">

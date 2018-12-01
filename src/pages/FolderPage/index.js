@@ -44,7 +44,7 @@ class FolderPage extends React.Component {
     componentDidMount() {
         //get folder data from server from the route param 
         //this.props.match.params.folderId
-
+        console.log(this.props.user)
         getFolderById(this.props.match.params.folderId, this.props.user.user_id)
             .then((res) => {
                 console.log(res);
