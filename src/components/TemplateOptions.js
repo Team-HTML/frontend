@@ -3,6 +3,9 @@ import {withRouter, Link} from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Popup from "reactjs-popup";
 import Switch from "react-switch";
+import Rodal from 'rodal';
+
+import 'rodal/lib/rodal.css';
 
 class TemplateOptions extends React.Component {
     constructor(props) {
@@ -12,6 +15,9 @@ class TemplateOptions extends React.Component {
         this.state = {
             showOptions: false,
             checked: false,
+            moveVisible: false,
+            renameVisible: false,
+            deleteVisible: false,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -24,6 +30,30 @@ class TemplateOptions extends React.Component {
         this.setState(prevState => ({
             showOptions: !prevState.showOptions
         }));
+    }
+
+    showMove() {
+        this.setState({ moveVisible: true });
+    }
+ 
+    hideMove() {
+        this.setState({ moveVisible: false });
+    }
+
+    showRename() {
+        this.setState({ renameVisible: true });
+    }
+ 
+    hideRename() {
+        this.setState({ renameVisible: false });
+    }
+
+    showDelete() {
+        this.setState({ deleteVisible: true });
+    }
+ 
+    hideDelete() {
+        this.setState({ deleteVisible: false });
     }
 
     renderPublicSwitch() {
@@ -67,7 +97,7 @@ class TemplateOptions extends React.Component {
 
     renderRenameTemplate() {
         return(
-            <Popup
+            /*<Popup
                 trigger={<button className="btn btn-outline-primary border-0 btn-block">Rename</button>}
                 modal={true}
                 closeOnDocumentClick
@@ -77,18 +107,41 @@ class TemplateOptions extends React.Component {
                 </div>
                 <div className="d-flex container justify-content-center">
                     <input type="text" /*value={this.state.addFolder}
-                    onChange={(evt) => this.updateAddFolder(evt)}*/ />
+                    onChange={(evt) => this.updateAddFolder(evt)} />
                 </div>
                 <div className="d-flex container justify-content-center">
-                    <button type="button" class="btn btn-outline-dark m-2" /*onClick={this.createFolder}*/> Submit </button>
+                    <button type="button" class="btn btn-outline-dark m-2" /*onClick={this.createFolder}> Submit </button>
                 </div>
-            </Popup>
+            </Popup>*/
+
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showRename.bind(this)}>Rename</button>
+
+                <Rodal 
+                    visible={this.state.renameVisible} 
+                    onClose={this.hideRename.bind(this)} 
+                    animation="door"
+                    width="600"
+                    height="150"
+                >
+                    <div className="d-flex container justify-content-center">
+                        <h4> Please enter new name of template below: </h4>
+                    </div>
+                    <div className="d-flex container justify-content-center">
+                        <input type="text" /*value={this.state.addFolder}
+                        onChange={(evt) => this.updateAddFolder(evt)}*/ />
+                    </div>
+                    <div className="d-flex container justify-content-center">
+                        <button type="button" class="btn btn-outline-dark m-2" /*onClick={this.createFolder}*/> Submit </button>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
     renderDeleteTemplate() {
         return(
-            <Popup
+            /*<Popup
                 trigger={<button className="btn btn-outline-primary border-0 btn-block">Delete</button>}
                 modal={true}
                 closeOnDocumentClick
@@ -99,12 +152,36 @@ class TemplateOptions extends React.Component {
                 {/*<div className="d-flex container justify-content-center">
                     <input type="text" value={this.state.addFolder}
                     onChange={(evt) => this.updateAddFolder(evt)} />
-                 </div> */}
+                 </div> }
                 <div className="d-flex container justify-content-center">
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Yes </button>
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
+                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}> Yes </button>
+                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}> No </button>
                 </div>
-            </Popup>
+            </Popup>*/
+
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showDelete.bind(this)}>Delete</button>
+
+                <Rodal 
+                    visible={this.state.deleteVisible} 
+                    onClose={this.hideDelete.bind(this)} 
+                    animation="door"
+                    width="600"
+                    height="125"
+                >
+                    <div className="d-flex container justify-content-center">
+                        <h4> Are you sure you want to delete this template? </h4>
+                    </div>
+                    {/*<div className="d-flex container justify-content-center">
+                        <input type="text" value={this.state.addFolder}
+                        onChange={(evt) => this.updateAddFolder(evt)} />
+                    </div> */}
+                    <div className="d-flex container justify-content-center">
+                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Yes </button>
+                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
