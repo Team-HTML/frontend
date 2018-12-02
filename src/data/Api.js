@@ -56,10 +56,11 @@ export const generateHTML = (json) =>
     .use(apiPrefix)
   )
 
-export const createTemplate = (data) => {
+export const createTemplate = (data, userId) => {
   return promisify(request
     .post('/templates')
     .send(data)
+    .set('Html-User', userId)
     .use(apiPrefix)
   )
 }
@@ -109,5 +110,13 @@ export const renameFolder = (userId, folderId, newName) =>
     .post('/folders/' + folderId)
     .set('Html-User', userId)
     .send({'newname': newName})
+    .use(apiPrefix)
+  )
+
+export const addTemplateToFolder = (userId, folderId, templateId) =>
+  promisify(request
+    .put('/folders/' + folderId)
+    .set('html-user', userId)
+    .send({'newtemplate': templateId})
     .use(apiPrefix)
   )

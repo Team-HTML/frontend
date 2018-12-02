@@ -12,9 +12,10 @@ class TemplatePreview extends Component {
         </div>
       )
     }
+    console.log(this.props.html)
 
     return (
-        <iframe src={"data:text/html,"+encodeURIComponent(this.props.html)} className="w-100 template__frame">
+        <iframe src={this.props.html} className="w-100 template__frame">
 
         </iframe>
     )
