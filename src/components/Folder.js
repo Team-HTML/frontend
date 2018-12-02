@@ -11,7 +11,9 @@ class Folder extends React.Component {
         return (
             <div className = "shadow folder border-0">
                 <div className="folderImage my-3 text-center vertical-center">
+                <Link to={`/folder/${this.props.folder_id}`}>
                     <img src = "/folder.png"/>
+                </Link>
                 </div>
 
                 <div className = "folder1">

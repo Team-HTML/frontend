@@ -43,6 +43,8 @@ class DesktopPage extends React.Component {
         this.deleteFolderById = this.deleteFolderById.bind(this);
         this.renameFolderById = this.renameFolderById.bind(this);
         this._onSelect = this._onSelect.bind(this);
+        this.renameTemplateById = this.renameTemplateById.bind(this);
+        this.deleteTemplateById = this.deleteTemplateById.bind(this);
     }
 
     openModal (){
@@ -76,6 +78,27 @@ class DesktopPage extends React.Component {
         this.setState({folders: this.state.folders.filter(d => d.folder_id !== id)})
     }
 
+    deleteTemplateById(templateId) {
+        this.setState({
+            default_folder: {
+                ...this.state.default_folder,
+                templates: this.state.default_folder.templates.filter(x => x.template_id !== templateId)
+            }
+
+        })
+    }
+
+    renameTemplateById(templateId, newName) {
+        const others = this.state.default_folder.templates.filter(x => x.template_id !== templateId)
+        const curr = this.state.default_folder.templates.filter(x => x.template_id === templateId)[0]
+        curr.template_name = newName
+
+        this.setState({default_folder: {
+            ...this.state.default_folder,
+            templates: [...others, curr]
+        }})
+    }
+
     _onSelect(e) {
         const sortFns = {
             'Alphabetical': (a,b) => a.folder_name.localeCompare(b.folder_name),
@@ -86,6 +109,16 @@ class DesktopPage extends React.Component {
 
     onChangeName(e) {
         this.setState({uploadedFileName: e.target.value})
+    }
+
+    onClickCreate(e) {
+        this.createFolder();
+        this.hideCreate();
+    }
+
+    onClickUpload(e) {
+        this.uploadTemplate();
+        this.hideUpload();
     }
 
     renameFolderById(id, newName) {
@@ -140,7 +173,12 @@ class DesktopPage extends React.Component {
                     {default_folder.templates.map(t => {
                         return (
                                 <div className="col-md-3">
-                                    <Template {...t} user={this.props.user} />
+                                    <Template 
+                                        {...t} 
+                                        user={this.props.user}
+                                        renameTemplateById={this.renameTemplateById}
+                                        deleteTemplateById={this.deleteTemplateById}
+                                     />
                                 </div>
                     );
                 })}
@@ -181,8 +219,9 @@ class DesktopPage extends React.Component {
                     animation="door"
                     width="600"
                     height="275"
+                    customStyles={{borderRadius: 20}}
                 >
-                    <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                    <div className="d-flex justify-content-left m-2 h4"> Choose a template to upload: </div>
                     <div className="d-flex justify-content-center">
                         <ReactDropzone
                             className="d-flex container justify-content-center"
@@ -193,12 +232,12 @@ class DesktopPage extends React.Component {
                             </div>
                         </ReactDropzone>
                     </div>
-                    <div className="d-flex justify-content-center my-2 w-50 mx-auto">
-                        <label>Template Name: </label>
+                    <label>Template Name: </label>
+                    <div className="d-flex justify-content-center mb-2 w-100 mx-auto">
                         <input className="form-control" onChange={this.onChangeName} />
                     </div>
-                    <div className="d-flex justify-content-center">
-                        <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                    <div className="d-flex w-100 m-2">
+                        <div className="btn btn-outline-primary m-2 ml-auto" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
                     </div>
                 </Rodal>
             </div>
@@ -233,17 +272,18 @@ class DesktopPage extends React.Component {
                     onClose={this.hideCreate.bind(this)} 
                     animation="door"
                     width="600"
-                    height="140"
+                    height="150"
+                    customStyles={{borderRadius: 20}}
                 >
-                    <div className="d-flex container justify-content-center">
+                    <div className="d-flex container justify-content-left">
                         <h4> Please enter name of folder below: </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
                         <input type="text" value={this.state.addFolder} className="form-control"
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div>
-                    <div className="d-flex container justify-content-center m-2">
-                        <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
+                    <div className="d-flex w-90 m-2">
+                        <button class="btn btn-outline-primary rounded ml-auto mr-2" onClick={this.onClickCreate.bind(this)/*this.createFolder*/}> Create </button>
                     </div>
                 </Rodal>
             </div>
@@ -256,7 +296,7 @@ class DesktopPage extends React.Component {
                 trigger={<button className="btn rounded-circle btn-primary home__upload shadow-lg"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
                 on="click"
                 position="left center">
-                <div>
+                <div className="">
                     <div className="d-flex justify-content-center p-1">{this.renderCreateFolder()}</div>
                     <div className="d-flex justify-content-center p-1">{this.renderUploadTemplate()}</div>
                 </div>
@@ -375,12 +415,12 @@ class DesktopPage extends React.Component {
     render() {
         return (
             <>
-                <div className="home mt-5">
+                <div className="home pt-5">
                     <div className="container">
                         <div className="row mx-0">
                         
-                            <h1>Home</h1>
-                            <div className="w-20 ml-auto">Sort By:
+                            <h1 className="home__name">Home</h1>
+                            <div className="w-20 ml-auto home__name">Sort By:
                                 <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                             </div>
                         </div>

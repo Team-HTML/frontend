@@ -12,8 +12,6 @@ class TemplatePreview extends Component {
         </div>
       )
     }
-    console.log(this.props.html)
-
     return (
         <iframe src={this.props.html} className="w-100 template__frame">
 
