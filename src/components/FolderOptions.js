@@ -75,6 +75,7 @@ class FolderOptions extends React.Component {
                     animation="door"
                     width="600"
                     height="150"
+                    customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-left">
                         <h4> Please enter new name of folder below: </h4>
@@ -109,6 +110,7 @@ class FolderOptions extends React.Component {
                     animation="door"
                     width="600"
                     height="125"
+                    customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-center">
                         <h4> Are you sure you want to delete this folder? </h4>
