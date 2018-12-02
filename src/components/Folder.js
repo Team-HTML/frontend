@@ -27,7 +27,7 @@ class Folder extends React.Component {
                     <Dropdown options={options} onChange={this._onSelect} placeholder="Select an option" />
                 </div> 
                 <OptionMenu />  */}
-                <div className="folderMenu text-md-right"><FolderOptions /></div>
+                <div className="folderMenu text-md-right"><FolderOptions {...this.props} /></div>
 
             </div>
         );

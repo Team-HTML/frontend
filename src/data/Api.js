@@ -103,3 +103,11 @@ export const deleteFolder = (userId, folderId) =>
     .set('html-user', userId)
     .use(apiPrefix)
   )
+
+export const renameFolder = (userId, folderId, newName) =>
+  promisify(request
+    .post('/folders/' + folderId)
+    .set('Html-User', userId)
+    .send({'newname': newName})
+    .use(apiPrefix)
+  )

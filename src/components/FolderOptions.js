@@ -1,9 +1,8 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import Popup from "reactjs-popup";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Rodal from 'rodal';
-
+import {deleteFolder, renameFolder} from '../data/Api';
 import 'rodal/lib/rodal.css';
 
 class FolderOptions extends React.Component {
@@ -15,7 +14,14 @@ class FolderOptions extends React.Component {
             showOptions: false,
             renameVisible: false,
             deleteVisible: false,
-        };
+            renameName: null
+        }
+        this.deleteFolderMethod = this.deleteFolderMethod.bind(this);
+        this.renameFolderMethod = this.renameFolderMethod.bind(this);
+    }
+
+    updateName(key, val) {
+        this.setState({[key]: val})
     }
 
     toggle() {
@@ -40,25 +46,16 @@ class FolderOptions extends React.Component {
         this.setState({ deleteVisible: false });
     }
 
+    renameFolderMethod() {
+        renameFolder(this.props.user.user_id, this.props.folder_id, this.state.renameName)
+            .then(res => {
+                console.log(this.props)
+                this.props.renameFolderById(this.props.folder_id, this.state.renameName)
+            })
+    }
+
     renderRenameFolder() {
         return(
-            /*<Popup
-                trigger={<button className="btn btn-outline-primary border-0 btn-block">Rename</button>}
-                modal={true}
-                closeOnDocumentClick
-                >
-                <div className="d-flex container justify-content-center">
-                    <h4> Please enter new name of folder below: </h4>
-                </div>
-                <div className="d-flex container justify-content-center">
-                    <input type="text" /*value={this.state.addFolder}
-                    onChange={(evt) => this.updateAddFolder(evt)} />
-                </div>
-                <div className="d-flex container justify-content-center mt-3">
-                    <button /*onClick={this.createFolder} className="btn btn-outline-dark"> Submit </button>
-                </div>
-            </Popup>*/
-
             <div>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showRename.bind(this)}>Rename</button>
 
@@ -73,37 +70,26 @@ class FolderOptions extends React.Component {
                         <h4> Please enter new name of folder below: </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <input type="text" /*value={this.state.addFolder}
-                        onChange={(evt) => this.updateAddFolder(evt)}*/ />
+                        <input type="text" value={this.state.renameName}
+                        onChange={(evt) => this.updateName('renameName', evt.target.value)} />
                     </div>
                     <div className="d-flex container justify-content-center mt-3">
-                        <button /*onClick={this.createFolder}*/ className="btn btn-outline-dark"> Submit </button>
+                        <button onClick={this.renameFolderMethod} className="btn btn-outline-dark"> Submit </button>
                     </div>
                 </Rodal>
             </div>
         )
     }
 
+    deleteFolderMethod() {
+        deleteFolder(this.props.user.user_id, this.props.folder_id)
+            .then(res => {
+                this.props.deleteFolderById(this.props.folder_id)
+            })
+    }
+
     renderDeleteFolder() {
         return(
-            /*<Popup
-                trigger={<button className="btn btn-outline-primary border-0 btn-block">Delete</button>}
-                modal={true}
-                closeOnDocumentClick
-                >
-                <div className="d-flex container justify-content-center">
-                    <h4> Are you sure you want to delete this folder? </h4>
-                </div>
-                {/*<div className="d-flex container justify-content-center">
-                    <input type="text" value={this.state.addFolder}
-                    onChange={(evt) => this.updateAddFolder(evt)} />
-                 </div> }
-                <div className="d-flex container justify-content-center">
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}> Yes </button>
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}> No </button>
-                </div>
-            </Popup>*/
-
             <div>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showDelete.bind(this)}>Delete</button>
 
@@ -117,12 +103,8 @@ class FolderOptions extends React.Component {
                     <div className="d-flex container justify-content-center">
                         <h4> Are you sure you want to delete this folder? </h4>
                     </div>
-                    {/*<div className="d-flex container justify-content-center">
-                        <input type="text" value={this.state.addFolder}
-                        onChange={(evt) => this.updateAddFolder(evt)} />
-                    </div> */}
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Yes </button>
+                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.deleteFolderMethod}> Yes </button>
                         <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>
