@@ -161,15 +161,15 @@ class TemplateOptions extends React.Component {
                     width="600"
                     height="150"
                 >
-                    <div className="d-flex container justify-content-center">
+                    <div className="d-flex container justify-content-left">
                         <h4> Please enter new name of template below: </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <input type="text" value={this.state.renameTemplate}
+                        <input className="form-control" value={this.state.renameTemplate}
                         onChange={this.updateName} />
                     </div>
-                    <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.renameTemplateMethod}> Submit </button>
+                    <div className="d-flex container w-90 mt-2">
+                        <button type="button" class="btn btn-outline-primary ml-auto" onClick={this.renameTemplateMethod}> Submit </button>
                     </div>
                 </Rodal>
             </div>
@@ -197,7 +197,7 @@ class TemplateOptions extends React.Component {
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div> */}
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2"onClick={this.deleteTemplateMethod}> Yes </button>
+                        <button type="button" class="btn btn-outline-primary m-2"onClick={this.deleteTemplateMethod}> Yes </button>
                         <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>
@@ -210,9 +210,9 @@ class TemplateOptions extends React.Component {
             <div className={"template__options"}>
 
                 <Popup 
-                    trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}
-                    /*trigger={<img src="/ellipse icon.jpg" width={20}/>}*/
-                    on="click"
+                    /*trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}*/
+                    trigger={<img src="/ellipse icon.jpg" width={20}/>}
+                    on="hover"
                     position="top left"
                     className="option-popup">
                     <div>

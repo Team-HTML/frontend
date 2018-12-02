@@ -76,15 +76,15 @@ class FolderOptions extends React.Component {
                     width="600"
                     height="150"
                 >
-                    <div className="d-flex container justify-content-center">
+                    <div className="d-flex container justify-content-left">
                         <h4> Please enter new name of folder below: </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <input type="text" value={this.state.renameName}
+                        <input className="form-control" value={this.state.renameName}
                         onChange={(evt) => this.updateName('renameName', evt.target.value)} />
                     </div>
-                    <div className="d-flex container justify-content-center mt-3">
-                        <button onClick={this.onClickRename.bind(this)/*this.renameFolderMethod*/} className="btn btn-outline-dark"> Submit </button>
+                    <div className="d-flex container justify-content-center mt-2">
+                        <button onClick={this.onClickRename.bind(this)/*this.renameFolderMethod*/} className="btn btn-outline-primary ml-auto"> Submit </button>
                     </div>
                 </Rodal>
             </div>
@@ -114,7 +114,7 @@ class FolderOptions extends React.Component {
                         <h4> Are you sure you want to delete this folder? </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.onClickDelete.bind(this)/*this.deleteFolderMethod*/}> Yes </button>
+                        <button type="button" class="btn btn-outline-primary m-2" onClick={this.onClickDelete.bind(this)/*this.deleteFolderMethod*/}> Yes </button>
                         <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>
