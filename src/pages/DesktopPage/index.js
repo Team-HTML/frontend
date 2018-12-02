@@ -207,8 +207,8 @@ class DesktopPage extends React.Component {
                         <label>Template Name: </label>
                         <input className="form-control" onChange={this.onChangeName} />
                     </div>
-                    <div className="d-flex justify-content-center">
-                        <div className="btn btn-outline-dark m-2" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
+                    <div className="d-flex w-100 m-2r">
+                        <div className="btn btn-outline-primary m-2 ml-auto" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
                     </div>
                 </Rodal>
             </div>
@@ -245,15 +245,15 @@ class DesktopPage extends React.Component {
                     width="600"
                     height="140"
                 >
-                    <div className="d-flex container justify-content-center">
+                    <div className="d-flex container justify-content-left">
                         <h4> Please enter name of folder below: </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
                         <input type="text" value={this.state.addFolder} className="form-control"
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div>
-                    <div className="d-flex container justify-content-center m-2">
-                        <button class="btn-outline-dark rounded" onClick={this.onClickCreate.bind(this)/*this.createFolder*/}> Create </button>
+                    <div className="d-flex w-100 m-2">
+                        <button class="btn-outline-primary rounded ml-auto" onClick={this.onClickCreate.bind(this)/*this.createFolder*/}> Create </button>
                     </div>
                 </Rodal>
             </div>
