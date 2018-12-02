@@ -7,7 +7,7 @@ import ReactDropzone from "react-dropzone";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Loading from 'react-loading';
-import {uploadImgToS3, getJSONFromImg, generateHTML, createTemplate} from '../../data/Api';
+import {uploadImgToS3, getJSONFromImg, generateHTML, createTemplate, addTemplateToFolder} from '../../data/Api';
 import Rodal from 'rodal';
 
 import 'rodal/lib/rodal.css';
@@ -114,27 +114,31 @@ class FolderPage extends React.Component {
 
                 return getJSONFromImg(e)
                     .then(generateHTML)
-                    .then(html => {
+                    .then(({html_key}) => {
+                        const s3Url = "http://cse110.html.html.s3.amazonaws.com/";
                         return {
-                            "created_by": 1213123,
+                            "created_by": this.props.user.user_id,
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
                             "template_css": ".fuck {}",
-                            "template_html": html.replace(/"/g, '\\"')
+                            "template_html": s3Url + html_key,
                         }
                     })
                     .then((data) => {
-                        return createTemplate(data)
+                        return createTemplate(data, this.props.user.user_id)
                             .then((res) => {
-                                let temps = this.state.folder.templates;
-                                const targetIdx = temps.findIndex(e => e.template_name === uploadedFileName);
-                                temps[targetIdx] = data
-                                this.setState({
-                                    folder: {...this.state.folder, 
-                                        templates: temps
-                                    }
-                                });
+                                return addTemplateToFolder(this.props.user.user_id, this.state.folder.folder_id, res.template_id)
+                                    .then((res2) => {
+                                        let temps = this.state.folder.templates;
+                                        const targetIdx = temps.findIndex(e => e.template_name === uploadedFileName);
+                                        temps[targetIdx] = {...data, template_id: res.template_id}
+                                        this.setState({
+                                            folder: {...this.state.folder, 
+                                                templates: temps
+                                            }
+                                        });
+                                    })
                             })
                             .catch(console.error)
                     })
