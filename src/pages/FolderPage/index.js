@@ -240,7 +240,7 @@ class FolderPage extends React.Component {
                             width="600"
                             height="275"
                         >
-                           <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                           <div className="d-flex justify-content-left m-2 h4"> Choose a template to upload: </div>
                                 <div className="d-flex justify-content-center">
                                     <ReactDropzone
                                         className="d-flex container justify-content-center"
@@ -255,8 +255,8 @@ class FolderPage extends React.Component {
                                     <label>Template Name: </label>
                                     <input className="form-control" onChange={this.onChangeName} />
                                 </div>
-                                <div className="d-flex justify-content-center">
-                                    <div className="btn btn-outline-dark m-2" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
+                                <div className="d-flex w-100 m-2">
+                                    <div className="btn btn-outline-primary m-2 ml-auto" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
                                 </div>
                         </Rodal>
                     </div>

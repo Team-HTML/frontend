@@ -192,7 +192,7 @@ class DesktopPage extends React.Component {
                     width="600"
                     height="275"
                 >
-                    <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                    <div className="d-flex justify-content-left m-2 h4"> Choose a template to upload: </div>
                     <div className="d-flex justify-content-center">
                         <ReactDropzone
                             className="d-flex container justify-content-center"
@@ -203,11 +203,11 @@ class DesktopPage extends React.Component {
                             </div>
                         </ReactDropzone>
                     </div>
-                    <div className="d-flex justify-content-center my-2 w-50 mx-auto">
-                        <label>Template Name: </label>
+                    <label>Template Name: </label>
+                    <div className="d-flex justify-content-center mb-2 w-100 mx-auto">
                         <input className="form-control" onChange={this.onChangeName} />
                     </div>
-                    <div className="d-flex w-100 m-2r">
+                    <div className="d-flex w-100 m-2">
                         <div className="btn btn-outline-primary m-2 ml-auto" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
                     </div>
                 </Rodal>
@@ -243,7 +243,7 @@ class DesktopPage extends React.Component {
                     onClose={this.hideCreate.bind(this)} 
                     animation="door"
                     width="600"
-                    height="140"
+                    height="150"
                 >
                     <div className="d-flex container justify-content-left">
                         <h4> Please enter name of folder below: </h4>
@@ -252,8 +252,8 @@ class DesktopPage extends React.Component {
                         <input type="text" value={this.state.addFolder} className="form-control"
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div>
-                    <div className="d-flex w-100 m-2">
-                        <button class="btn-outline-primary rounded ml-auto" onClick={this.onClickCreate.bind(this)/*this.createFolder*/}> Create </button>
+                    <div className="d-flex w-90 m-2">
+                        <button class="btn btn-outline-primary rounded ml-auto mr-2" onClick={this.onClickCreate.bind(this)/*this.createFolder*/}> Create </button>
                     </div>
                 </Rodal>
             </div>
