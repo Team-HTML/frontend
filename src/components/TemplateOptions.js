@@ -192,10 +192,11 @@ class TemplateOptions extends React.Component {
                     <Link to={'/template/' + this.props.template_id}>{this.props.template_name}</Link>
                 </div>
                 <Popup 
-                    /*trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}*/
-                    trigger={<img src="/ellipse icon.jpg" width={20}/>}
+                    trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}
+                    /*trigger={<img src="/ellipse icon.jpg" width={20}/>}*/
                     on="hover"
-                    position="top left">
+                    position="top left"
+                    className="option-popup">
                     <div>
                         <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
                         <div className="d-flex justify-content-center btn-link m-2">Download</div>

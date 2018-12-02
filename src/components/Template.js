@@ -6,7 +6,7 @@ class Template extends React.Component {
 
     render() {
         return (
-            <div className={((this.props.template_html) ? "" : "template__blur " ) + "template shadow"}>
+            <div className={((this.props.template_html) ? "" : "template__blur " ) + "template shadow mb-4"}>
                 <TemplatePreview html={this.props.template_html} />
                 <div className="text-md-right">
                     <TemplateOptions {...this.props} />
