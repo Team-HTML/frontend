@@ -125,3 +125,42 @@ export const getHTMLFromS3 = (s3URL) =>
     s3Promisify(request
       .get(s3URL)  
     )
+
+export const setTemplatePublic = (userId, templateId, toValue) =>
+      promisify(request
+        .patch('/templates' + templateId)
+        .set('Html-User', userId)
+        .data('is_public', toValue)
+        .use(apiPrefix)
+      )
+
+export const renameTemplate = (userId, templateId, newName) =>
+    promisify(request
+      .post('/templates/' + templateId)
+      .send({'newname': newName})
+      .set('Html-User', userId)
+      .use(apiPrefix)
+    )
+
+export const deleteTemplate = (userId, templateId, folderId) => 
+      promisify(request
+        .patch('/folders/' + folderId)
+        .send({'is_delete': true, 'template_id': templateId, 'new_folder_id': 0})
+        .set('html-user', userId)
+        .use(apiPrefix)
+      )
+
+export const moveTemplate = (userId, templateId, oldFolderId, newFolderId) => 
+    promisify(request
+      .patch('/folders/' + oldFolderId)
+      .send({'is_delete': false, 'template_id': templateId, 'new_folder_id': newFolderId})
+      .set('html-user', userId)
+      .use(apiPrefix)
+    )
+
+export const getUsersFolders = (userId) =>
+    promisify(request
+      .get('/folders')
+      .set('html-user', userId)
+      .use(apiPrefix)  
+    )

@@ -5,6 +5,8 @@ import Popup from "reactjs-popup";
 import Switch from "react-switch";
 import Rodal from 'rodal';
 
+import {setTemplatePublic, renameTemplate, deleteTemplate, moveTemplate} from '../data/Api'
+
 import 'rodal/lib/rodal.css';
 
 class TemplateOptions extends React.Component {
@@ -18,12 +20,22 @@ class TemplateOptions extends React.Component {
             moveVisible: false,
             renameVisible: false,
             deleteVisible: false,
+            renameTemplate: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.updateName = this.updateName.bind(this);
+        this.renameTemplateMethod = this.renameTemplateMethod.bind(this);
+        this.deleteTemplateMethod = this.deleteTemplateMethod.bind(this);
+        this.moveTemplateMethod = this.moveTemplateMethod.bind(this);
     }
 
     handleChange(checked) {
-        this.setState({ checked });
+
+        setTemplatePublic(this.props.user.user_id, this.props.template.template_id, checked)
+            .then((r) => {
+                console.log(r);
+                this.setState({ checked });
+            })
     }
 
     toggle() {
@@ -42,6 +54,20 @@ class TemplateOptions extends React.Component {
 
     showRename() {
         this.setState({ renameVisible: true });
+    }
+
+    renameTemplateMethod() {
+        renameTemplate(this.props.user.user_id, this.props.template_id, this.state.renameTemplate)
+            .then(res => {
+                this.props.renameTemplateById(this.props.template_id, this.state.renameTemplate)
+            })
+    }
+
+    deleteTemplateMethod() {
+        deleteTemplate(this.props.user.user_id, this.props.template_id, this.props.match.params.folderId || this.props.user.user_id)
+            .then(res => {
+                this.props.deleteTemplateById(this.props.template_id);
+            })
     }
  
     hideRename() {
@@ -72,7 +98,22 @@ class TemplateOptions extends React.Component {
         );
       }
 
+    moveTemplateMethod(newFolderId) {
+        moveTemplate(this.props.user.user_id, this.props.template_id, this.props.match.params.folderId || this.props.user.user_id, newFolderId)
+            .then(res => {
+                this.props.deleteTemplateById(this.props.template_id);
+            })
+    }
+
     renderMoveTemplate() {
+        const {user} = this.props;
+
+        let arr = user.folders.filter(x => x.folder_id !== this.props.match.params.folderId)
+
+        if (this.props.match.params.folderId) {
+            arr.push({folder_name: 'Home Page', folder_id: user.default_folder.folder_id})
+        }
+
         return(
             <Popup
                 trigger={<button className="btn btn-outline-primary border-0 btn-block">Move</button>}
@@ -87,32 +128,28 @@ class TemplateOptions extends React.Component {
                     onChange={(evt) => this.updateAddFolder(evt)} />
                  </div> */}
                 <div className="d-flex container justify-content-center">
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Folder1 </button>
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Folder2 </button>
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Folder3 </button>
+
+                    {
+                        arr.map(u => {
+                            return (<button type="button" class="btn btn-outline-dark m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
+                                {u.folder_name} 
+                            </button>)
+                        })
+                    
+                    }
+                        
+                    
                 </div>
             </Popup>
         )
     }
 
+    updateName(e) {
+        this.setState({renameTemplate: e.target.value});
+    }
+
     renderRenameTemplate() {
         return(
-            /*<Popup
-                trigger={<button className="btn btn-outline-primary border-0 btn-block">Rename</button>}
-                modal={true}
-                closeOnDocumentClick
-                >
-                <div className="d-flex container justify-content-center">
-                    <h4> Please enter new name of template below: </h4>
-                </div>
-                <div className="d-flex container justify-content-center">
-                    <input type="text" /*value={this.state.addFolder}
-                    onChange={(evt) => this.updateAddFolder(evt)} />
-                </div>
-                <div className="d-flex container justify-content-center">
-                    <button type="button" class="btn btn-outline-dark m-2" /*onClick={this.createFolder}> Submit </button>
-                </div>
-            </Popup>*/
 
             <div>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showRename.bind(this)}>Rename</button>
@@ -128,11 +165,11 @@ class TemplateOptions extends React.Component {
                         <h4> Please enter new name of template below: </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <input type="text" /*value={this.state.addFolder}
-                        onChange={(evt) => this.updateAddFolder(evt)}*/ />
+                        <input type="text" value={this.state.renameTemplate}
+                        onChange={this.updateName} />
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2" /*onClick={this.createFolder}*/> Submit </button>
+                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.renameTemplateMethod}> Submit </button>
                     </div>
                 </Rodal>
             </div>
@@ -141,23 +178,6 @@ class TemplateOptions extends React.Component {
 
     renderDeleteTemplate() {
         return(
-            /*<Popup
-                trigger={<button className="btn btn-outline-primary border-0 btn-block">Delete</button>}
-                modal={true}
-                closeOnDocumentClick
-                >
-                <div className="d-flex container justify-content-center">
-                    <h4> Are you sure you want to delete this template? </h4>
-                </div>
-                {/*<div className="d-flex container justify-content-center">
-                    <input type="text" value={this.state.addFolder}
-                    onChange={(evt) => this.updateAddFolder(evt)} />
-                 </div> }
-                <div className="d-flex container justify-content-center">
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}> Yes </button>
-                    <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}> No </button>
-                </div>
-            </Popup>*/
 
             <div>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showDelete.bind(this)}>Delete</button>
@@ -177,7 +197,7 @@ class TemplateOptions extends React.Component {
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div> */}
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> Yes </button>
+                        <button type="button" class="btn btn-outline-dark m-2"onClick={this.deleteTemplateMethod}> Yes </button>
                         <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>

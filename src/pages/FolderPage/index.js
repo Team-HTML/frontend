@@ -46,6 +46,8 @@ class FolderPage extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this._onSelect = this._onSelect.bind(this);
+        this.renameTemplateById = this.renameTemplateById.bind(this);
+        this.deleteTemplateById = this.deleteTemplateById.bind(this);
     }
 
     showUpload() {
@@ -80,6 +82,28 @@ class FolderPage extends React.Component {
         this.setState({sortFn: sortFns[e.label]})
     }
 
+    renameTemplateById(templateId, newName) {
+        const others = this.state.folder.templates.filter(x => x.template_id !== templateId)
+        const curr = this.state.folder.templates.filter(x => x.template_id === templateId)[0]
+        console.log(others, curr)
+        curr.template_name = newName
+
+        this.setState({folder: {
+            ...this.state.folder,
+            templates: [...others, curr]
+        }})
+    }
+
+    deleteTemplateById(templateId) {
+        this.setState({
+            folder: {
+                ...this.state.folder,
+                templates: this.state.folder.templates.filter(x => x.template_id !== templateId)
+            }
+
+        })
+    }
+
     renderTemplates() {
         const {templates} = this.state.folder;
         const {sortFn} = this.state;
@@ -99,7 +123,12 @@ class FolderPage extends React.Component {
                 {sortedTemplates.map(d => {
                     return (
                         <div className="col-md-3">
-                            <Template {...d} />
+                            <Template 
+                                {...d} 
+                                user={this.props.user} 
+                                renameTemplateById={this.renameTemplateById} 
+                                deleteTemplateById={this.deleteTemplateById}
+                            />
                         </div>
                     );
                 })}
@@ -204,30 +233,6 @@ class FolderPage extends React.Component {
                 </div>
                 {this.renderTemplates()}
                 <div className="row mt-5">
-                    {/*<Popup
-                        trigger={<button className="btn rounded-circle btn-primary home__upload"><span>+</span></button>}
-                        modal
-                        closeOnDocumentClick
-                        >
-                            <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
-                            <div className="d-flex justify-content-center">
-                                <ReactDropzone
-                                    className="d-flex container justify-content-center"
-                                    onDrop={this.onDrop}
-                                    >
-                                    <div className="border rounded p-4">
-                                        Pick a file here
-                                    </div>
-                                </ReactDropzone>
-                            </div>
-                            <div className="d-flex justify-content-center my-2 w-50 mx-auto">
-                                <label>Template Name: </label>
-                                <input className="form-control" onChange={this.onChangeName} />
-                            </div>
-                            <div className="d-flex justify-content-center">
-                                <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
-                            </div>
-                    </Popup>*/}
                     <div>
                         <button className="btn rounded-circle btn-primary home__upload shadow-lg" onClick={this.showUpload.bind(this)}>
                             <span>+</span>

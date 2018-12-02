@@ -43,6 +43,8 @@ class DesktopPage extends React.Component {
         this.deleteFolderById = this.deleteFolderById.bind(this);
         this.renameFolderById = this.renameFolderById.bind(this);
         this._onSelect = this._onSelect.bind(this);
+        this.renameTemplateById = this.renameTemplateById.bind(this);
+        this.deleteTemplateById = this.deleteTemplateById.bind(this);
     }
 
     openModal (){
@@ -74,6 +76,27 @@ class DesktopPage extends React.Component {
 
     deleteFolderById(id) {
         this.setState({folders: this.state.folders.filter(d => d.folder_id !== id)})
+    }
+
+    deleteTemplateById(templateId) {
+        this.setState({
+            default_folder: {
+                ...this.state.default_folder,
+                templates: this.state.default_folder.templates.filter(x => x.template_id !== templateId)
+            }
+
+        })
+    }
+
+    renameTemplateById(templateId, newName) {
+        const others = this.state.default_folder.templates.filter(x => x.template_id !== templateId)
+        const curr = this.state.default_folder.templates.filter(x => x.template_id === templateId)[0]
+        curr.template_name = newName
+
+        this.setState({default_folder: {
+            ...this.state.default_folder,
+            templates: [...others, curr]
+        }})
     }
 
     _onSelect(e) {
@@ -150,7 +173,12 @@ class DesktopPage extends React.Component {
                     {default_folder.templates.map(t => {
                         return (
                                 <div className="col-md-3">
-                                    <Template {...t} user={this.props.user} />
+                                    <Template 
+                                        {...t} 
+                                        user={this.props.user}
+                                        renameTemplateById={this.renameTemplateById}
+                                        deleteTemplateById={this.deleteTemplateById}
+                                     />
                                 </div>
                     );
                 })}
