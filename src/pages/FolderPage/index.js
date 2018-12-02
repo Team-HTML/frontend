@@ -111,6 +111,11 @@ class FolderPage extends React.Component {
         this.setState({uploadedFileName: e.target.value})
     }
 
+    onClickUpload(e) {
+        this.uploadTemplate();
+        this.hideUpload();
+    }
+
     uploadTemplate() {
         const {uploadedFile, uploadedFileName} = this.state;
         const {templates} = this.state.folder;
@@ -251,7 +256,7 @@ class FolderPage extends React.Component {
                                     <input className="form-control" onChange={this.onChangeName} />
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                    <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                                    <div className="btn btn-outline-dark m-2" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
                                 </div>
                         </Rodal>
                     </div>
