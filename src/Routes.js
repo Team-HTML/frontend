@@ -46,8 +46,8 @@ class Routes extends React.Component {
                 })
             })
             .catch(e => {
-                localStorage.setItem('token', null)
-                localStorage.setItem('userId', null)
+                delete localStorage['token']
+                delete localStorage['userId']
                 this.setState({authenticated: false})
             })
     }

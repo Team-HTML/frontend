@@ -37,6 +37,8 @@ class DesktopPage extends React.Component {
         this.openModal = this.openModal.bind(this)
         this.closeModal = this.closeModal.bind(this)
         this.toggle = this.toggle.bind(this);
+        this.deleteFolderById = this.deleteFolderById.bind(this);
+        this.renameFolderById = this.renameFolderById.bind(this);
     }
 
     openModal (){
@@ -66,6 +68,16 @@ class DesktopPage extends React.Component {
         this.setState(this.props.user)
     }
 
+    deleteFolderById(id) {
+        this.setState({folders: this.state.folders.filter(d => d.folder_id !== id)})
+    }
+
+    renameFolderById(id, newName) {
+        console.log(id, newName)
+        const otherFolders = this.state.folders.filter(d => d.folder_id !== id)
+        const curr = this.state.folders.filter(d => d.folder_id === id)[0]
+        this.setState({folders: [...otherFolders, {...curr, folder_name: newName}]})
+    }
 
     renderFolders() {
         const {folders} = this.state;
@@ -75,7 +87,7 @@ class DesktopPage extends React.Component {
                 {folders.map(d => {
                     return (
                         <div className="col-md-3">
-                            <Folder {...d} />
+                            <Folder {...d} user={this.props.user} deleteFolderById={this.deleteFolderById} renameFolderById={this.renameFolderById}/>
                         </div>
                     );
                 })}
@@ -107,7 +119,7 @@ class DesktopPage extends React.Component {
                 return (
                     <div className="defaultFolderRow row">
                         <div className="col-md-3">
-                            <Template {...t} />
+                            <Template {...t} user={this.props.user} />
                         </div>
                     </div>
                 );
@@ -215,19 +227,6 @@ class DesktopPage extends React.Component {
 
     renderAddButton() {
         return (
-            /*<ButtonDropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <div className = "btn rounded-circle">
-            <DropdownToggle>
-                <div className = "home__upload__font"> 
-                    + 
-                </div>
-            </DropdownToggle>
-            </div>
-            <DropdownMenu>
-                <div>{this.renderCreateFolder()}</div>
-                <div>{this.renderUploadTemplate()}</div>
-            </DropdownMenu>
-        </ButtonDropdown>*/
             <div className="row mt-5">
             <Popup 
                 trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
