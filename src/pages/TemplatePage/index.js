@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import RenderedTemplate from './components/RenderedTemplate';
 import Editor from './components/Editor';
 import Loading from 'react-loading';
-import {getTemplateById} from '../../data/Api';
+import {getTemplateById, getHTMLFromS3} from '../../data/Api';
 class TemplatePage extends React.Component {
 
     constructor(props) {
@@ -20,11 +20,15 @@ class TemplatePage extends React.Component {
     componentWillMount() {
         getTemplateById(this.props.match.params.templateId, this.props.user.user_id)
             .then((res) => {
-                this.setState({
-                    htmlCode: res.template_html, 
-                    cssCode: res.template_css,
-                    name: res.template_name
-                });
+
+                getHTMLFromS3(res.template_html)
+                    .then(res2 => {
+                        this.setState({
+                            htmlCode: res2.text, 
+                            cssCode: res.template_css,
+                            name: res.template_name
+                        });
+                    })
             })
             .catch((e) => {
                 console.log(e);

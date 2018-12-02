@@ -120,3 +120,8 @@ export const addTemplateToFolder = (userId, folderId, templateId) =>
     .send({'newtemplate': templateId})
     .use(apiPrefix)
   )
+
+export const getHTMLFromS3 = (s3URL) =>
+    s3Promisify(request
+      .get(s3URL)  
+    )
