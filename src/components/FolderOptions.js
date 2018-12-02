@@ -46,6 +46,16 @@ class FolderOptions extends React.Component {
         this.setState({ deleteVisible: false });
     }
 
+    onClickRename(e) {
+        this.renameFolderMethod();
+        this.hideRename();
+    }
+
+    onClickDelete(e) {
+        this.hideDelete();
+        this.deleteFolderMethod();
+    }
+
     renameFolderMethod() {
         renameFolder(this.props.user.user_id, this.props.folder_id, this.state.renameName)
             .then(res => {
@@ -74,7 +84,7 @@ class FolderOptions extends React.Component {
                         onChange={(evt) => this.updateName('renameName', evt.target.value)} />
                     </div>
                     <div className="d-flex container justify-content-center mt-3">
-                        <button onClick={this.renameFolderMethod} className="btn btn-outline-dark"> Submit </button>
+                        <button onClick={this.onClickRename.bind(this)/*this.renameFolderMethod*/} className="btn btn-outline-dark"> Submit </button>
                     </div>
                 </Rodal>
             </div>
@@ -104,7 +114,7 @@ class FolderOptions extends React.Component {
                         <h4> Are you sure you want to delete this folder? </h4>
                     </div>
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.deleteFolderMethod}> Yes </button>
+                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.onClickDelete.bind(this)/*this.deleteFolderMethod*/}> Yes </button>
                         <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>

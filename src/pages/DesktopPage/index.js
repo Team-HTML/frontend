@@ -88,6 +88,16 @@ class DesktopPage extends React.Component {
         this.setState({uploadedFileName: e.target.value})
     }
 
+    onClickCreate(e) {
+        this.createFolder();
+        this.hideCreate();
+    }
+
+    onClickUpload(e) {
+        this.uploadTemplate();
+        this.hideUpload();
+    }
+
     renameFolderById(id, newName) {
         console.log(id, newName)
         const otherFolders = this.state.folders.filter(d => d.folder_id !== id)
@@ -198,7 +208,7 @@ class DesktopPage extends React.Component {
                         <input className="form-control" onChange={this.onChangeName} />
                     </div>
                     <div className="d-flex justify-content-center">
-                        <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                        <div className="btn btn-outline-dark m-2" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
                     </div>
                 </Rodal>
             </div>
@@ -243,7 +253,7 @@ class DesktopPage extends React.Component {
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div>
                     <div className="d-flex container justify-content-center m-2">
-                        <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
+                        <button class="btn-outline-dark rounded" onClick={this.onClickCreate.bind(this)/*this.createFolder*/}> Create </button>
                     </div>
                 </Rodal>
             </div>
