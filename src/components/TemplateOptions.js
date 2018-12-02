@@ -58,9 +58,9 @@ class TemplateOptions extends React.Component {
 
     renderPublicSwitch() {
         return (
-            <label htmlFor="normal-switch">
+            <label htmlFor="normal-switch mx-2">
               <div className="d-flex justify-content-center"> 
-              <span className="btn-link disabled mr-2">Public: </span>
+              <span className="btn-link disabled">Public: </span>
               <Switch
                 onClick={this.handleChange}
                 checked={this.state.checked}
@@ -192,7 +192,7 @@ class TemplateOptions extends React.Component {
                 <Popup 
                     trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}
                     /*trigger={<img src="/ellipse icon.jpg" width={20}/>}*/
-                    on="hover"
+                    on="click"
                     position="top left"
                     className="option-popup">
                     <div>
