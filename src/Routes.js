@@ -92,7 +92,7 @@ class Routes extends React.Component {
             <Switch>
                 <Route exact path="/" component={this.withLayoutMain(LandingPage)}/>
                 <PrivateRoute exact path="/home" {...this.state} component={this.withLayout(DesktopPage)}/>
-                <Route exact path="/newsfeed" component={this.withLayout(GalleryPage)}/>
+                <Route exact path="/gallery" component={this.withLayout(GalleryPage)}/>
                 <PrivateRoute exact path="/folder/:folderId" {...this.state} component={this.withLayout(FolderPage)}/>
                 <PrivateRoute exact path="/template/:templateId" {...this.state} component={TemplatePage} />
                 <Route path="/" component={this.withLayout(NotFoundPage)}/>

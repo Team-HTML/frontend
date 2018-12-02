@@ -25,7 +25,7 @@ class GalleryPage extends React.Component {
       if (!public_templates) return;
 
       return (
-        <div className="row mt-5">
+        <div className="row mt-4">
           {public_templates.map(d => {
             return (
               <div className="col-md-3">
@@ -37,7 +37,7 @@ class GalleryPage extends React.Component {
       );
   }
 
-  renderDefaultTemplates() {
+  /*renderDefaultTemplates() {
     const defaultTemplates = [];
           
     return (
@@ -51,21 +51,22 @@ class GalleryPage extends React.Component {
         })}
       </div>
     );
-  }
+  }*/
 
   render() {
     return (
-      <div className="container">
-        <div className="title">
-          <h1>Gallery</h1>
-        </div>
-        <div className="templateContainer">
-          <h3>Public Templates </h3>
+      <div className="gallery mt-5">
+        <div className="container">
+          <div className="row mx-0">
+            <h1>Gallery</h1>
+          </div>
+         {/* <div className="templateContainer">*/}
           {this.renderPublicTemplates()}
-        </div>
-        <div className="templateContainer">
-          <h3>Default Designs</h3>
-          {this.renderDefaultTemplates()}
+          {/*</div>*/}
+          {/*<div className="templateContainer">
+            <h3>Default Designs</h3>
+            {this.renderDefaultTemplates()}
+      </div>*/}
         </div>
       </div>
     )
