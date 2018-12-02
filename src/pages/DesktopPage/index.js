@@ -12,7 +12,7 @@ import Rodal from "rodal";
 import 'rodal/lib/rodal.css';
 import {getFolderById, appendFolder, createFolder} from "../../data/Api";
 
-const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
+const options = ['Alphabetical', 'Creation Date' ];
 
 const defaultOption = options[0];
 
@@ -28,6 +28,7 @@ class DesktopPage extends React.Component {
             dropdownOpen: false,
             createVisible: false,
             uploadVisible: false,
+            sortFn: undefined,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
@@ -39,6 +40,7 @@ class DesktopPage extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.deleteFolderById = this.deleteFolderById.bind(this);
         this.renameFolderById = this.renameFolderById.bind(this);
+        this._onSelect = this._onSelect.bind(this);
     }
 
     openModal (){
@@ -72,6 +74,14 @@ class DesktopPage extends React.Component {
         this.setState({folders: this.state.folders.filter(d => d.folder_id !== id)})
     }
 
+    _onSelect(e) {
+        const sortFns = {
+            'Alphabetical': (a,b) => a.folder_name.localeCompare(b.folder_name),
+            'Creation Date': (a,b) => a.creation_date.localeCompare(b.creation_date),
+        }
+        this.setState({sortFn: sortFns[e.label]})
+    }
+
     renameFolderById(id, newName) {
         console.log(id, newName)
         const otherFolders = this.state.folders.filter(d => d.folder_id !== id)
@@ -80,11 +90,14 @@ class DesktopPage extends React.Component {
     }
 
     renderFolders() {
-        const {folders} = this.state;
-
+        const {folders, sortFn} = this.state;
+        if (sortFn == undefined) {
+            this._onSelect({value: "Alphabetical", label: "Alphabetical"})
+        }
+        const sortedFolders = folders.sort(sortFn)
         return (
             <div className="row">
-                {folders.map(d => {
+                {sortedFolders.map(d => {
                     return (
                         <div className="col-md-3">
                             <Folder {...d} user={this.props.user} deleteFolderById={this.deleteFolderById} renameFolderById={this.renameFolderById}/>
@@ -295,6 +308,7 @@ class DesktopPage extends React.Component {
                 <div className="home mt-5">
                     <div className="container">
                         <div className="row mx-0">
+                        
                             <h1>Home</h1>
                             <div className="w-20 ml-auto">Sort By:
                                 <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>

@@ -12,7 +12,7 @@ import Rodal from 'rodal';
 
 import 'rodal/lib/rodal.css';
 
-const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
+const options = ['Alphabetical', 'Creation Date'];
 
 const defaultOption = options[0];
 
@@ -39,11 +39,13 @@ class FolderPage extends React.Component {
             uploadedFileName: null,
             open: false,
             uploadVisible: false,
+            sortFn: null,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
         this.onDrop = this.onDrop.bind(this);
-        this.onChangeName = this.onChangeName.bind(this)
+        this.onChangeName = this.onChangeName.bind(this);
+        this._onSelect = this._onSelect.bind(this);
     }
 
     showUpload() {
@@ -70,11 +72,30 @@ class FolderPage extends React.Component {
         this.setState({uploadedFile: a[0]});
     }
 
+    _onSelect(e) {
+        const sortFns = {
+            'Alphabetical': (a,b) => a.template_name.localeCompare(b.template_name),
+            'Creation Date': (a,b) => a.creation_date.localeCompare(b.creation_date),
+        }
+        this.setState({sortFn: sortFns[e.label]})
+    }
+
     renderTemplates() {
         const {templates} = this.state.folder;
+        const {sortFn} = this.state;
+        let sortedTemplates = null;
+        if (templates == null)
+        {
+            sortedTemplates = templates;
+        } else {
+            if (sortFn == undefined) {
+                this._onSelect({value: "Alphabetical", label: "Alphabetical"})
+            }
+            sortedTemplates = templates.sort(sortFn);
+        }
         return (
             <div className="row mt-5">
-                {templates.map(d => {
+                {sortedTemplates.map(d => {
                     return (
                         <div className="col-md-3">
                             <Template {...d} />
@@ -158,13 +179,9 @@ class FolderPage extends React.Component {
         return (
             <div className = "container px-0 mt-5">
                 <div className="row mt-0">
-                    <div className="col-md-6">
-                        <h1> {folder.folder_name} </h1>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="w-25 ml-auto"> Sort By:
-                            <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
-                        </div>
+                    <h1> {folder.folder_name} </h1>
+                    <div className="w-20 ml-auto"> Sort By:
+                        <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                     </div>
                 </div>
                 {this.renderTemplates()}
