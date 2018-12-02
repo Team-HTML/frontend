@@ -10,7 +10,7 @@ import 'react-dropdown/style.css';
 import Rodal from "rodal";
 
 import 'rodal/lib/rodal.css';
-import {getFolderById, appendFolder, createFolder} from "../../data/Api";
+import {getFolderById, appendFolder, createFolder, uploadImgToS3, getJSONFromImg, generateHTML, createTemplate, addTemplateToFolder} from "../../data/Api";
 
 const options = ['Alphabetical', 'Creation Date' ];
 
@@ -39,6 +39,7 @@ class DesktopPage extends React.Component {
         this.openModal = this.openModal.bind(this)
         this.closeModal = this.closeModal.bind(this)
         this.toggle = this.toggle.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
         this.deleteFolderById = this.deleteFolderById.bind(this);
         this.renameFolderById = this.renameFolderById.bind(this);
         this._onSelect = this._onSelect.bind(this);
@@ -133,15 +134,17 @@ class DesktopPage extends React.Component {
         const {default_folder} = this.state;
 
         if (default_folder && default_folder.templates) {
-            default_folder.templates.map(t => {
-                return (
-                    <div className="defaultFolderRow row">
-                        <div className="col-md-3">
-                            <Template {...t} user={this.props.user} />
-                        </div>
-                    </div>
-                );
-            })
+            console.log(default_folder)
+            return (
+                <div className="defaultFolderRow' row">
+                    {default_folder.templates.map(t => {
+                        return (
+                                <div className="col-md-3">
+                                    <Template {...t} user={this.props.user} />
+                                </div>
+                    );
+                })}
+                </div>)
         }
     }
 
@@ -273,9 +276,71 @@ class DesktopPage extends React.Component {
     }
 
     uploadTemplate() {
-        const {uploadedFile, default_folder} = this.state;
+        const {uploadedFile, uploadedFileName} = this.state;
+        const {templates} = this.state.default_folder;
+        const epoch = Math.round((new Date()).getTime() / 1000);
+        uploadImgToS3(uploadedFile, epoch)
+            .then((res) => {
+                const {url} = res.req;
+                return {url, e: epoch + "." + uploadedFile.type.split('/')[1]};
+            })
+            .then(({url, e}) => {
+                const tempData = {
+                    "created_by": 1213123,
+                    "is_public": false,
+                    "template_name": uploadedFileName,
+                    "template_photo_url": url,
+                    "template_css": ".fuck {}",
+                }
+                this.setState({
+                    default_folder: {...this.state.default_folder, 
+                        templates: [...templates, tempData]
+                    }
+                });
 
-        this.setState({defaultFolder: [...default_folder, {name: uploadedFile.name}]})
+                return getJSONFromImg(e)
+                    .then(generateHTML)
+                    .then(({html_key}) => {
+                        const s3Url = "http://cse110.html.html.s3.amazonaws.com/";
+                        return {
+                            "created_by": this.props.user.user_id,
+                            "is_public": false,
+                            "template_name": uploadedFileName,
+                            "template_photo_url": url,
+                            "template_css": ".fuck {}",
+                            "template_html": s3Url + html_key,
+                        }
+                    })
+                    .then((data) => {
+                        console.log("HERE")
+                        return createTemplate(data, this.props.user.user_id)
+                            .then((res) => {
+                                console.log("Here 2")
+                                return addTemplateToFolder(this.props.user.user_id, this.state.default_folder.folder_id, res.template_id)
+                                    .then((res2) => {
+                                        console.log("here 3")
+                                        let temps = this.state.default_folder.templates;
+                                        const targetIdx = temps.findIndex(e => e.template_name === uploadedFileName);
+                                        temps[targetIdx] = {...data, template_id: res.template_id}
+                                        this.setState({
+                                            default_folder: {...this.state.default_folder, 
+                                                templates: temps
+                                            }
+                                        });
+                                    })
+                            })
+                            .catch(e => {
+
+                            })
+                    })
+                    .catch((e) => {
+                        this.setState({default_folder: {
+                            ...this.state.default_folder,
+                            templates: this.state.default_folder.templates.filter(x => x.template_name !== uploadedFileName)
+                        }})
+                    }) 
+                
+            })
     }
 
     updateAddFolder(evt) {
@@ -304,13 +369,6 @@ class DesktopPage extends React.Component {
           <p> {this.renderFolders()} </p>
         );
     }
-
-    uploadTemplate() {
-        const {uploadedFile, templates} = this.state;
-        console.log("hAHAAAAA", uploadedFile);
-        this.setState({templates: [...templates, {name: uploadedFile.name, templateId: 5}]})
-    }
-
     render() {
         return (
             <>
