@@ -2,6 +2,11 @@
   width: 100%;
   height: 100%;
 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: linear-gradient($blueprint-blue, rgb(170, 170, 170));
+
   &__sort {
     font-size: 2rem;
   }
@@ -19,6 +24,10 @@
 
   &__upload__font {
     font-size: 1.5rem;
+  }
+
+  &__name {
+    color: white;
   }
 
   .box {

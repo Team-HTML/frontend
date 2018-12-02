@@ -55,10 +55,10 @@ class GalleryPage extends React.Component {
 
   render() {
     return (
-      <div className="gallery mt-5">
+      <div className="gallery pt-5 gradient-bg">
         <div className="container">
           <div className="row mx-0">
-            <h1>Gallery</h1>
+            <h1 className="home__name">Gallery</h1>
           </div>
          {/* <div className="templateContainer">*/}
           {this.renderPublicTemplates()}

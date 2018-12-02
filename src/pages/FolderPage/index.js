@@ -189,10 +189,11 @@ class FolderPage extends React.Component {
         }
 
         return (
-            <div className = "container px-0 mt-5">
+            <div className="w-100 h-100  gradient-bg">
+            <div className = "container h-100 px-0 pt-5">
                 <div className="row mt-0">
-                    <h1> {folder.folder_name} </h1>
-                    <div className="w-20 ml-auto"> Sort By:
+                    <h1 className="home__name"> {folder.folder_name} </h1>
+                    <div className="w-20 ml-auto home__name"> Sort By:
                         <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                     </div>
                 </div>
@@ -255,6 +256,7 @@ class FolderPage extends React.Component {
                         </Rodal>
                     </div>
                 </div>
+            </div>
             </div>
         )
     }
