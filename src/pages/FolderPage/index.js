@@ -39,7 +39,7 @@ class FolderPage extends React.Component {
             uploadedFileName: null,
             open: false,
             uploadVisible: false,
-            sortFn: null,
+            sortFn: undefined,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
@@ -91,6 +91,7 @@ class FolderPage extends React.Component {
             if (sortFn == undefined) {
                 this._onSelect({value: "Alphabetical", label: "Alphabetical"})
             }
+            console.log(sortedTemplates);
             sortedTemplates = templates.sort(sortFn);
         }
         return (
@@ -161,9 +162,16 @@ class FolderPage extends React.Component {
                                         });
                                     })
                             })
-                            .catch(console.error)
+                            .catch(e => {
+
+                            })
                     })
-                    .catch(console.error)
+                    .catch((e) => {
+                        this.setState({folder: {
+                            ...this.state.folder,
+                            templates: this.state.folder.templates.filter(x => x.template_name !== uploadedFileName)
+                        }})
+                    }) 
                 
             })
 

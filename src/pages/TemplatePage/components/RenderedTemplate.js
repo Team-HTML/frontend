@@ -4,8 +4,8 @@ class RenderedTemplate extends React.Component {
     render() {
 
         return (
-            <div className="w-100 h-100 container-fluid px-0" dangerouslySetInnerHTML={{__html: this.props.html}}>
-            </div>
+            <iframe className="w-100 h-100 container-fluid px-0" src={this.props.html}>
+            </iframe>
         )
     }
 }
