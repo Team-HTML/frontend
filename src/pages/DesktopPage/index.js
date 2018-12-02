@@ -266,7 +266,7 @@ class DesktopPage extends React.Component {
                 trigger={<button className="btn rounded-circle btn-primary home__upload shadow-lg"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
                 on="click"
                 position="left center">
-                <div>
+                <div className="">
                     <div className="d-flex justify-content-center p-1">{this.renderCreateFolder()}</div>
                     <div className="d-flex justify-content-center p-1">{this.renderUploadTemplate()}</div>
                 </div>
@@ -382,12 +382,12 @@ class DesktopPage extends React.Component {
     render() {
         return (
             <>
-                <div className="home mt-5">
+                <div className="home pt-5">
                     <div className="container">
                         <div className="row mx-0">
                         
-                            <h1>Home</h1>
-                            <div className="w-20 ml-auto">Sort By:
+                            <h1 className="home__name">Home</h1>
+                            <div className="w-20 ml-auto home__name">Sort By:
                                 <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                             </div>
                         </div>
