@@ -77,7 +77,7 @@ class DesktopPage extends React.Component {
     _onSelect(e) {
         const sortFns = {
             'Alphabetical': (a,b) => a.folder_name.localeCompare(b.folder_name),
-            'Creation Date': (a,b) => a.creation_date.localeCompare(b.creation_date),
+            'Creation Date': (a,b) => b.creation_date.localeCompare(a.creation_date),
         }
         this.setState({sortFn: sortFns[e.label]})
     }
