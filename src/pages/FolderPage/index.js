@@ -194,7 +194,7 @@ class FolderPage extends React.Component {
                             </div>
                     </Popup>*/}
                     <div>
-                        <button className="btn rounded-circle btn-primary home__upload" onClick={this.showUpload.bind(this)}>
+                        <button className="btn rounded-circle btn-primary home__upload shadow-lg" onClick={this.showUpload.bind(this)}>
                             <span>+</span>
                         </button>
         

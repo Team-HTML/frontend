@@ -11,7 +11,10 @@
     font-size: 2rem;
     width: 5rem;
     height: 5rem;
-    margin-left: auto;
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+    
   }
 
   &__upload__font {

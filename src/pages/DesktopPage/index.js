@@ -227,9 +227,8 @@ class DesktopPage extends React.Component {
 
     renderAddButton() {
         return (
-            <div className="row mt-5">
             <Popup 
-                trigger={<button className="btn rounded-circle btn-primary home__upload"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
+                trigger={<button className="btn rounded-circle btn-primary home__upload shadow-lg"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
                 on="click"
                 position="left center">
                 <div>
@@ -237,8 +236,6 @@ class DesktopPage extends React.Component {
                     <div className="d-flex justify-content-center p-1">{this.renderUploadTemplate()}</div>
                 </div>
             </Popup>
-            </div>
-
         )
     }
 
@@ -294,23 +291,25 @@ class DesktopPage extends React.Component {
 
     render() {
         return (
-            <div className="home mt-5">
-                <div className="container">
-                    <div className="row mx-0">
-                        <h1>Home</h1>
-                        <div className="w-20 ml-auto">Sort By:
-                            <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
+            <>
+                <div className="home mt-5">
+                    <div className="container">
+                        <div className="row mx-0">
+                            <h1>Home</h1>
+                            <div className="w-20 ml-auto">Sort By:
+                                <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
+                            </div>
                         </div>
+                        {this.renderFolders()}
+                        {/*
+                        {this.renderAddFolder()}
+                        */}
+                        <div className="home__divider"></div>
+                        {this.renderDefaultFolder()}
                     </div>
-                    {this.renderFolders()}
-                    {/*
-                    {this.renderAddFolder()}
-                    */}
-                    <div className="home__divider"></div>
-                    {this.renderDefaultFolder()}
-                    {this.renderAddButton()}
                 </div>
-            </div>
+                {this.renderAddButton()}
+            </>
         )
     }
 }
