@@ -142,7 +142,13 @@ class DesktopPage extends React.Component {
                     Upload Template
                 </button>
  
-                <Rodal visible={this.state.uploadVisible} onClose={this.hideUpload.bind(this)} animation="door">
+                <Rodal 
+                    visible={this.state.uploadVisible} 
+                    onClose={this.hideUpload.bind(this)} 
+                    animation="door"
+                    width="600"
+                    height="200"
+                >
                     <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
                     <div className="d-flex justify-content-center">
                         <ReactDropzone
@@ -185,7 +191,13 @@ class DesktopPage extends React.Component {
                     Create Folder
                 </button>
 
-                <Rodal visible={this.state.createVisible} onClose={this.hideCreate.bind(this)} animation="door">
+                <Rodal 
+                    visible={this.state.createVisible} 
+                    onClose={this.hideCreate.bind(this)} 
+                    animation="door"
+                    width="600"
+                    height="140"
+                >
                     <div className="d-flex container justify-content-center">
                         <h4> Please enter name of folder below: </h4>
                     </div>

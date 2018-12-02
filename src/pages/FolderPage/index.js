@@ -8,6 +8,10 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Loading from 'react-loading';
 import {uploadImgToS3, getJSONFromImg, generateHTML, createTemplate} from '../../data/Api';
+import Rodal from 'rodal';
+
+import 'rodal/lib/rodal.css';
+
 const options = ['Alphabetical', 'Last Modified', 'Creation Date' ];
 
 const defaultOption = options[0];
@@ -33,12 +37,21 @@ class FolderPage extends React.Component {
             error: null,
             uploadedFile: null,
             uploadedFileName: null,
-            open: false
+            open: false,
+            uploadVisible: false,
         }
 
         this.uploadTemplate = this.uploadTemplate.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.onChangeName = this.onChangeName.bind(this)
+    }
+
+    showUpload() {
+        this.setState({ uploadVisible: true });
+    }
+ 
+    hideUpload() {
+        this.setState({ uploadVisible: false });
     }
 
     componentDidMount() {
@@ -156,7 +169,7 @@ class FolderPage extends React.Component {
                 </div>
                 {this.renderTemplates()}
                 <div className="row mt-5">
-                    <Popup
+                    {/*<Popup
                         trigger={<button className="btn rounded-circle btn-primary home__upload"><span>+</span></button>}
                         modal
                         closeOnDocumentClick
@@ -179,7 +192,39 @@ class FolderPage extends React.Component {
                             <div className="d-flex justify-content-center">
                                 <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
                             </div>
-                    </Popup>
+                    </Popup>*/}
+                    <div>
+                        <button className="btn rounded-circle btn-primary home__upload" onClick={this.showUpload.bind(this)}>
+                            <span>+</span>
+                        </button>
+        
+                        <Rodal 
+                            visible={this.state.uploadVisible} 
+                            onClose={this.hideUpload.bind(this)} 
+                            animation="door"
+                            width="600"
+                            height="275"
+                        >
+                           <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
+                                <div className="d-flex justify-content-center">
+                                    <ReactDropzone
+                                        className="d-flex container justify-content-center"
+                                        onDrop={this.onDrop}
+                                    >
+                                        <div className="border rounded p-4">
+                                            Pick a file here
+                                        </div>
+                                    </ReactDropzone>
+                                </div>
+                                <div className="d-flex justify-content-center my-2 w-50 mx-auto">
+                                    <label>Template Name: </label>
+                                    <input className="form-control" onChange={this.onChangeName} />
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
+                                </div>
+                        </Rodal>
+                    </div>
                 </div>
             </div>
         )
