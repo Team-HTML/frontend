@@ -23,6 +23,7 @@ class DesktopPage extends React.Component {
         this.state = {
             folders: [],
             uploadedFile: null,
+            uploadedFileName: null,
             addFolder: '',
             open: false,
             dropdownOpen: false,
@@ -80,6 +81,10 @@ class DesktopPage extends React.Component {
             'Creation Date': (a,b) => a.creation_date.localeCompare(b.creation_date),
         }
         this.setState({sortFn: sortFns[e.label]})
+    }
+
+    onChangeName(e) {
+        this.setState({uploadedFileName: e.target.value})
     }
 
     renameFolderById(id, newName) {
@@ -172,7 +177,7 @@ class DesktopPage extends React.Component {
                     onClose={this.hideUpload.bind(this)} 
                     animation="door"
                     width="600"
-                    height="200"
+                    height="275"
                 >
                     <div className="d-flex justify-content-center m-2 h4"> Choose a template to upload: </div>
                     <div className="d-flex justify-content-center">
@@ -185,7 +190,11 @@ class DesktopPage extends React.Component {
                             </div>
                         </ReactDropzone>
                     </div>
-                        <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center my-2 w-50 mx-auto">
+                        <label>Template Name: </label>
+                        <input className="form-control" onChange={this.onChangeName} />
+                    </div>
+                    <div className="d-flex justify-content-center">
                         <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
                     </div>
                 </Rodal>
