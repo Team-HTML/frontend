@@ -300,7 +300,10 @@ class DesktopPage extends React.Component {
 
                 return getJSONFromImg(e)
                     .then(generateHTML)
-                    .then(({html_key}) => {
+                    .then((res) => {
+                        const {html_key} = res;
+                        
+                        console.log(res);
                         const s3Url = "http://cse110.html.html.s3.amazonaws.com/";
                         return {
                             "created_by": this.props.user.user_id,

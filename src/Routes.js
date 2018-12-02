@@ -54,7 +54,7 @@ class Routes extends React.Component {
 
     withLayout(Child) {
         return (props) => (
-            <Layout>
+            <Layout setUser={this.setUser}>
                 <Child {...props}/>
             </Layout>
         )
