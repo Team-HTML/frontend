@@ -27,7 +27,7 @@ class Navbar extends React.Component {
               <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-5">
                   <li className="nav-item b-nav__item px-3">
-                    <Link className="nav-link b-nav__link" to="/home">Home</Link>
+                    <a className="nav-link b-nav__link" href="/home">Home</a>
                   </li>
                   <li className="nav-item b-nav__item px-3 mr-4">
                     <Link className="nav-link b-nav__link" to="/gallery">Gallery</Link>

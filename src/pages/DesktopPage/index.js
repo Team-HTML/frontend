@@ -73,7 +73,7 @@ class DesktopPage extends React.Component {
     componentDidMount() {
         this.setState(this.props.user)
     }
-
+    
     deleteFolderById(id) {
         this.setState({folders: this.state.folders.filter(d => d.folder_id !== id)})
     }
