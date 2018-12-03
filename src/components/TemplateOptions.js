@@ -162,7 +162,7 @@ class TemplateOptions extends React.Component {
                     visible={this.state.moveVisible} 
                     onClose={this.hideMove.bind(this)} 
                     animation="door"
-                    width="600"
+                    width={600}
                     customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-left">
@@ -203,8 +203,8 @@ class TemplateOptions extends React.Component {
                     visible={this.state.renameVisible} 
                     onClose={this.hideRename.bind(this)} 
                     animation="door"
-                    width="600"
-                    height="150"
+                    width={600}
+                    height={150}
                     customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-left">
@@ -232,8 +232,8 @@ class TemplateOptions extends React.Component {
                     visible={this.state.deleteVisible} 
                     onClose={this.hideDelete.bind(this)} 
                     animation="door"
-                    width="600"
-                    height="125"
+                    width={600}
+                    height={125}
                     customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-center">
