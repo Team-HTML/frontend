@@ -159,7 +159,7 @@ class FolderPage extends React.Component {
                     "is_public": false,
                     "template_name": uploadedFileName,
                     "template_photo_url": url,
-                    "template_css": ".body{} \n\n .h1{} \n\n .h2{} \n\n .h3{} \n\n .p{}",
+                    "template_css": "hi",
                 }
                 this.setState({
                     folder: {...this.state.folder, 
@@ -179,7 +179,7 @@ class FolderPage extends React.Component {
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
-                            "template_css": ".body{} \n\n .h1{} \n\n .h2{} \n\n .h3{} \n\n .p{}",
+                            "template_css": "hi",
                             "template_html": s3Url + html_key,
                         }
                     })
