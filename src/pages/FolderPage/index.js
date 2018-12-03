@@ -259,8 +259,8 @@ class FolderPage extends React.Component {
                                         </div>
                                     </ReactDropzone>
                                 </div>
-                                <div className="d-flex justify-content-center my-2 w-50 mx-auto">
-                                    <label>Template Name: </label>
+                                <label>Template Name: </label>
+                                <div className="d-flex justify-content-center mb-2 w-100 mx-auto">
                                     <input className="form-control" onChange={this.onChangeName} />
                                 </div>
                                 <div className="d-flex w-100 m-2">

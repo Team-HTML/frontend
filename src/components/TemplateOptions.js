@@ -244,8 +244,8 @@ class TemplateOptions extends React.Component {
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div> */}
                     <div className="d-flex container justify-content-center">
-                        <button type="button" className="btn btn-outline-primary m-2"onClick={this.onClickDelete.bind(this)/*this.deleteTemplateMethod*/}> Yes </button>
-                        <button type="button" className="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
+                        <button type="button" className="btn btn-outline-primary m-2" onClick={this.onClickDelete.bind(this)/*this.deleteTemplateMethod*/}> Yes </button>
+                        <button type="button" className="btn btn-outline-dark m-2" onClick={this.hideDelete.bind(this)}> No </button>
                     </div>
                 </Rodal>
             </div>

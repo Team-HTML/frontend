@@ -117,7 +117,7 @@ class FolderOptions extends React.Component {
                     </div>
                     <div className="d-flex container justify-content-center">
                         <button type="button" class="btn btn-outline-primary m-2" onClick={this.onClickDelete.bind(this)/*this.deleteFolderMethod*/}> Yes </button>
-                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
+                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.hideDelete.bind(this)}> No </button>
                     </div>
                 </Rodal>
             </div>
