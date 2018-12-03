@@ -27,7 +27,6 @@ class TemplateOptions extends React.Component {
         this.renameTemplateMethod = this.renameTemplateMethod.bind(this);
         this.deleteTemplateMethod = this.deleteTemplateMethod.bind(this);
         this.moveTemplateMethod = this.moveTemplateMethod.bind(this);
-        this.getCheckedState = this.getCheckedState.bind(this);
     }
 
     handleChange(checked) {
@@ -35,7 +34,8 @@ class TemplateOptions extends React.Component {
         console.log(this.props);
         setTemplatePublic(this.props.user.user_id, this.props.template_id, checked)
             .then((r) => {
-                console.log("HELP" + r);
+                console.log("handleChange");
+                console.log(r);
                 this.setState({ checked: checked});
             })
     }
@@ -84,10 +84,6 @@ class TemplateOptions extends React.Component {
         this.setState({ deleteVisible: false });
     }
 
-    getCheckedState() {
-        this.setState({ checked: this.props.is_public});
-    }
-
     renderPublicSwitch() {
 
         return (
@@ -96,7 +92,7 @@ class TemplateOptions extends React.Component {
               <span className="btn-link disabled">Public: </span>
               <Switch
                 onChange={this.handleChange}
-                checked={this.getCheckedState}
+                checked={this.props.is_public}
                 className="react-switch"
                 id="normal-switch"
               />
