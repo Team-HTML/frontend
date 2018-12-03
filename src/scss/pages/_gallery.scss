@@ -1,4 +1,13 @@
 .gallery {
     width: 100%;
-    height: 100%;    
+    height: 100%;   
+    
+    &__template {
+        color: $blueprint-blue;
+    }
+
+    &__template:hover {
+        color: blue;
+
+    }
 }

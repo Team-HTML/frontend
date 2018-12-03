@@ -212,11 +212,11 @@ class TemplateOptions extends React.Component {
 
     render() {
         return (
-            <div className={"template__options"}>
+            <div className="">
 
                 <Popup 
                     /*trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}*/
-                    trigger={<img src="/ellipse icon.jpg" width={20}/>}
+                    trigger={<img src="/ellipse icon.jpg" width={20} className="mr-1"/>}
                     on="hover"
                     position="top left"
                     className="option-popup">

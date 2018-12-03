@@ -27,8 +27,8 @@ class GalleryTemplate extends React.Component {
                 <GalleryPreview html={this.props.template_html} />
                 
                 <div className="d-flex p-2">
-                    <div className="text-md-left mt-2 ml-2">
-                        <div onClick={this.showPreview.bind(this)}>{this.props.template_name}</div>
+                    <div className="text-md-left col-md-6 mt-2 ml-2">
+                        <div onClick={this.showPreview.bind(this)} className="gallery__template">{this.props.template_name}</div>
                         <Rodal 
                                 visible={this.state.previewVisible} 
                                 onClose={this.hidePreview.bind(this)} 
@@ -37,12 +37,12 @@ class GalleryTemplate extends React.Component {
                                 height="275"
                                 customStyles={{borderRadius: 20}}
                             >
-                                <iframe src={this.props.template_html} className="w-100 template__frame">
+                                <iframe src={this.props.template_html} className="w-100 template__frame__popup h-100 w-100">
 
                                 </iframe>
                             </Rodal>
                     </div>  
-                    <div className="btn btn-outline-primary ml-5 text-md-right">Download</div>  
+                    <div className="btn btn-outline-primary text-md-right">Download</div>  
                 </div>            
             </div>
         );
