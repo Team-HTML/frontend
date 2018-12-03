@@ -65,11 +65,19 @@ class Routes extends React.Component {
     setUser(u) {
         this.setState({
             user: u,
-            authenticated: true
+            authenticated: u !== null
         })
-        localStorage.setItem('token', u['token'])
-        localStorage.setItem('userId', u['user_id'])
-        this.props.history.push('/home')
+
+        if(u) {
+            localStorage.setItem('token', u['token'])
+            localStorage.setItem('userId', u['user_id'])
+            this.props.history.push('/home')
+        }
+        else {
+            delete localStorage['token']
+            delete localStorage['userId']
+            this.props.history.push('/')
+        }
     }
 
     withLayoutMain(Child) {
