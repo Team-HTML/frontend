@@ -244,8 +244,8 @@ class FolderPage extends React.Component {
                             visible={this.state.uploadVisible} 
                             onClose={this.hideUpload.bind(this)} 
                             animation="door"
-                            width="600"
-                            height="275"
+                            width={600}
+                            height={275}
                             customStyles={{borderRadius: 20}}
                         >
                            <div className="d-flex justify-content-left m-2 h4"> Choose a template to upload: </div>
