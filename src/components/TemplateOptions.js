@@ -135,7 +135,7 @@ class TemplateOptions extends React.Component {
                     onChange={(evt) => this.updateAddFolder(evt)} />
                  </div> */}
                 <div className="d-flex container justify-content-center">
-
+                    //add div with className row here
                     {
                         arr.map(u => {
                             return (<button type="button" class="btn btn-outline-dark m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
