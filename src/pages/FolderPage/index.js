@@ -55,7 +55,15 @@ class FolderPage extends React.Component {
     }
  
     hideUpload() {
-        this.setState({ uploadVisible: false });
+        this.setState({ uploadVisible: false, uploadedFile: null });
+    }
+
+    onDrop(a) {
+        this.setState({uploadedFile: a[0]});
+    }
+
+    onCancel() {
+        this.setState({uploadedFile: null})
     }
 
     componentDidMount() {
@@ -68,10 +76,6 @@ class FolderPage extends React.Component {
                 this.setState({folder: res})
             })
 
-    }
-
-    onDrop(a) {
-        this.setState({uploadedFile: a[0]});
     }
 
     _onSelect(e) {
@@ -252,10 +256,12 @@ class FolderPage extends React.Component {
                                 <div className="d-flex justify-content-center">
                                     <ReactDropzone
                                         className="d-flex container justify-content-center"
-                                        onDrop={this.onDrop}
+                                        onDrop={this.onDrop.bind(this)}
+                                        onFileDialogCancel={this.onCancel.bind(this)}
                                     >
                                         <div className="border rounded p-4">
-                                            Pick a file here
+                                            {/*Pick a file here*/}
+                                            {this.state.uploadedFile ? this.state.uploadedFile.name : "Pick a file here"}
                                         </div>
                                     </ReactDropzone>
                                 </div>
