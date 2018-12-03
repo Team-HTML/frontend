@@ -22,6 +22,26 @@
     
   }
 
+  &__upload:hover {
+    $offset: 6rem;
+    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+    position: fixed;
+    right: 3rem;
+    bottom: 4rem;
+  }
+
+  &__upload:focus {
+    $offset: 6rem;
+    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+    position: fixed;
+    right: 3rem;
+    bottom: 4rem;
+  }
+
   &__upload__font {
     font-size: 1.5rem;
   }

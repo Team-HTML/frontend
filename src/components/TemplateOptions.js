@@ -84,12 +84,6 @@ class TemplateOptions extends React.Component {
         this.setState({ deleteVisible: false });
     }
 
-    /*getCheckedState() {
-        console.log("Here");
-        console.log(this.props.is_public);
-        this.setState({ checked: this.props.is_public});
-    }*/
-
     renderPublicSwitch() {
 
         return (

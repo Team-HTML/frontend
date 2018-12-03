@@ -416,7 +416,7 @@ class DesktopPage extends React.Component {
                     <div className="container">
                         <div className="row mx-0">
                         
-                            <h1 className="home__name">Home</h1>
+                            <h1 className="home__name">{this.props.user.user_first_name}'s Home</h1>
                             <div className="w-20 ml-auto home__name">Sort By:
                                 <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
                             </div>
