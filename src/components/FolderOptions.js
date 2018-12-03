@@ -73,8 +73,8 @@ class FolderOptions extends React.Component {
                     visible={this.state.renameVisible} 
                     onClose={this.hideRename.bind(this)} 
                     animation="door"
-                    width="600"
-                    height="150"
+                    width={600}
+                    height={150}
                     customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-left">
@@ -108,8 +108,8 @@ class FolderOptions extends React.Component {
                     visible={this.state.deleteVisible} 
                     onClose={this.hideDelete.bind(this)} 
                     animation="door"
-                    width="600"
-                    height="125"
+                    width={600}
+                    height={125}
                     customStyles={{borderRadius: 20}}
                 >
                     <div className="d-flex container justify-content-center">
@@ -117,7 +117,7 @@ class FolderOptions extends React.Component {
                     </div>
                     <div className="d-flex container justify-content-center">
                         <button type="button" class="btn btn-outline-primary m-2" onClick={this.onClickDelete.bind(this)/*this.deleteFolderMethod*/}> Yes </button>
-                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
+                        <button type="button" class="btn btn-outline-dark m-2" onClick={this.hideDelete.bind(this)}> No </button>
                     </div>
                 </Rodal>
             </div>
@@ -143,7 +143,8 @@ class FolderOptions extends React.Component {
                 trigger={<img src="/ellipse icon.jpg" width={20}/>}
                 on="hover"
                 position="top left"
-                className="option-popup">
+                contentStyle={{width: 100}}
+                >
                 <div>
                     <div className="d-flex justify-content-center">{this.renderRenameFolder()}</div>
                     <div className="d-flex justify-content-center">{this.renderDeleteFolder()}</div>

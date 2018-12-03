@@ -31,7 +31,7 @@ class LandingPage extends React.Component {
 									<h2> Instructional Video </h2>
 								</div>
 								<div className="justify-content-center d-flex p-3">
-									<iframe class="shadow-lg" width="480" height="300" src="https://www.youtube.com/embed/w-7RQ46RgxU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+									<iframe class="shadow-lg" width="480" height="300" src="https://www.youtube.com/embed/VTGr78uWsvE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 									</iframe>
 								</div>						
 							</div>

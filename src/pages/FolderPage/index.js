@@ -55,7 +55,15 @@ class FolderPage extends React.Component {
     }
  
     hideUpload() {
-        this.setState({ uploadVisible: false });
+        this.setState({ uploadVisible: false, uploadedFile: null });
+    }
+
+    onDrop(a) {
+        this.setState({uploadedFile: a[0]});
+    }
+
+    onCancel() {
+        this.setState({uploadedFile: null})
     }
 
     componentDidMount() {
@@ -66,10 +74,6 @@ class FolderPage extends React.Component {
                 this.setState({folder: res})
             })
 
-    }
-
-    onDrop(a) {
-        this.setState({uploadedFile: a[0]});
     }
 
     _onSelect(e) {
@@ -242,23 +246,25 @@ class FolderPage extends React.Component {
                             visible={this.state.uploadVisible} 
                             onClose={this.hideUpload.bind(this)} 
                             animation="door"
-                            width="600"
-                            height="275"
+                            width={600}
+                            height={275}
                             customStyles={{borderRadius: 20}}
                         >
                            <div className="d-flex justify-content-left m-2 h4"> Choose a template to upload: </div>
                                 <div className="d-flex justify-content-center">
                                     <ReactDropzone
                                         className="d-flex container justify-content-center"
-                                        onDrop={this.onDrop}
+                                        onDrop={this.onDrop.bind(this)}
+                                        onFileDialogCancel={this.onCancel.bind(this)}
                                     >
                                         <div className="border rounded p-4">
-                                            Pick a file here
+                                            {/*Pick a file here*/}
+                                            {this.state.uploadedFile ? this.state.uploadedFile.name : "Pick a file here"}
                                         </div>
                                     </ReactDropzone>
                                 </div>
-                                <div className="d-flex justify-content-center my-2 w-50 mx-auto">
-                                    <label>Template Name: </label>
+                                <label>Template Name: </label>
+                                <div className="d-flex justify-content-center mb-2 w-100 mx-auto">
                                     <input className="form-control" onChange={this.onChangeName} />
                                 </div>
                                 <div className="d-flex w-100 m-2">
