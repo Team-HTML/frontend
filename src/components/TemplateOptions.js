@@ -27,14 +27,16 @@ class TemplateOptions extends React.Component {
         this.renameTemplateMethod = this.renameTemplateMethod.bind(this);
         this.deleteTemplateMethod = this.deleteTemplateMethod.bind(this);
         this.moveTemplateMethod = this.moveTemplateMethod.bind(this);
+        this.getCheckedState = this.getCheckedState.bind(this);
     }
 
     handleChange(checked) {
 
-        setTemplatePublic(this.props.user.user_id, this.props.template.template_id, checked)
+        console.log(this.props);
+        setTemplatePublic(this.props.user.user_id, this.props.template_id, checked)
             .then((r) => {
-                console.log(r);
-                this.setState({ checked });
+                console.log("HELP" + r);
+                this.setState({ checked: checked});
             })
     }
 
@@ -82,14 +84,19 @@ class TemplateOptions extends React.Component {
         this.setState({ deleteVisible: false });
     }
 
+    getCheckedState() {
+        this.setState({ checked: this.props.is_public});
+    }
+
     renderPublicSwitch() {
+
         return (
             <label htmlFor="normal-switch mx-2">
               <div className="d-flex justify-content-center"> 
               <span className="btn-link disabled">Public: </span>
               <Switch
-                onClick={this.handleChange}
-                checked={this.state.checked}
+                onChange={this.handleChange}
+                checked={this.getCheckedState}
                 className="react-switch"
                 id="normal-switch"
               />
@@ -170,7 +177,7 @@ class TemplateOptions extends React.Component {
                         onChange={this.updateName} />
                     </div>
                     <div className="d-flex container w-90 mt-2">
-                        <button type="button" class="btn btn-outline-primary ml-auto" onClick={this.renameTemplateMethod}> Submit </button>
+                        <button type="button" className="btn btn-outline-primary ml-auto" onClick={this.renameTemplateMethod}> Submit </button>
                     </div>
                 </Rodal>
             </div>
@@ -199,8 +206,8 @@ class TemplateOptions extends React.Component {
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div> */}
                     <div className="d-flex container justify-content-center">
-                        <button type="button" class="btn btn-outline-primary m-2"onClick={this.deleteTemplateMethod}> Yes </button>
-                        <button type="button" class="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
+                        <button type="button" className="btn btn-outline-primary m-2"onClick={this.deleteTemplateMethod}> Yes </button>
+                        <button type="button" className="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>
             </div>
