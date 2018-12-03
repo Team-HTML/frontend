@@ -23,8 +23,10 @@ class GalleryTemplate extends React.Component {
 
     render() {
         return (
-            <div className={((this.props.template_html) ? "" : "template__blur " ) + "template shadow mb-4"}>
+            <div className={((this.props.template_html) ? "" : "template__blur " ) + "template shadow mb-4"} >
+                <div onClick={this.showPreview.bind(this)}>
                 <GalleryPreview html={this.props.template_html} />
+                </div>
                 
                 <div className="d-flex p-2">
                     <div className="text-md-left col-md-6 mt-2 ml-2">
