@@ -13,8 +13,10 @@ import LayoutMain from './layouts/LayoutMain';
 import Loading from 'react-loading';
 
 import PrivateRoute from './PrivateRoute';
+//import LandingPage from './LandingRoute';
 
 import {verifyToken} from './data/Api';
+import LandingRoute from './LandingRoute';
 
 class Routes extends React.Component {
 
@@ -90,7 +92,7 @@ class Routes extends React.Component {
 
         return  (
             <Switch>
-                <Route exact path="/" component={this.withLayoutMain(LandingPage)}/>
+                <LandingRoute exact path="/" {...this.state} component={this.withLayoutMain(LandingPage)}/>
                 <PrivateRoute exact path="/home" {...this.state} component={this.withLayout(DesktopPage)}/>
                 <Route exact path="/gallery" component={this.withLayout(GalleryPage)}/>
                 <PrivateRoute exact path="/folder/:folderId" {...this.state} component={this.withLayout(FolderPage)}/>
