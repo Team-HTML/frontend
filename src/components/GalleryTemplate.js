@@ -35,8 +35,8 @@ class GalleryTemplate extends React.Component {
                                 visible={this.state.previewVisible} 
                                 onClose={this.hidePreview.bind(this)} 
                                 animation="door"
-                                width="600"
-                                height="275"
+                                width={600}
+                                height={275}
                                 customStyles={{borderRadius: 20}}
                             >
                                 <iframe src={this.props.template_html} className="w-100 template__frame__popup h-100 w-100">

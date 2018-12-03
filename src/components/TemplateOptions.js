@@ -16,7 +16,7 @@ class TemplateOptions extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             showOptions: false,
-            checked: false,
+            checked: this.props.is_public,
             moveVisible: false,
             renameVisible: false,
             deleteVisible: false,
@@ -30,13 +30,13 @@ class TemplateOptions extends React.Component {
     }
 
     handleChange(checked) {
-
-        console.log(this.props);
+        console.log(this.props)
         setTemplatePublic(this.props.user.user_id, this.props.template_id, checked)
             .then((r) => {
                 console.log("handleChange");
                 console.log(r);
                 this.setState({ checked: checked});
+                this.props.is_public = checked;
             })
     }
 
@@ -99,10 +99,10 @@ class TemplateOptions extends React.Component {
         return (
             <label htmlFor="normal-switch mx-2">
               <div className="d-flex justify-content-center"> 
-              <span className="btn-link disabled">Public: </span>
+              <span className="btn-link disabled mr-2">Public: </span>
               <Switch
                 onChange={this.handleChange}
-                checked={this.props.is_public}
+                checked={this.state.checked}
                 className="react-switch"
                 id="normal-switch"
               />
@@ -259,7 +259,7 @@ class TemplateOptions extends React.Component {
                 <Popup 
                     /*trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}*/
                     trigger={<img src="/ellipse icon.jpg" width={20} className="mr-1"/>}
-                    on="hover"
+                    on="click"
                     position="top left"
                     contentStyle={{width: 150}}>
                     <div>
