@@ -103,8 +103,10 @@ class TemplateOptions extends React.Component {
               <Switch
                 onChange={this.handleChange}
                 checked={this.state.checked}
-                className="react-switch"
+                className="react-switch mt-1"
                 id="normal-switch"
+                height={20}
+                width={50}
               />
               </div>
             </label>
