@@ -261,7 +261,7 @@ class TemplateOptions extends React.Component {
                 <Popup 
                     /*trigger={<button class="border-0"> <img src="/ellipse icon.jpg" width={20}/></button>}*/
                     trigger={<img src="/ellipse icon.jpg" width={20} className="mr-1"/>}
-                    on="click"
+                    on="hover"
                     position="top left"
                     contentStyle={{width: 150}}>
                     <div>
