@@ -27,7 +27,6 @@ class NavbarMain extends React.Component {
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
               </button>
-              <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-5">
                   <li className="nav-item main_nav__item p-3">
                     <div className="gg_login">
@@ -43,7 +42,6 @@ class NavbarMain extends React.Component {
                     </div>
                   </li>
                 </ul>
-              </div>
             </div>
           </nav>
         );

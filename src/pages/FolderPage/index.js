@@ -77,7 +77,7 @@ class FolderPage extends React.Component {
     _onSelect(e) {
         const sortFns = {
             'Alphabetical': (a,b) => a.template_name.localeCompare(b.template_name),
-            'Creation Date': (a,b) => a.creation_date.localeCompare(b.creation_date),
+            'Creation Date': (a,b) => b.creation_date.localeCompare(a.creation_date),
         }
         this.setState({sortFn: sortFns[e.label]})
     }
@@ -160,7 +160,7 @@ class FolderPage extends React.Component {
                     "is_public": false,
                     "template_name": uploadedFileName,
                     "template_photo_url": url,
-                    "template_css": ".fuck {}",
+                    "template_css": ".body{} \n\n .h1{} \n\n .h2{} \n\n .h3{} \n\n .p{}",
                 }
                 this.setState({
                     folder: {...this.state.folder, 
@@ -177,7 +177,7 @@ class FolderPage extends React.Component {
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
-                            "template_css": ".fuck {}",
+                            "template_css": ".body{} \n\n .h1{} \n\n .h2{} \n\n .h3{} \n\n .p{}",
                             "template_html": s3Url + html_key,
                         }
                     })

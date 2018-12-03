@@ -13,7 +13,8 @@ class Navbar extends React.Component {
         return (
           <nav className="navbar navbar-expand-lg b-nav">
             <div className="container px-0">
-              <a className="navbar-brand" href="/home"><img src="/logo.png" className="b-nav__logo"/></a>
+              <Link to="/home"><img src="/logo.png" className="b-nav__logo"/></Link>
+              {/*<a className="navbar-brand" href="/home"><img src="/logo.png" className="b-nav__logo"/></a>*/}
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
               </button>

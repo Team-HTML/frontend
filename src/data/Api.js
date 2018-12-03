@@ -123,14 +123,18 @@ export const addTemplateToFolder = (userId, folderId, templateId) =>
 
 export const getHTMLFromS3 = (s3URL) =>
     s3Promisify(request
-      .get(s3URL)  
+      .get(s3URL)
+      .set('Access-Control-Allow-Origin', "localhost:3000")
+      .set('crossorigin', "anonymous")
+      .set('Content-Type', 'text/html')
+
     )
 
 export const setTemplatePublic = (userId, templateId, toValue) =>
       promisify(request
-        .patch('/templates' + templateId)
+        .patch('/templates/' + templateId)
         .set('Html-User', userId)
-        .data('is_public', toValue)
+        .send({'is_public': toValue})
         .use(apiPrefix)
       )
 

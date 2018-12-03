@@ -1,6 +1,6 @@
 import React from 'react';
 import './newsfeed.component.css';
-import Template from '../../components/Template';
+import GalleryTemplate from '../../components/GalleryTemplate';
 import {getGallery} from '../../data/Api';
 
 class GalleryPage extends React.Component {
@@ -20,7 +20,7 @@ class GalleryPage extends React.Component {
 
 
   renderPublicTemplates() {
-      const {public_templates} = this.state
+      const {public_templates} = this.state;
             
       if (!public_templates) return;
 
@@ -29,7 +29,7 @@ class GalleryPage extends React.Component {
           {public_templates.map(d => {
             return (
               <div className="col-md-3">
-                <Template {...d} />
+                <GalleryTemplate {...d} />
               </div>
             );
           })}
