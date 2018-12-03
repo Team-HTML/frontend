@@ -356,7 +356,7 @@ class DesktopPage extends React.Component {
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
-                            "template_css": ".fuck {}",
+                            "template_css": "body {color: blue}",
                             "template_html": s3Url + html_key,
                         }
                     })
