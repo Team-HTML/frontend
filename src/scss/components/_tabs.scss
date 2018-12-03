@@ -3,11 +3,10 @@
 
     &__tab {
 
-        $active-focus: $blueprint-blue;
+        $active-focus: white;
 
-        color: white;
+        color: $blueprint-blue;
         padding: 0.5rem 0.7rem;
-        border: solid 1px white;
         border-top-right-radius: 6px;
         border-top-left-radius: 6px;
         border-bottom-width: 0;
@@ -17,6 +16,7 @@
             color: $active-focus;
             background: rgb(30, 30, 30);
             border-color: $active-focus;
+            border: solid 1px white;
             box-shadow: 1px 5px 5px $active-focus;
         }
     }
