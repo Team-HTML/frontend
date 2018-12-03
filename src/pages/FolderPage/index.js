@@ -168,7 +168,7 @@ class FolderPage extends React.Component {
                 return getJSONFromImg(e)
                     .then(generateHTML)
                     .then((res) => {
-                        const {html_key} = res;
+                        const {html_key, css_key} = res;
 
                         console.log(res);
                         const s3Url = "http://cse110.html.html.s3.amazonaws.com/";
@@ -177,7 +177,7 @@ class FolderPage extends React.Component {
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
-                            "template_css": "body {color: red}",
+                            "template_css": css_key,
                             "template_html": s3Url + html_key,
                         }
                     })

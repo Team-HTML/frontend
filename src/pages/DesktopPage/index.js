@@ -330,7 +330,7 @@ class DesktopPage extends React.Component {
                     "is_public": false,
                     "template_name": uploadedFileName,
                     "template_photo_url": url,
-                    "template_css": ".fuck {}",
+                    "template_css": "body {color: red}",
                 }
                 this.setState({
                     default_folder: {...this.state.default_folder, 
