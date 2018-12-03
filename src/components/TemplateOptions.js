@@ -58,6 +58,16 @@ class TemplateOptions extends React.Component {
         this.setState({ renameVisible: true });
     }
 
+    onClickRename(e) {
+        this.renameTemplateMethod();
+        this.hideRename();
+    }
+
+    onClickDelete(e) {
+        this.hideDelete();
+        this.deleteTemplateMethod();
+    }
+
     renameTemplateMethod() {
         renameTemplate(this.props.user.user_id, this.props.template_id, this.state.renameTemplate)
             .then(res => {
@@ -118,7 +128,7 @@ class TemplateOptions extends React.Component {
         }
 
         return(
-            <Popup
+            /*<Popup
                 trigger={<button className="btn btn-outline-primary border-0 btn-block">Move</button>}
                 modal={true}
                 closeOnDocumentClick
@@ -129,7 +139,7 @@ class TemplateOptions extends React.Component {
                 {/*<div className="d-flex container justify-content-center">
                     <input type="text" value={this.state.addFolder}
                     onChange={(evt) => this.updateAddFolder(evt)} />
-                 </div> */}
+                 </div> }
                 <div className="d-flex container justify-content-center">
 
                     {
@@ -143,7 +153,39 @@ class TemplateOptions extends React.Component {
                         
                     
                 </div>
-            </Popup>
+            </Popup>*/
+
+            <div>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showMove.bind(this)}>Move</button>
+
+                <Rodal 
+                    visible={this.state.moveVisible} 
+                    onClose={this.hideMove.bind(this)} 
+                    animation="door"
+                    width="600"
+                    customStyles={{borderRadius: 20}}
+                >
+                    <div className="d-flex container justify-content-left">
+                        <h4> Which folder would you like to move it to? </h4>
+                    </div>
+                    {/*<div className="d-flex container justify-content-center">
+                        <input type="text" value={this.state.addFolder}
+                        onChange={(evt) => this.updateAddFolder(evt)} />
+                    </div> */}
+
+                    <div className="d-flex container justify-content-left">
+                        <div className="row">
+                        {
+                            arr.map(u => {
+                                return (<div className="col-md-3"><button type="button" class="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
+                                    {u.folder_name} 
+                                </button></div>)
+                            })
+                        }
+                        </div>
+                    </div>
+                </Rodal>
+            </div>
         )
     }
 
@@ -173,7 +215,7 @@ class TemplateOptions extends React.Component {
                         onChange={this.updateName} />
                     </div>
                     <div className="d-flex container w-90 mt-2">
-                        <button type="button" className="btn btn-outline-primary ml-auto" onClick={this.renameTemplateMethod}> Submit </button>
+                        <button type="button" className="btn btn-outline-primary ml-auto" onClick={this.onClickRename.bind(this)/*this.renameTemplateMethod*/}> Submit </button>
                     </div>
                 </Rodal>
             </div>
@@ -202,7 +244,7 @@ class TemplateOptions extends React.Component {
                         onChange={(evt) => this.updateAddFolder(evt)} />
                     </div> */}
                     <div className="d-flex container justify-content-center">
-                        <button type="button" className="btn btn-outline-primary m-2"onClick={this.deleteTemplateMethod}> Yes </button>
+                        <button type="button" className="btn btn-outline-primary m-2"onClick={this.onClickDelete.bind(this)/*this.deleteTemplateMethod*/}> Yes </button>
                         <button type="button" className="btn btn-outline-dark m-2"/*onClick={this.createFolder}*/> No </button>
                     </div>
                 </Rodal>
@@ -219,7 +261,7 @@ class TemplateOptions extends React.Component {
                     trigger={<img src="/ellipse icon.jpg" width={20} className="mr-1"/>}
                     on="hover"
                     position="top left"
-                    className="option-popup">
+                    contentStyle={{width: 150}}>
                     <div>
                         <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
                         <div className="d-flex justify-content-center btn-link m-2">Download</div>

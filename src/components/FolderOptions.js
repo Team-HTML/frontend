@@ -143,7 +143,8 @@ class FolderOptions extends React.Component {
                 trigger={<img src="/ellipse icon.jpg" width={20}/>}
                 on="hover"
                 position="top left"
-                className="option-popup">
+                contentStyle={{width: 100}}
+                >
                 <div>
                     <div className="d-flex justify-content-center">{this.renderRenameFolder()}</div>
                     <div className="d-flex justify-content-center">{this.renderDeleteFolder()}</div>
