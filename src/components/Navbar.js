@@ -2,12 +2,16 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {GoogleLogout} from 'react-google-login';
 
-  //send to backend...?
-  const logout = (response) => {
-    console.log("logged out!");
-  }
+const logout = (response) => {
+  console.log(this.props.setUser)
+  console.log("logged out!");
+}
 
 class Navbar extends React.Component {
+
+    constructor(props) {
+      super(props);
+    }
 
     render() {
         return (

@@ -6,7 +6,7 @@ class Layout extends React.Component {
     render() {
         return(
             <>
-                <Navbar />
+                <Navbar setUser={this.props.setUser}/>
                 {this.props.children}
             </>
         )
