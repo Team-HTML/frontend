@@ -179,7 +179,7 @@ class FolderPage extends React.Component {
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
-                            "template_css": "hi",
+                            "template_css": "body {color: red}",
                             "template_html": s3Url + html_key,
                         }
                     })

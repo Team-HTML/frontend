@@ -3,7 +3,7 @@
 
     &__tab {
 
-        $active-focus: green;
+        $active-focus: $blueprint-blue;
 
         color: white;
         padding: 0.5rem 0.7rem;
@@ -15,6 +15,7 @@
 
         &-active {
             color: $active-focus;
+            background: rgb(30, 30, 30);
             border-color: $active-focus;
             box-shadow: 1px 5px 5px $active-focus;
         }

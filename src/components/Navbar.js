@@ -2,15 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {GoogleLogout} from 'react-google-login';
 
-const logout = (response) => {
-  console.log(this.props.setUser)
-  console.log("logged out!");
-}
+
 
 class Navbar extends React.Component {
 
     constructor(props) {
       super(props);
+      this.logout = this.logout.bind(this)
+    }
+
+    logout(response) {
+      this.props.setUser(null)
     }
 
     render() {
@@ -33,12 +35,12 @@ class Navbar extends React.Component {
                 </ul>
               </div>
               <div>
-                <GoogleLogout
-                  buttonText="Logout"
-                  onLogoutSuccess={logout}
+                <button
+                  onClick={this.logout}
                   className="btn red-bg text-white"
                 >
-                </GoogleLogout>
+                  Logout
+                </button>
               </div>
             </div>
           </nav>
