@@ -55,7 +55,8 @@ class FolderPage extends React.Component {
     }
 
     hideUpload() {
-        this.setState({ uploadVisible: false, uploadedFile: null });
+        this.setState({ uploadVisible: false, uploadedFile: null, uploadedFileName: null });
+        console.log("hide");
     }
 
     onDrop(a) {
@@ -63,7 +64,7 @@ class FolderPage extends React.Component {
     }
 
     onCancel() {
-        this.setState({uploadedFile: null})
+        this.setState({uploadedFile: null, uploadedFileName: null});
     }
 
     componentDidMount() {
@@ -142,8 +143,14 @@ class FolderPage extends React.Component {
     }
 
     onClickUpload(e) {
-        this.uploadTemplate();
-        this.hideUpload();
+        if(this.state.uploadedFileName == null || this.state.uploadedFileName == '') {
+          this.setState({uploadedFileName: "No Name"}, function() {
+            this.uploadTemplate();
+          });
+        }
+        else {
+          this.uploadTemplate();
+        }
     }
 
     uploadTemplate() {
@@ -212,7 +219,7 @@ class FolderPage extends React.Component {
                     })
 
             })
-
+            this.hideUpload();
     }
 
     render() {
@@ -268,7 +275,12 @@ class FolderPage extends React.Component {
                                     <input className="form-control" onChange={this.onChangeName} />
                                 </div>
                                 <div className="d-flex w-100 m-2">
-                                    <button className="btn btn-outline-primary m-2 ml-auto" disabled={this.state.uploadedFile == null} onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</button>
+                                    <button className="btn btn-outline-primary m-2 ml-auto"
+                                    disabled={this.state.uploadedFile == null}
+                                    onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}
+                                    >
+                                    Submit
+                                    </button>
                                 </div>
                         </Rodal>
                     </div>
