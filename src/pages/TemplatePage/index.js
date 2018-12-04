@@ -66,9 +66,9 @@ class TemplatePage extends React.Component {
             <div className="w-100 h-100 px-0 container-fluid w-100 mx-0">
                 <div className="row template-page__nav">
                     <span className="col-md-2">
-                        <span className="text-primary ml-4" onClick={this.goBack}>
+                        <a className="text-primary ml-4" href="/home">
                           <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
-                        </span>
+                        </a>
                         <span className="ml-4 text-white">
                             {this.state.name}
                         </span>
