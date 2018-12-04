@@ -53,7 +53,7 @@ class FolderPage extends React.Component {
     showUpload() {
         this.setState({ uploadVisible: true });
     }
- 
+
     hideUpload() {
         this.setState({ uploadVisible: false, uploadedFile: null });
     }
@@ -67,7 +67,7 @@ class FolderPage extends React.Component {
     }
 
     componentDidMount() {
-        //get folder data from server from the route param 
+        //get folder data from server from the route param
         //this.props.match.params.folderId
         getFolderById(this.props.match.params.folderId, this.props.user.user_id)
             .then((res) => {
@@ -124,10 +124,10 @@ class FolderPage extends React.Component {
                 {sortedTemplates.map(d => {
                     return (
                         <div className="col-md-3">
-                            <Template 
-                                {...d} 
-                                user={this.props.user} 
-                                renameTemplateById={this.renameTemplateById} 
+                            <Template
+                                {...d}
+                                user={this.props.user}
+                                renameTemplateById={this.renameTemplateById}
                                 deleteTemplateById={this.deleteTemplateById}
                             />
                         </div>
@@ -164,7 +164,7 @@ class FolderPage extends React.Component {
                     "template_css": "hi",
                 }
                 this.setState({
-                    folder: {...this.state.folder, 
+                    folder: {...this.state.folder,
                         templates: [...templates, tempData]
                     }
                 });
@@ -194,7 +194,7 @@ class FolderPage extends React.Component {
                                         const targetIdx = temps.findIndex(e => e.template_name === uploadedFileName);
                                         temps[targetIdx] = {...data, template_id: res.template_id}
                                         this.setState({
-                                            folder: {...this.state.folder, 
+                                            folder: {...this.state.folder,
                                                 templates: temps
                                             }
                                         });
@@ -209,8 +209,8 @@ class FolderPage extends React.Component {
                             ...this.state.folder,
                             templates: this.state.folder.templates.filter(x => x.template_name !== uploadedFileName)
                         }})
-                    }) 
-                
+                    })
+
             })
 
     }
@@ -241,10 +241,10 @@ class FolderPage extends React.Component {
                         <button className="btn rounded-circle btn-primary home__upload shadow-lg" onClick={this.showUpload.bind(this)}>
                             <span>+</span>
                         </button>
-        
-                        <Rodal 
-                            visible={this.state.uploadVisible} 
-                            onClose={this.hideUpload.bind(this)} 
+
+                        <Rodal
+                            visible={this.state.uploadVisible}
+                            onClose={this.hideUpload.bind(this)}
                             animation="door"
                             width={600}
                             height={275}
@@ -268,7 +268,7 @@ class FolderPage extends React.Component {
                                     <input className="form-control" onChange={this.onChangeName} />
                                 </div>
                                 <div className="d-flex w-100 m-2">
-                                    <div className="btn btn-outline-primary m-2 ml-auto" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
+                                    <button className="btn btn-outline-primary m-2 ml-auto" disabled={this.state.uploadedFile == null} onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</button>
                                 </div>
                         </Rodal>
                     </div>
