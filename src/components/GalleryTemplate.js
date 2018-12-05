@@ -29,10 +29,11 @@ class GalleryTemplate extends React.Component {
                 </div>
                 
                 <div className="d-flex p-2">
-                    <div onClick={this.showPreview.bind(this)} className="gallery__template">
-						{this.props.template_name}
-						<span className="gallery__templatename">{this.props.template_name}</span>
-					</div>
+                    <div className="text-md-left col-md-6 mt-2 ml-2">
+                        <div onClick={this.showPreview.bind(this)} className="gallery__template">
+                            {this.props.template_name}
+                            <span className="gallery__templatename">{this.props.template_name}</span>
+                            </div>
                         <Rodal 
                                 visible={this.state.previewVisible} 
                                 onClose={this.hidePreview.bind(this)} 
