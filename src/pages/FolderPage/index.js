@@ -55,8 +55,9 @@ class FolderPage extends React.Component {
     }
 
     hideUpload() {
-        this.setState({ uploadVisible: false, uploadedFile: null, uploadedFileName: null });
-        console.log("hide");
+        this.setState({ uploadVisible: false, uploadedFile: null, uploadedFileName: null }, function () {
+                  console.log("hide");
+        });
     }
 
     onDrop(a) {
@@ -272,7 +273,7 @@ class FolderPage extends React.Component {
                                 </div>
                                 <label>Template Name: </label>
                                 <div className="d-flex justify-content-center mb-2 w-100 mx-auto">
-                                    <input className="form-control" onChange={this.onChangeName} />
+                                    <input className="form-control" onChange={this.onChangeName} value={this.state.uploadedFileName? this.state.uploadedFileName : ""}/>
                                 </div>
                                 <div className="d-flex w-100 m-2">
                                     <button className="btn btn-outline-primary m-2 ml-auto"
