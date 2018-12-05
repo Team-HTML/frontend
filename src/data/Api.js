@@ -124,7 +124,7 @@ export const addTemplateToFolder = (userId, folderId, templateId) =>
 export const getHTMLFromS3 = (s3URL) =>
     s3Promisify(request
       .get(s3URL)
-      .set('Access-Control-Allow-Origin', "localhost:3000")
+      .set('Access-Control-Allow-Origin', "*")
       .set('crossorigin', "anonymous")
       .set('Content-Type', 'text/html')
 
@@ -133,7 +133,7 @@ export const getHTMLFromS3 = (s3URL) =>
 export const getCSSFromS3 = (s3URL) =>
     s3Promisify(request
       .get(s3URL)
-      .set('Access-Control-Allow-Origin', "localhost:3000")
+      .set('Access-Control-Allow-Origin', "*")
       .set('crossorigin', "anonymous")
       .set('Content-Type', 'text/css')
     )

@@ -40,6 +40,7 @@ class TemplatePage extends React.Component {
 
                         getCSSFromS3(res.template_css)
                             .then(res3 => {
+                                console.log(res3)
                                 this.setState({
                                     htmlCode: res2.text, 
                                     cssCode: res3.text,
@@ -107,7 +108,7 @@ class TemplatePage extends React.Component {
                         <a className="text-primary ml-4" href="/home">
                           <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
                         </a>
-                        
+
                         <span className="ml-4 text-white">
                             {this.state.name}
                         </span>
