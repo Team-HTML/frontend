@@ -192,3 +192,18 @@ export const uploadCSSToS3 = (newVal, cssFile) =>
     .set('x-amz-acl', 'bucket-owner-full-control')
     .send(newVal)
   )
+
+export const downloadProject = (templateId) =>
+  promisify(request
+    .post('/s3upload')
+    .send({template_id: templateId})
+    .use(apiPrefix)
+  )
+
+export const getRequest = (url) => {
+  console.log(url)
+  return s3Promisify(request
+    .get(url)
+    .set('x-amz-acl', 'bucket-owner-full-control')
+  )
+}

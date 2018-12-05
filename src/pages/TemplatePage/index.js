@@ -3,7 +3,17 @@ import {withRouter} from 'react-router-dom';
 import RenderedTemplate from './components/RenderedTemplate';
 import Editor from './components/Editor';
 import Loading from 'react-loading';
-import {getTemplateById, getHTMLFromS3, getCSSFromS3, uploadHTMLToS3, uploadCSSToS3} from '../../data/Api';
+import $ from 'jquery';
+
+import {
+    getTemplateById, 
+    getHTMLFromS3, 
+    getCSSFromS3, 
+    uploadHTMLToS3, 
+    uploadCSSToS3, 
+    downloadProject,
+    getRequest
+} from '../../data/Api';
 class TemplatePage extends React.Component {
 
     constructor(props) {
@@ -18,6 +28,7 @@ class TemplatePage extends React.Component {
         this.goBack = this.goBack.bind(this);
         this.setCode = this.setCode.bind(this);
         this.saveEditor = this.saveEditor.bind(this);
+        this.downloadCode = this.downloadCode.bind(this);
     }
 
     componentWillMount() {
@@ -34,7 +45,8 @@ class TemplatePage extends React.Component {
                                     cssCode: res3.text,
                                     name: res.template_name,
                                     htmlURL: res.template_html,
-                                    cssURL: res.template_css
+                                    cssURL: res.template_css,
+                                    id: res.template_id
                                 });
                             })
                     })
@@ -58,7 +70,14 @@ class TemplatePage extends React.Component {
     }
 
     downloadCode() {
-      console.log("I'm downloaded");
+      downloadProject(this.state.id)
+        .then(({key}) => {
+            //$('#downloader').attr('href', key);
+            //$('#downloader').click()
+
+            window.open(key)
+        })
+        .catch(console.error)
     }
 
     setCode(prop, newValue) {
@@ -83,6 +102,7 @@ class TemplatePage extends React.Component {
             <div className="w-100 h-100 px-0 container-fluid w-100 mx-0">
                 <div className="row template-page__nav">
                     <span className="col-md-2">
+                        <a className="d-none" id="downloader" target="_blank"></a>
                         <span className="text-primary ml-4" onClick={this.goBack}>
                           <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
                         </span>
