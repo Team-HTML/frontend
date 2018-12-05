@@ -1,6 +1,5 @@
 import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
-
 class CodeEditor extends React.Component {
 
     constructor(props) {
@@ -47,6 +46,7 @@ class CodeEditor extends React.Component {
         const {language} = this.editor.getModel()._languageIdentifier;
 
         if (language === 'html') this.props.setCode('htmlCode', newValue);
+        else if (language === 'css') this.props.setCode('cssCode', newValue)
     }
 
     render() {

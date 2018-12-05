@@ -130,6 +130,14 @@ export const getHTMLFromS3 = (s3URL) =>
 
     )
 
+export const getCSSFromS3 = (s3URL) =>
+    s3Promisify(request
+      .get(s3URL)
+      .set('Access-Control-Allow-Origin', "localhost:3000")
+      .set('crossorigin', "anonymous")
+      .set('Content-Type', 'text/css')
+    )
+
 export const setTemplatePublic = (userId, templateId, toValue) =>
       promisify(request
         .patch('/templates/' + templateId)
@@ -168,3 +176,19 @@ export const getUsersFolders = (userId) =>
       .set('html-user', userId)
       .use(apiPrefix)  
     )
+
+export const uploadHTMLToS3 = (newVal, htmlFile) => 
+  s3Promisify(request
+    .put(htmlFile)
+    .set('Content-Type', 'text/html')
+    .set('x-amz-acl', 'bucket-owner-full-control')
+    .send(newVal)
+  )
+
+export const uploadCSSToS3 = (newVal, cssFile) => 
+  s3Promisify(request
+    .put(cssFile)
+    .set('Content-Type', 'text/css')
+    .set('x-amz-acl', 'bucket-owner-full-control')
+    .send(newVal)
+  )

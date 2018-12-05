@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import RenderedTemplate from './components/RenderedTemplate';
 import Editor from './components/Editor';
 import Loading from 'react-loading';
-import {getTemplateById, getHTMLFromS3} from '../../data/Api';
+import {getTemplateById, getHTMLFromS3, getCSSFromS3, uploadHTMLToS3, uploadCSSToS3} from '../../data/Api';
 class TemplatePage extends React.Component {
 
     constructor(props) {
@@ -11,10 +11,13 @@ class TemplatePage extends React.Component {
 
         this.state = {
             htmlCode: ``,
-            cssCode: ``
+            cssCode: ``,
+            htmlURL: ``,
+            cssURL: ``
         }
         this.goBack = this.goBack.bind(this);
         this.setCode = this.setCode.bind(this);
+        this.saveEditor = this.saveEditor.bind(this);
     }
 
     componentWillMount() {
@@ -23,11 +26,17 @@ class TemplatePage extends React.Component {
 
                 getHTMLFromS3(res.template_html)
                     .then(res2 => {
-                        this.setState({
-                            htmlCode: res2.text, 
-                            cssCode: res.template_css,
-                            name: res.template_name
-                        });
+
+                        getCSSFromS3(res.template_css)
+                            .then(res3 => {
+                                this.setState({
+                                    htmlCode: res2.text, 
+                                    cssCode: res3.text,
+                                    name: res.template_name,
+                                    htmlURL: res.template_html,
+                                    cssURL: res.template_css
+                                });
+                            })
                     })
             })
             .catch((e) => {
@@ -37,7 +46,15 @@ class TemplatePage extends React.Component {
     }
 
     saveEditor() {
-      console.log("I'm here");
+      uploadHTMLToS3(this.state.htmlCode, this.state.htmlURL)
+        .then((r) => {
+            uploadCSSToS3(this.state.cssCode, this.state.cssURL)
+                .then(console.log)
+                .catch(e => {
+                    throw new Error(e);
+                })
+        })
+        .catch(console.error)
     }
 
     downloadCode() {
@@ -92,7 +109,7 @@ class TemplatePage extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-6 px-0">
-                        <RenderedTemplate html={this.state.htmlCode} />
+                        <RenderedTemplate html={this.state.htmlCode} css={this.state.cssCode}/>
                     </div>
                 </div>
             </div>
