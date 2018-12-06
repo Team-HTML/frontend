@@ -123,8 +123,8 @@ class TemplateOptions extends React.Component {
     renderMoveTemplate() {
         const {user} = this.props;
 
-        //let arr = user.folders.filter(x => x.folder_id !== this.props.match.params.folderId)
-        let arr = []
+        let arr = user.folders.filter(x => x.folder_id !== this.props.match.params.folderId)
+        //let arr = []
         if (this.props.match.params.folderId) {
             arr.push({folder_name: 'Home Page', folder_id: user.default_folder.folder_id})
         }
@@ -179,7 +179,7 @@ class TemplateOptions extends React.Component {
                         <div className="row">
                         {
                             arr.map(u => {
-                                return (<div className="col-md-3"><button type="button" class="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
+                                return (<div className="col-md"><button type="button" class="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
                                     {u.folder_name} 
                                 </button></div>)
                             })
