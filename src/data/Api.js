@@ -1,6 +1,6 @@
 import pref from 'superagent-prefix';
 import request from 'superagent';
-
+import nocache from 'superagent-no-cache'
 import {promisify, s3Promisify} from './helpers';
 
 const API_URL_PREFIX = 'https://rc497uwa28.execute-api.us-east-2.amazonaws.com/test';
@@ -17,7 +17,8 @@ export const login = (data) =>
     
     //.set('Access-Control-Allow-Credentials', true)
     .send(data)
-    .use(apiPrefix));
+    .use(apiPrefix)
+  );
 
 export const getFolderById = (folderId, userId) => 
     promisify(request
@@ -125,8 +126,9 @@ export const getHTMLFromS3 = (s3URL) =>
     s3Promisify(request
       .get(s3URL)
       .set('Access-Control-Allow-Origin', "*")
-      .set('crossorigin', "anonymous")
-      .set('Content-Type', 'text/html')
+      .use(nocache)
+      //.set('crossorigin', "anonymous")
+      //.set('Content-Type', 'text/html')
 
     )
 
@@ -136,6 +138,7 @@ export const getCSSFromS3 = (s3URL) =>
       .set('Access-Control-Allow-Origin', "*")
       .set('crossorigin', "anonymous")
       .set('Content-Type', 'text/css')
+      .use(nocache)
     )
 
 export const setTemplatePublic = (userId, templateId, toValue) =>
@@ -174,7 +177,7 @@ export const getUsersFolders = (userId) =>
     promisify(request
       .get('/folders')
       .set('html-user', userId)
-      .use(apiPrefix)  
+      .use(apiPrefix)
     )
 
 export const uploadHTMLToS3 = (newVal, htmlFile) => 
@@ -183,6 +186,7 @@ export const uploadHTMLToS3 = (newVal, htmlFile) =>
     .set('Content-Type', 'text/html')
     .set('x-amz-acl', 'bucket-owner-full-control')
     .send(newVal)
+    .use(nocache)
   )
 
 export const uploadCSSToS3 = (newVal, cssFile) => 
@@ -191,6 +195,7 @@ export const uploadCSSToS3 = (newVal, cssFile) =>
     .set('Content-Type', 'text/css')
     .set('x-amz-acl', 'bucket-owner-full-control')
     .send(newVal)
+    .use(nocache)
   )
 
 export const downloadProject = (templateId) =>
@@ -205,5 +210,6 @@ export const getRequest = (url) => {
   return s3Promisify(request
     .get(url)
     .set('x-amz-acl', 'bucket-owner-full-control')
+    .use(nocache)
   )
 }

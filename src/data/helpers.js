@@ -22,6 +22,7 @@ export const promisify = (request) => {
 export const s3Promisify = (request) => {
   var deferred = Q.defer();
   request.end((err, res) => {
+    console.log(err, res);
     if (err) {
       if (!res) {
         return deferred.reject(new Error("Internal Server Error"))
