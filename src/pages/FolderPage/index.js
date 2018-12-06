@@ -235,7 +235,7 @@ class FolderPage extends React.Component {
         }
 
         return (
-            <div className="w-100 h-100  gradient-bg">
+            <div className="home">
             <div className = "container h-100 px-0 pt-5">
                 <div className="row mt-0">
                     <h1 className="home__name"> {folder.folder_name} </h1>

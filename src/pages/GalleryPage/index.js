@@ -21,7 +21,7 @@ class GalleryPage extends React.Component {
 
   renderPublicTemplates() {
       const {public_templates} = this.state;
-            
+
       if (!public_templates) return;
 
       return (
@@ -39,7 +39,7 @@ class GalleryPage extends React.Component {
 
   /*renderDefaultTemplates() {
     const defaultTemplates = [];
-          
+
     return (
       <div className="row mt-5">
         {defaultTemplates.map(d => {
@@ -55,7 +55,7 @@ class GalleryPage extends React.Component {
 
   render() {
     return (
-      <div className="gallery pt-5 gradient-bg">
+      <div className="gallery pt-5 home">
         <div className="container">
           <div className="row mx-0">
             <h1 className="home__name">Gallery</h1>
