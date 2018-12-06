@@ -66,7 +66,7 @@ class DesktopPage extends React.Component {
     showCreate() {
         this.setState({ createVisible: true });
     }
- 
+
     hideCreate() {
         this.setState({ createVisible: false });
     }
@@ -74,7 +74,7 @@ class DesktopPage extends React.Component {
     showUpload() {
         this.setState({ uploadVisible: true });
     }
- 
+
     hideUpload() {
         this.setState({ uploadVisible: false, uploadedFile: null });
     }
@@ -82,7 +82,7 @@ class DesktopPage extends React.Component {
     componentDidMount() {
         this.setState(this.props.user)
     }
-    
+
     deleteFolderById(id) {
         this.setState({folders: this.state.folders.filter(d => d.folder_id !== id)})
     }
@@ -126,8 +126,14 @@ class DesktopPage extends React.Component {
     }
 
     onClickUpload(e) {
+      if(this.state.uploadedFileName == null || this.state.uploadedFileName == '') {
+        this.setState({uploadedFileName: "Untitled"}, function() {
+          this.uploadTemplate();
+        });
+      }
+      else {
         this.uploadTemplate();
-        this.hideUpload();
+      }
     }
 
     renameFolderById(id, newName) {
@@ -182,8 +188,8 @@ class DesktopPage extends React.Component {
                     {default_folder.templates.map(t => {
                         return (
                                 <div className="col-md-3">
-                                    <Template 
-                                        {...t} 
+                                    <Template
+                                        {...t}
                                         user={this.props.user}
                                         renameTemplateById={this.renameTemplateById}
                                         deleteTemplateById={this.deleteTemplateById}
@@ -221,10 +227,10 @@ class DesktopPage extends React.Component {
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showUpload.bind(this)}>
                     Upload Template
                 </button>
- 
-                <Rodal 
-                    visible={this.state.uploadVisible} 
-                    onClose={this.hideUpload.bind(this)} 
+
+                <Rodal
+                    visible={this.state.uploadVisible}
+                    onClose={this.hideUpload.bind(this)}
                     animation="door"
                     width={600}
                     height={275}
@@ -245,10 +251,12 @@ class DesktopPage extends React.Component {
                     </div>
                     <label>Template Name: </label>
                     <div className="d-flex justify-content-center mb-2 w-100 mx-auto">
-                        <input className="form-control" onChange={this.onChangeName} />
+                        <input className="form-control" onChange={this.onChangeName} value={this.state.uploadedFileName? this.state.uploadedFileName : ""} />
                     </div>
                     <div className="d-flex w-100 m-2">
-                        <div className="btn btn-outline-primary m-2 ml-auto" onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</div>
+                        <button className="btn btn-outline-primary m-2 ml-auto"
+                        disabled={this.state.uploadedFile == null}
+                        onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</button>
                     </div>
                 </Rodal>
             </div>
@@ -278,9 +286,9 @@ class DesktopPage extends React.Component {
                     Create Folder
                 </button>
 
-                <Rodal 
-                    visible={this.state.createVisible} 
-                    onClose={this.hideCreate.bind(this)} 
+                <Rodal
+                    visible={this.state.createVisible}
+                    onClose={this.hideCreate.bind(this)}
                     animation="door"
                     width={600}
                     height={150}
@@ -303,8 +311,8 @@ class DesktopPage extends React.Component {
 
     renderAddButton() {
         return (
-            <Popup 
-                trigger={<button className="btn rounded-circle btn-primary home__upload shadow-lg"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>} 
+            <Popup
+                trigger={<button className="btn rounded-circle btn-primary home__upload shadow-lg"><span style={{transform: 'translateY(-2.5rem)'}}>+</span></button>}
                 on="click"
                 position="left center">
                 <div className="">
@@ -339,7 +347,7 @@ class DesktopPage extends React.Component {
                     "template_css": "body {color: red}",
                 }
                 this.setState({
-                    default_folder: {...this.state.default_folder, 
+                    default_folder: {...this.state.default_folder,
                         templates: [...templates, tempData]
                     }
                 });
@@ -348,7 +356,7 @@ class DesktopPage extends React.Component {
                     .then(generateHTML)
                     .then((res) => {
                         const {html_key} = res;
-                        
+
                         console.log(res);
                         const s3Url = "http://cse110.html.html.s3.amazonaws.com/";
                         return {
@@ -372,7 +380,7 @@ class DesktopPage extends React.Component {
                                         const targetIdx = temps.findIndex(e => e.template_name === uploadedFileName);
                                         temps[targetIdx] = {...data, template_id: res.template_id}
                                         this.setState({
-                                            default_folder: {...this.state.default_folder, 
+                                            default_folder: {...this.state.default_folder,
                                                 templates: temps
                                             }
                                         });
@@ -387,9 +395,10 @@ class DesktopPage extends React.Component {
                             ...this.state.default_folder,
                             templates: this.state.default_folder.templates.filter(x => x.template_name !== uploadedFileName)
                         }})
-                    }) 
-                
+                    })
+
             })
+            this.hideUpload();
     }
 
     updateAddFolder(evt) {
@@ -409,7 +418,7 @@ class DesktopPage extends React.Component {
                         this.setState({
                             addFolder: '',
                             folders: [...folders, {folder_name: addFolder, folder_id: res.folder_id}]
-                        })      
+                        })
                     })
             })
 
@@ -424,7 +433,7 @@ class DesktopPage extends React.Component {
                 <div className="home pt-5">
                     <div className="container">
                         <div className="row mx-0">
-                        
+
                             <h1 className="home__name">{this.props.user.user_first_name}'s Home</h1>
                             <div className="w-20 ml-auto home__name">Sort By:
                                 <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>

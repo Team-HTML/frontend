@@ -145,7 +145,7 @@ class FolderPage extends React.Component {
 
     onClickUpload(e) {
         if(this.state.uploadedFileName == null || this.state.uploadedFileName == '') {
-          this.setState({uploadedFileName: "No Name"}, function() {
+          this.setState({uploadedFileName: "Untitled"}, function() {
             this.uploadTemplate();
           });
         }
