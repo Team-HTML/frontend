@@ -286,7 +286,7 @@ class FolderPage extends React.Component {
                                     disabled={this.state.uploadedFile == null}
                                     onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}
                                     >
-                                    Submit
+                                    Upload
                                     </button>
                                 </div>
                         </Rodal>

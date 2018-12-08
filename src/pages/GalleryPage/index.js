@@ -55,7 +55,7 @@ class GalleryPage extends React.Component {
 
   render() {
     return (
-      <div className="gallery pt-5 home">
+      <div className="pt-5 home">
         <div className="container">
           <div className="row mx-0">
             <h1 className="home__name">Gallery</h1>

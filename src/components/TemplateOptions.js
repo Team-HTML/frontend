@@ -106,6 +106,14 @@ class TemplateOptions extends React.Component {
         );
       }
 
+    renderDownloadTemplate() {
+        return (
+            <div style={{width: '100%'}}>
+                <button className="btn btn-outline-primary border-0 btn-block">Download</button>
+            </div>
+        )
+    }
+
     moveTemplateMethod(newFolderId) {
         moveTemplate(this.props.user.user_id, this.props.template_id, this.props.match.params.folderId || this.props.user.user_id, newFolderId)
             .then(res => {
@@ -149,7 +157,7 @@ class TemplateOptions extends React.Component {
                 </div>
             </Popup>*/
 
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showMove.bind(this)}>Move</button>
 
                 <Rodal 
@@ -190,7 +198,7 @@ class TemplateOptions extends React.Component {
     renderRenameTemplate() {
         return(
 
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showRename.bind(this)}>Rename</button>
 
                 <Rodal 
@@ -219,7 +227,7 @@ class TemplateOptions extends React.Component {
     renderDeleteTemplate() {
         return(
 
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showDelete.bind(this)}>Delete</button>
 
                 <Rodal 
@@ -258,7 +266,7 @@ class TemplateOptions extends React.Component {
                     contentStyle={{width: 150}}>
                     <div>
                         <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
-                        <div className="d-flex justify-content-center btn-link m-2">Download</div>
+                        <div className="d-flex justify-content-center">{this.renderDownloadTemplate()}</div>
                         <div className="d-flex justify-content-center">{this.renderMoveTemplate()}</div>
                         <div className="d-flex justify-content-center">{this.renderRenameTemplate()}</div>
                         <div className="d-flex justify-content-center">{this.renderDeleteTemplate()}</div>
