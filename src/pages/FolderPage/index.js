@@ -108,10 +108,15 @@ class FolderPage extends React.Component {
         })
     }
 
+    setPublic() {
+
+    }
+
     renderTemplates() {
         const {templates} = this.state.folder;
-        const {sortFn} = this.state;
+        let {sortFn} = this.state;
         let sortedTemplates = null;
+        console.log('calling rendertemplates')
         if (templates == null)
         {
             sortedTemplates = templates;
@@ -119,6 +124,7 @@ class FolderPage extends React.Component {
             if (sortFn == undefined) {
                 this._onSelect({value: "Alphabetical", label: "Alphabetical"})
             }
+            sortFn = this.state.sortFn
             sortedTemplates = templates.sort(sortFn);
         }
         return (
