@@ -223,7 +223,7 @@ class DesktopPage extends React.Component {
                     <div className="btn btn-outline-dark m-2" onClick={this.uploadTemplate}>Submit</div>
                 </div>
             </Popup>*/
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showUpload.bind(this)}>
                     Upload Template
                 </button>
@@ -256,7 +256,7 @@ class DesktopPage extends React.Component {
                     <div className="d-flex w-100 m-2">
                         <button className="btn btn-outline-primary m-2 ml-auto"
                         disabled={this.state.uploadedFile == null}
-                        onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Submit</button>
+                        onClick={this.onClickUpload.bind(this)/*this.uploadTemplate*/}>Upload</button>
                     </div>
                 </Rodal>
             </div>
@@ -281,7 +281,7 @@ class DesktopPage extends React.Component {
                     <button class="btn-outline-dark rounded" onClick={this.createFolder}> Create </button>
                 </div>
             </Popup>*/
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showCreate.bind(this)}>
                     Create Folder
                 </button>

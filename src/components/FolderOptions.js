@@ -66,7 +66,7 @@ class FolderOptions extends React.Component {
 
     renderRenameFolder() {
         return(
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showRename.bind(this)}>Rename</button>
 
                 <Rodal 
@@ -101,7 +101,7 @@ class FolderOptions extends React.Component {
 
     renderDeleteFolder() {
         return(
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showDelete.bind(this)}>Delete</button>
 
                 <Rodal 

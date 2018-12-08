@@ -99,19 +99,27 @@ class TemplateOptions extends React.Component {
         return (
             <label htmlFor="normal-switch mx-2">
               <div className="d-flex justify-content-center"> 
-              <span className="btn-link disabled mr-2">Public: </span>
-              <Switch
-                onChange={this.handleChange}
-                checked={this.state.checked}
-                className="react-switch mt-1"
-                id="normal-switch"
-                height={20}
-                width={50}
-              />
+                <span className="btn-link disabled mr-2">Public: </span>
+                <Switch
+                    onChange={this.handleChange}
+                    checked={this.state.checked}
+                    className="react-switch mt-1"
+                    id="normal-switch"
+                    height={20}
+                    width={50}
+                />
               </div>
             </label>
         );
       }
+
+    renderDownloadTemplate() {
+        return (
+            <div style={{width: '100%'}}>
+                <button className="btn btn-outline-primary border-0 btn-block">Download</button>
+            </div>
+        )
+    }
 
     moveTemplateMethod(newFolderId) {
         moveTemplate(this.props.user.user_id, this.props.template_id, this.props.match.params.folderId || this.props.user.user_id, newFolderId)
@@ -157,7 +165,7 @@ class TemplateOptions extends React.Component {
                 </div>
             </Popup>*/
 
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showMove.bind(this)}>Move</button>
 
                 <Rodal 
@@ -198,7 +206,7 @@ class TemplateOptions extends React.Component {
     renderRenameTemplate() {
         return(
 
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showRename.bind(this)}>Rename</button>
 
                 <Rodal 
@@ -227,7 +235,7 @@ class TemplateOptions extends React.Component {
     renderDeleteTemplate() {
         return(
 
-            <div>
+            <div style={{width: '100%'}}>
                 <button className="btn btn-outline-primary border-0 btn-block" onClick={this.showDelete.bind(this)}>Delete</button>
 
                 <Rodal 
@@ -266,7 +274,7 @@ class TemplateOptions extends React.Component {
                     contentStyle={{width: 150}}>
                     <div>
                         <div className="d-flex justify-content-center">{this.renderPublicSwitch()}</div>
-                        <div className="d-flex justify-content-center btn-link m-2">Download</div>
+                        <div className="d-flex justify-content-center">{this.renderDownloadTemplate()}</div>
                         <div className="d-flex justify-content-center">{this.renderMoveTemplate()}</div>
                         <div className="d-flex justify-content-center">{this.renderRenameTemplate()}</div>
                         <div className="d-flex justify-content-center">{this.renderDeleteTemplate()}</div>
