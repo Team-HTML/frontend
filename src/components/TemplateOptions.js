@@ -29,8 +29,10 @@ class TemplateOptions extends React.Component {
     }
 
     handleChange(checked) {
+        
         setTemplatePublic(this.props.user.user_id, this.props.template_id, checked)
-            .then((r) => {
+            .then(res => {
+                this.props.setPublicTemplateById(this.props.template_id, checked)
             })
     }
 

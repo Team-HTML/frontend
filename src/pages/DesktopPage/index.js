@@ -45,6 +45,7 @@ class DesktopPage extends React.Component {
         this._onSelect = this._onSelect.bind(this);
         this.renameTemplateById = this.renameTemplateById.bind(this);
         this.deleteTemplateById = this.deleteTemplateById.bind(this);
+        this.setPublicTemplateById = this.setPublicTemplateById.bind(this);
     }
 
     onDrop(a) {
@@ -101,6 +102,17 @@ class DesktopPage extends React.Component {
         const others = this.state.default_folder.templates.filter(x => x.template_id !== templateId)
         const curr = this.state.default_folder.templates.filter(x => x.template_id === templateId)[0]
         curr.template_name = newName
+
+        this.setState({default_folder: {
+            ...this.state.default_folder,
+            templates: [...others, curr]
+        }})
+    }
+
+    setPublicTemplateById(templateId, toPublic) {
+        const others = this.state.default_folder.templates.filter(x => x.template_id !== templateId)
+        const curr = this.state.default_folder.templates.filter(x => x.template_id === templateId)[0]
+        curr.is_public = toPublic
 
         this.setState({default_folder: {
             ...this.state.default_folder,
@@ -193,6 +205,7 @@ class DesktopPage extends React.Component {
                                         user={this.props.user}
                                         renameTemplateById={this.renameTemplateById}
                                         deleteTemplateById={this.deleteTemplateById}
+                                        setPublicTemplateById={this.setPublicTemplateById}
                                      />
                                 </div>
                     );
