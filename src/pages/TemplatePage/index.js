@@ -90,7 +90,17 @@ class TemplatePage extends React.Component {
     }
 
     goBack() {
-        this.props.history.goBack();
+       const {shouldSave} = this.state;
+
+       if (shouldSave) {
+           let b = window.confirm("You haven't saved your changes yet. Are you sure you want to leave?")
+           if (b) {
+                window.location = '/home'
+           }
+       }
+       else {
+           window.location = '/home'
+       }
     }
 
     render() {
@@ -106,21 +116,21 @@ class TemplatePage extends React.Component {
         return (
             <>
                 <div className="w-100 px-0 container-fluid h-100 mx-0"> 
-                    <Prompt when={this.state.shouldSave} message="You haven't saved your changes yet. Are you sure you want to leave?"/>
                     <div className="row template-page__nav">
-                        <span className="col-md-4">
+                        <div className="col-md-1">
                             <a className="d-none" id="downloader" target="_blank"></a>
 
-                            <Link className="text-primary ml-4" to="/home">
+                            <div className="text-primary ml-4" onClick={this.goBack}>
                                 <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
-                            </Link>
-
-                            <span className="ml-4 text-white">
+                            </div>
+                        </div>
+                        <div className="col-md-1">
+                            <div className="ml-4 mt-3 text-white">
                                 {this.state.name}
-                            </span>
-                        </span>
+                            </div>
+                        </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-6">
                         </div>
                         <div className="col-md-2 text-right">
                             <button className="btn btn-outline-light m-2" onClick={this.saveEditor}>

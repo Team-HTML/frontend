@@ -174,7 +174,15 @@ class DesktopPage extends React.Component {
                 {sortedFolders.map(d => {
                     return (
                         <div className="col-md-3">
-                            <Folder {...d} user={this.props.user} deleteFolderById={this.deleteFolderById} renameFolderById={this.renameFolderById}/>
+                            <Folder 
+                                {...d} 
+                                user={{
+                                    ...this.props.user,
+                                    folders: folders
+                                }} 
+                                deleteFolderById={this.deleteFolderById} 
+                                renameFolderById={this.renameFolderById}
+                            />
                         </div>
                     );
                 })}
