@@ -229,7 +229,10 @@ class DesktopPage extends React.Component {
                                 <div className="col-md-3">
                                     <Template
                                         {...t}
-                                        user={this.props.user}
+                                        user={{
+                                            ...this.props.user,
+                                            default_folder: default_folder
+                                        }}
                                         renameTemplateById={this.renameTemplateById}
                                         deleteTemplateById={this.deleteTemplateById}
                                         setPublicTemplateById={this.setPublicTemplateById}
