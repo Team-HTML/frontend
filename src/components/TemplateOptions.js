@@ -25,7 +25,7 @@ class TemplateOptions extends React.Component {
             moveVisible: false,
             renameVisible: false,
             deleteVisible: false,
-            renameTemplate: ''
+            renameTemplate: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.updateName = this.updateName.bind(this);
@@ -40,6 +40,7 @@ class TemplateOptions extends React.Component {
         setTemplatePublic(this.props.user.user_id, this.props.template_id, checked)
             .then(res => {
                 this.props.setPublicTemplateById(this.props.template_id, checked)
+                //window.location.reload();
             })
     }
 
@@ -194,10 +195,10 @@ class TemplateOptions extends React.Component {
                     </div> */}
 
                     <div className="d-flex container justify-content-left">
-                        <div className="row">
+                        <div className="row template__move">
                         {
                             arr.map(u => {
-                                return (<div className="col-md"><button type="button" class="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
+                                return (<div className="col-md"><button type="button" className="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
                                     {u.folder_name} 
                                 </button></div>)
                             })

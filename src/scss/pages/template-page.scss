@@ -23,4 +23,12 @@
         width: 25%;
         outline: none;
     }
+
+    &__download {
+        color: #FFFFFF !important;
+    }
+
+    &__download:hover {
+        color:#444444 !important;
+    }
 }

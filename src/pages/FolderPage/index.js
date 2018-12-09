@@ -110,12 +110,12 @@ class FolderPage extends React.Component {
     }
 
     setPublicTemplateById(templateId, toPublic) {
-        const others = this.state.default_folder.templates.filter(x => x.template_id !== templateId)
-        const curr = this.state.default_folder.templates.filter(x => x.template_id === templateId)[0]
+        const others = this.state.folder.templates.filter(x => x.template_id !== templateId)
+        const curr = this.state.folder.templates.filter(x => x.template_id === templateId)[0]
         curr.is_public = toPublic
 
-        this.setState({default_folder: {
-            ...this.state.default_folder,
+        this.setState({folder: {
+            ...this.state.folder,
             templates: [...others, curr]
         }})
     }

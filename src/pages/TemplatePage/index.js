@@ -137,8 +137,8 @@ class TemplatePage extends React.Component {
                                 Save
                             </button>
                         </div>
-                        <div className="col-md-2 text-white">
-                            <a className="btn btn-primary btn-outline-light m-2 text-white" onClick={this.downloadCode}>
+                        <div className="col-md-2">
+                            <a className="btn btn-primary btn-outline-light m-2 template-page__download" onClick={this.downloadCode}>
                                 Download
                             </a>
                         </div>

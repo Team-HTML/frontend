@@ -20,6 +20,7 @@
         overflow: hidden;
         font-size: 1.1rem;
         max-height: 100%;
+        max-width: 80%;
         bottom: -1.75rem;
         left: 1rem;
     }
@@ -40,5 +41,10 @@
     &__blur {
         pointer-events: none;
         filter: blur(0.1rem);
+    }
+
+    &__move {
+        height: 150px;
+        overflow-y: scroll;
     }
 }
