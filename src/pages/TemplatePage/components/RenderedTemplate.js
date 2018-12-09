@@ -24,8 +24,11 @@ class RenderedTemplate extends React.Component {
 
     render() {
         return (
-            <iframe className="w-100 h-100 container-fluid px-0" id="rendered">
-            </iframe>
+            <div className="w-100 container-fluid px-0 h-100">
+                <iframe className="" id="rendered">
+                </iframe>
+            </div>
+
         )
     }
 }

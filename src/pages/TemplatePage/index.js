@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Prompt, Link} from 'react-router-dom';
 import RenderedTemplate from './components/RenderedTemplate';
 import Editor from './components/Editor';
 import Loading from 'react-loading';
@@ -23,7 +23,8 @@ class TemplatePage extends React.Component {
             htmlCode: ``,
             cssCode: ``,
             htmlURL: ``,
-            cssURL: ``
+            cssURL: ``,
+            shouldSave: false
         }
         this.goBack = this.goBack.bind(this);
         this.setCode = this.setCode.bind(this);
@@ -62,8 +63,11 @@ class TemplatePage extends React.Component {
       uploadHTMLToS3(this.state.htmlCode, this.state.htmlURL)
         .then((r) => {
             uploadCSSToS3(this.state.cssCode, this.state.cssURL)
-                .then(console.log)
+                .then(() => {
+                    this.setState({shouldSave: false})
+                })
                 .catch(e => {
+
                     throw new Error(e);
                 })
         })
@@ -82,7 +86,7 @@ class TemplatePage extends React.Component {
     }
 
     setCode(prop, newValue) {
-        this.setState({[prop]: newValue});
+        this.setState({[prop]: newValue, shouldSave: true});
     }
 
     goBack() {
@@ -100,42 +104,47 @@ class TemplatePage extends React.Component {
         }
 
         return (
-            <div className="w-100 h-100 px-0 container-fluid w-100 mx-0">
-                <div className="row template-page__nav">
-                    <span className="col-md-2">
-                        <a className="d-none" id="downloader" target="_blank"></a>
+            <>
+                <div className="w-100 px-0 container-fluid h-100 mx-0"> 
+                    <Prompt when={this.state.shouldSave} message="You haven't saved your changes yet. Are you sure you want to leave?"/>
+                    <div className="row template-page__nav">
+                        <span className="col-md-4">
+                            <a className="d-none" id="downloader" target="_blank"></a>
 
-                        <a className="text-primary ml-4" href="/home">
-                          <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
-                        </a>
+                            <Link className="text-primary ml-4" to="/home">
+                                <button className="btn-outline-light rounded m-1 mt-3">  Back </button>
+                            </Link>
 
-                        <span className="ml-4 text-white">
-                            {this.state.name}
+                            <span className="ml-4 text-white">
+                                {this.state.name}
+                            </span>
                         </span>
-                    </span>
 
-                    <div className="col-md-8">
-                    </div>
-                    <div className="col-md-2">
-                        <button className="btn btn-outline-light m-2" onClick={this.saveEditor}>
-                            Save
-                        </button>
-                        <button className="btn btn-primary btn-outline-light ml-4 m-2" onClick={this.downloadCode}>
-                            Download
-                        </button>
-                    </div>
-                </div>
-                <div className="h-100 w-100 row mx-0">
-                    <div className="col-md-6 px-0">
-                        <div className="container w-100 h-100 px-0">
-                            <Editor setCode={this.setCode} {...this.state} />
+                        <div className="col-md-4">
+                        </div>
+                        <div className="col-md-2 text-right">
+                            <button className="btn btn-outline-light m-2" onClick={this.saveEditor}>
+                                Save
+                            </button>
+                        </div>
+                        <div className="col-md-2">
+                            <button className="btn btn-primary btn-outline-light m-2" onClick={this.downloadCode}>
+                                Download
+                            </button>
                         </div>
                     </div>
-                    <div className="col-md-6 px-0">
-                        <RenderedTemplate html={this.state.htmlCode} css={this.state.cssCode}/>
+                    <div className="w-100 row mx-0" style={{height: '87%'}}>
+                        <div className="col-md-6 px-0">
+                            <div className="container w-100 h-100 px-0">
+                                <Editor setCode={this.setCode} {...this.state} />
+                            </div>
+                        </div>
+                        <div className="col-md-6 px-0" style={{height: '108%'}}>
+                            <RenderedTemplate html={this.state.htmlCode} css={this.state.cssCode}/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

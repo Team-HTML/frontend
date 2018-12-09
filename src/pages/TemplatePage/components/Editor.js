@@ -7,7 +7,7 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currTab: 1,
+            currTab: 0,
             tabs: [
                 {
                     file: 'index.html',

@@ -232,6 +232,8 @@ class FolderPage extends React.Component {
                             })
                     })
                     .catch((e) => {
+                        alert("We Weren't Able To Find Any Boxes In Your Image. Try Again")
+
                         this.setState({folder: {
                             ...this.state.folder,
                             templates: this.state.folder.templates.filter(x => x.template_name !== uploadedFileName)
