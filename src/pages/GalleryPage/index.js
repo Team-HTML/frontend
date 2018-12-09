@@ -2,6 +2,7 @@ import React from 'react';
 import './newsfeed.component.css';
 import GalleryTemplate from '../../components/GalleryTemplate';
 import {getGallery} from '../../data/Api';
+import Loading from "react-loading";
 
 class GalleryPage extends React.Component {
 
@@ -22,7 +23,11 @@ class GalleryPage extends React.Component {
   renderPublicTemplates() {
       const {public_templates} = this.state;
 
-      if (!public_templates) return;
+      if (!public_templates) return (
+          <div className="mt-5">
+            <h3 className="w-100 h-100 d-flex justify-content-center align-items-center text-white text-center pt-5">There are currently no gallery templates!</h3>
+          </div>
+      );
 
       return (
         <div className="row mt-4">
@@ -54,6 +59,15 @@ class GalleryPage extends React.Component {
   }*/
 
   render() {
+    const {public_templates} = this.state;
+    if (!public_templates) {
+        return (
+            <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                <Loading type="spin" color='black' width="4rem"/>
+            </div>
+        )
+    }
+
     return (
       <div className="pt-5 home">
         <div className="container">
