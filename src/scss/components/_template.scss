@@ -41,4 +41,9 @@
         pointer-events: none;
         filter: blur(0.1rem);
     }
+
+    &__move {
+        height: 150px;
+        overflow-y: scroll;
+    }
 }

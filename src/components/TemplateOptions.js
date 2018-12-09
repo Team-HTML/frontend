@@ -194,10 +194,10 @@ class TemplateOptions extends React.Component {
                     </div> */}
 
                     <div className="d-flex container justify-content-left">
-                        <div className="row">
+                        <div className="row template__move">
                         {
                             arr.map(u => {
-                                return (<div className="col-md"><button type="button" class="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
+                                return (<div className="col-md"><button type="button" className="btn btn-outline-primary m-2" onClick={e => this.moveTemplateMethod(u.folder_id)}> 
                                     {u.folder_name} 
                                 </button></div>)
                             })
