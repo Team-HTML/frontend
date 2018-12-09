@@ -355,21 +355,18 @@ class DesktopPage extends React.Component {
                 return getJSONFromImg(e)
                     .then(generateHTML)
                     .then((res) => {
-                        const {html_key} = res;
-
-                        console.log(res);
+                        const {html_key, css_key} = res;
                         const s3Url = "http://cse110.html.html.s3.amazonaws.com/";
                         return {
                             "created_by": this.props.user.user_id,
                             "is_public": false,
                             "template_name": uploadedFileName,
                             "template_photo_url": url,
-                            "template_css": "body {color: blue}",
+                            "template_css": css_key,
                             "template_html": s3Url + html_key,
                         }
                     })
                     .then((data) => {
-                        console.log("HERE")
                         return createTemplate(data, this.props.user.user_id)
                             .then((res) => {
                                 console.log("Here 2")
@@ -391,6 +388,7 @@ class DesktopPage extends React.Component {
                             })
                     })
                     .catch((e) => {
+                        alert("We Weren't Able To Find Any Boxes In Your Image. Try Again")
                         this.setState({default_folder: {
                             ...this.state.default_folder,
                             templates: this.state.default_folder.templates.filter(x => x.template_name !== uploadedFileName)

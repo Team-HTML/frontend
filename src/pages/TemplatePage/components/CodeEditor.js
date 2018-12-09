@@ -55,12 +55,15 @@ class CodeEditor extends React.Component {
         };
 
         return (
-                <MonacoEditor
-                    theme="vs-dark"
-                    options={options}
-                    onChange={this.onChange}
-                    editorDidMount={this.editorDidMount}
-                />
+                <div style={{height: '100%'}}>
+                    <MonacoEditor
+                        theme="vs-dark"
+                        options={options}
+                        onChange={this.onChange}
+                        editorDidMount={this.editorDidMount}
+                    />      
+                </div>
+
         );
     }
 }
