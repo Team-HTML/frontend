@@ -47,7 +47,6 @@ class Editor extends React.Component {
     render() {
         const {tabs, currTab} = this.state;
         const {setCode} = this.props;
-
         return (
             <>
                 {this.renderTabs(tabs, currTab)}

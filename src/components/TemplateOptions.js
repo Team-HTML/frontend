@@ -25,7 +25,7 @@ class TemplateOptions extends React.Component {
             moveVisible: false,
             renameVisible: false,
             deleteVisible: false,
-            renameTemplate: ''
+            renameTemplate: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.updateName = this.updateName.bind(this);
@@ -40,6 +40,7 @@ class TemplateOptions extends React.Component {
         setTemplatePublic(this.props.user.user_id, this.props.template_id, checked)
             .then(res => {
                 this.props.setPublicTemplateById(this.props.template_id, checked)
+                window.location.reload();
             })
     }
 
