@@ -4,6 +4,8 @@ import GalleryPreview from './GalleryPreview';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 
+import {downloadProject} from '../data/Api';
+
 class GalleryTemplate extends React.Component {
 
     constructor(props) {
@@ -11,6 +13,8 @@ class GalleryTemplate extends React.Component {
         this.state = {
             previewVisible: false,
         }
+
+        this.download = this.download.bind(this);
     }
 
     showPreview() {
@@ -19,6 +23,17 @@ class GalleryTemplate extends React.Component {
  
     hidePreview() {
         this.setState({ previewVisible: false });
+    }
+
+    download() {
+        downloadProject(this.props.template_id)
+        .then(({key}) => {
+            //$('#downloader').attr('href', key);
+            //$('#downloader').click()
+
+            window.open(key)
+        })
+        .catch(console.error)
     }
 
     render() {
@@ -47,7 +62,10 @@ class GalleryTemplate extends React.Component {
                                 </iframe>
                             </Rodal>
                     </div>  
-                    <div className="btn btn-outline-primary text-md-right">Download</div>  
+                    <div className="btn btn-outline-primary text-md-right" onClick={this.download}>
+                        Download
+                        <a className="d-none" id="downloader" target="_blank"></a>
+                    </div>  
                 </div>            
             </div>
         );
