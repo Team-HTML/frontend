@@ -128,9 +128,9 @@ class TemplatePage extends React.Component {
                             </button>
                         </div>
                         <div className="col-md-2">
-                            <button className="btn btn-primary btn-outline-light m-2" onClick={this.downloadCode}>
+                            <a className="btn btn-primary btn-outline-light m-2" onClick={this.downloadCode}>
                                 Download
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div className="w-100 row mx-0" style={{height: '87%'}}>
