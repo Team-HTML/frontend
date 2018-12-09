@@ -5,7 +5,13 @@ import Popup from "reactjs-popup";
 import Switch from "react-switch";
 import Rodal from 'rodal';
 
-import {setTemplatePublic, renameTemplate, deleteTemplate, moveTemplate} from '../data/Api'
+import {
+    setTemplatePublic, 
+    renameTemplate, 
+    deleteTemplate, 
+    moveTemplate,
+    downloadProject
+} from '../data/Api'
 
 import 'rodal/lib/rodal.css';
 
@@ -26,6 +32,7 @@ class TemplateOptions extends React.Component {
         this.renameTemplateMethod = this.renameTemplateMethod.bind(this);
         this.deleteTemplateMethod = this.deleteTemplateMethod.bind(this);
         this.moveTemplateMethod = this.moveTemplateMethod.bind(this);
+        this.download = this.download.bind(this);
     }
 
     handleChange(checked) {
@@ -111,9 +118,20 @@ class TemplateOptions extends React.Component {
     renderDownloadTemplate() {
         return (
             <div style={{width: '100%'}}>
-                <button className="btn btn-outline-primary border-0 btn-block">Download</button>
+                <button className="btn btn-outline-primary border-0 btn-block" onClick={this.download}>Download</button>
             </div>
         )
+    }
+
+    download() {
+        downloadProject(this.props.template_id)
+        .then(({key}) => {
+            //$('#downloader').attr('href', key);
+            //$('#downloader').click()
+
+            window.open(key)
+        })
+        .catch(console.error)
     }
 
     moveTemplateMethod(newFolderId) {
