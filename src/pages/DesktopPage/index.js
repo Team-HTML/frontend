@@ -190,11 +190,22 @@ class DesktopPage extends React.Component {
     }
 
     renderDefaultFolder() {
+        const {folders} = this.state;
 
         const {default_folder} = this.state;
 
+
         if (default_folder && default_folder.templates) {
             console.log(default_folder)
+
+          if (!folders.length && !default_folder.templates.length)
+            return (
+                <div className="mt-5">
+                  <h3 className="w-100 h-100 d-flex justify-content-center align-items-center text-white text-center pt-5">There are currently no folders and templates here!</h3>
+                </div>
+            );
+
+
             return (
                 <div className="defaultFolderRow' row">
                     {default_folder.templates.map(t => {
@@ -438,7 +449,34 @@ class DesktopPage extends React.Component {
           <p> {this.renderFolders()} </p>
         );
     }
+
     render() {
+      const {folders} = this.state;
+
+      if (!folders.length)
+          return(
+              <>
+                <div className="home pt-5">
+                  <div className="container">
+                    <div className="row mx-0">
+
+                      <h1 className="home__name">{this.props.user.user_first_name}'s Home</h1>
+                      <div className="w-20 ml-auto home__name">Sort By:
+                        <Dropdown arrowClassName='myArrowClassName' options={options} onChange={this._onSelect} value={defaultOption}></Dropdown>
+                      </div>
+                    </div>
+                    {this.renderFolders()}
+                    {/*
+                        {this.renderAddFolder()}
+                        */}
+                    {this.renderDefaultFolder()}
+                  </div>
+                </div>
+                {this.renderAddButton()}
+              </>
+          )
+
+      else
         return (
             <>
                 <div className="home pt-5">

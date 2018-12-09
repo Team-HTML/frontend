@@ -139,23 +139,35 @@ class FolderPage extends React.Component {
             sortFn = this.state.sortFn
             sortedTemplates = templates.sort(sortFn);
         }
-        return (
-            <div className="row mt-5">
-                {sortedTemplates.map(d => {
-                    return (
-                        <div className="col-md-3">
-                            <Template
-                                {...d}
-                                user={this.props.user}
-                                renameTemplateById={this.renameTemplateById}
-                                deleteTemplateById={this.deleteTemplateById}
-                                setPublicTemplateById={this.setPublicTemplateById}
-                            />
-                        </div>
-                    );
-                })}
-            </div>
-        );
+
+        if (!sortedTemplates.length) {
+            return (
+                <div className="mt-5">
+                    <h3 className="w-100 h-100 d-flex justify-content-center align-items-center text-white text-center pt-5">There
+                        are currently no templates here!</h3>
+                </div>
+            );
+        }
+
+        else {
+            return (
+                <div className="row mt-5">
+                    {sortedTemplates.map(d => {
+                        return (
+                            <div className="col-md-3">
+                                <Template
+                                    {...d}
+                                    user={this.props.user}
+                                    renameTemplateById={this.renameTemplateById}
+                                    deleteTemplateById={this.deleteTemplateById}
+                                    setPublicTemplateById={this.setPublicTemplateById}
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
     }
 
     onChangeName(e) {
