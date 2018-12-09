@@ -69,7 +69,8 @@ class DesktopPage extends React.Component {
     }
 
     hideCreate() {
-        this.setState({ createVisible: false });
+        this.setState({ createVisible: false, addFolder: null});
+
     }
 
     showUpload() {
@@ -133,8 +134,15 @@ class DesktopPage extends React.Component {
     }
 
     onClickCreate(e) {
-        this.createFolder();
-        this.hideCreate();
+        console.log(this.state.addFolder);
+        if(this.state.addFolder == null || this.state.addFolder == '') {
+          this.setState({addFolder: "Untitled"}, function() {
+            console.log(this.state.addFolder);
+            this.createFolder();
+          });
+        } else {
+          this.createFolder();
+        }
     }
 
     onClickUpload(e) {
@@ -443,6 +451,7 @@ class DesktopPage extends React.Component {
                         })
                     })
             })
+            this.hideCreate();
 
         this.closeModal();
         return(
