@@ -231,7 +231,8 @@ class DesktopPage extends React.Component {
                                         {...t}
                                         user={{
                                             ...this.props.user,
-                                            default_folder: default_folder
+                                            default_folder: default_folder,
+                                            folders: this.props.user.folders || []
                                         }}
                                         renameTemplateById={this.renameTemplateById}
                                         deleteTemplateById={this.deleteTemplateById}

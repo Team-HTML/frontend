@@ -144,7 +144,13 @@ class TemplateOptions extends React.Component {
 
     renderMoveTemplate() {
         const {user} = this.props;
-        let arr = user.folders.filter(x => (x.folder_id !== parseInt(this.props.match.params.folderId, 10)))
+
+        let arr = []
+
+        if (user.folders) {
+            arr = user.folders.filter(x => (x.folder_id !== parseInt(this.props.match.params.folderId, 10)))
+        }
+
         if (this.props.match.params.folderId) {
             arr.push({folder_name: 'Home Page', folder_id: user.default_folder.folder_id})
         }
