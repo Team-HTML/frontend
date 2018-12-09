@@ -69,7 +69,8 @@ class DesktopPage extends React.Component {
     }
 
     hideCreate() {
-        this.setState({ createVisible: false });
+        this.setState({ createVisible: false, addFolder: null});
+
     }
 
     showUpload() {
@@ -133,7 +134,13 @@ class DesktopPage extends React.Component {
     }
 
     onClickCreate(e) {
-        this.createFolder();
+        if(this.state.addFolder == null || this.state.addFolder == '') {
+          this.setState({addFolder: "Untitled"}, function() {
+            this.createFolder();
+          })
+        } else {
+          this.createFolder();
+        }
         this.hideCreate();
     }
 
